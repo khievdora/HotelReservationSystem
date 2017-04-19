@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="[this is for home]">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/home/dbconnection/DataAccessFacade.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/home/dbconnection/Database.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/home/dbconnection/DatabaseSingleton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/home/dbconnection/IDatabase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/home/dbconnection/Main.java" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -622,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492618273308</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[I add connection module]">
+      <created>1492618728525</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1492618728525</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -700,7 +702,8 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="[this is for home]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[this is for home]" />
+    <MESSAGE value="[I add connection module]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[I add connection module]" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
