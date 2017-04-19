@@ -27,7 +27,7 @@ public class Login {
         if(txtUserName.getText().equals("user") && txtPassword.getText().equals("pass")){
             lblStatus.setText("Login successfull");
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../src/view/MainWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../../resource/view/MainWindow.fxml"));
             Scene scene = new Scene(root, 600,400);
             primaryStage.setScene(scene);
             primaryStage.show();
