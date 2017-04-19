@@ -18,6 +18,9 @@ public class DataAccessFacade {
     public ResultSet executeQuery(String querySql, String queryValue){
         return database.executeQuery(querySql, queryValue);
     }
+    public ResultSet executeQuery(String querySql){
+        return database.executeQuery(querySql);
+    }
     public void runProcedure(String sql, int value){
         database.runStoreProcedure(sql, value);
     }

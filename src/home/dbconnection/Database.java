@@ -13,7 +13,7 @@ public class Database implements IDatabase {
     public void openConnection() {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelReservation?useSSL=false","root","root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelReservation?useSSL=false","root","123456");
         }catch(SQLException e){
             e.printStackTrace();
         }catch(IllegalAccessException e){
@@ -32,6 +32,21 @@ public class Database implements IDatabase {
 
             prep = connection.prepareStatement(sql);
             prep.setString(1, value);
+            rset = prep.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return rset;
+    }
+
+    @Override
+    public ResultSet executeQuery(String sql) {
+        ResultSet rset = null;
+        try{
+
+            prep = connection.prepareStatement(sql);
+           // prep.setString(1, value);
             rset = prep.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();

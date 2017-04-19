@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 public interface IDatabase {
     public void openConnection();
     public ResultSet executeQuery(String sql, String value);
+    public ResultSet executeQuery(String sql);
     public void runStoreProcedure(String sql, int value);
     public void closeConnection();
 }
