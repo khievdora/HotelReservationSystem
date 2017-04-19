@@ -1,4 +1,4 @@
-package home.dbconnection;
+package java.dbconnection;
 
 /**
  * Created by gebre on 4/18/2017.

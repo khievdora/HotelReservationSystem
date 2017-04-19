@@ -1,4 +1,4 @@
-package home.authentication;
+package java.authentication;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class Login {
         if(txtUserName.getText().equals("user") && txtPassword.getText().equals("pass")){
             lblStatus.setText("Login successfull");
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../MainWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../../src/view/MainWindow.fxml"));
             Scene scene = new Scene(root, 600,400);
             primaryStage.setScene(scene);
             primaryStage.show();

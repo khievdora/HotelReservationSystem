@@ -1,4 +1,4 @@
-package home;
+package java;
 
 /**
  * Created by gebre on 4/19/2017.

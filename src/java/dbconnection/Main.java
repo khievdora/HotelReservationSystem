@@ -1,4 +1,4 @@
-package home.dbconnection;
+package java.dbconnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
