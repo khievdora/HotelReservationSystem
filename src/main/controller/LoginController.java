@@ -56,7 +56,8 @@ public class LoginController implements AuthenticationSubcriber {
 
     public void onButtonLoginClicked() {
         System.out.println("Button login clicked!!!");
-        authService.login(txtUserName.getText(), txtPassword.getText());
+        //authService.login(txtUserName.getText(), txtPassword.getText());
+        this.loginWindow.navigateToMainWindow();
     }
 
     public void onButtonCancelClicked() {

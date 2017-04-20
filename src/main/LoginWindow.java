@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import main.Shared.UrlLoader;
 import main.controller.LoginController;
 
+import java.io.IOException;
+
 /**
  * Created by gebre on 4/18/2017.
  */
@@ -36,7 +38,20 @@ public class LoginWindow extends Application {
         launch(args);
     }
 
-    public void navigateToWelcomeView() {
+    public void navigateToMainWindow() {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(UrlLoader.loadView("MainWindow.fxml")));
+        Stage stage = new Stage();
+        try {
+            Parent root = loader.load();
+            stage.setTitle("Reservation System");
+            stage.setScene(new Scene(root, 800, 500));
+            stage.show();
+
+            this.window.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
