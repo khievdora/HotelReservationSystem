@@ -1,4 +1,4 @@
-package java.model;
+package main.model;
 
 /**
  * Created by Gize on 4/19/2017.

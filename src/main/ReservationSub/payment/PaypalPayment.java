@@ -1,4 +1,4 @@
-package java.ReservationSub.payment;
+package main.ReservationSub.payment;
 
 /**
  * Created by Gize on 4/20/2017.

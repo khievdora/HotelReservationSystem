@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="598.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java.controller.Guest">
+<AnchorPane prefHeight="598.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.Guest">
    <children>
       <Label layoutX="110.0" layoutY="32.0" prefHeight="21.0" prefWidth="276.0" text="Guest Registration Form">
          <font>

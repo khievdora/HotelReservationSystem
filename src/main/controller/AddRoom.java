@@ -1,4 +1,4 @@
-package java.controller;
+package main.controller;
 
 /**
  * Created by gebre on 4/19/2017.

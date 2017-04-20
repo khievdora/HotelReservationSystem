@@ -1,6 +1,6 @@
-package java.ReservationSub;
+package main.ReservationSub;
 
-import java.model.Reservation;
+import main.model.Reservation;
 
 /**
  * Created by Gize on 4/19/2017.
