@@ -1,7 +1,6 @@
 package main.authenticationsub;
 
 import main.model.Account;
-import main.model.User;
 import main.accountsub.AccountFacade;
 import main.accountsub.AccountService;
 
