@@ -1,5 +1,6 @@
 package main.authenticationsub;
 
+import main.model.Account;
 import main.model.User;
 import main.accountsub.AccountFacade;
 import main.accountsub.AccountService;
@@ -23,14 +24,14 @@ public class AuthenticatoinFacade implements AuthenticationService {
 
     @Override
     public void login(String userName, String password) throws NullPointerException {
-        User user = this.accountService.getAccount(userName, password);
+        Account account = this.accountService.getAccount(userName, password);
         if (this.authenticationSubcriber == null) {
             throw new NullPointerException("There is no authentication subscriber in this form");
         } else {
-            if (user == null) {
+            if (account == null) {
                 this.authenticationSubcriber.onLoginFail("Login fail!!!");
             } else {
-                this.authenticationSubcriber.onLoginSuccess(user);
+                this.authenticationSubcriber.onLoginSuccess(account);
             }
         }
     }

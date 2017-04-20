@@ -9,8 +9,15 @@ import java.util.List;
  */
 public class DBFacade implements DBService {
 
+    private IDatabase iDatabase = null;
+
+    public DBFacade() {
+        iDatabase = Database.getInstance();
+    }
+
     @Override
     public boolean saveAccount(Account account) {
+
         return false;
     }
 
