@@ -1,6 +1,6 @@
 package main.dbsub;
 
-import main.model.User;
+import main.model.Account;
 
 import java.util.List;
 
@@ -9,16 +9,16 @@ import java.util.List;
  */
 public interface DBService {
     // CRUD User
-    public boolean saveUser(User user);
-    public boolean updateUser(User user);
-    public boolean deleteUser(User user);
-    public boolean deleteUserById(String userId);
-    public User getUserById(String userId);
-    public User getUserByUserName(String userName);
-    public User getUserByUserNameAndPassword(String userName, String password);
-    public List<User> getUserByFirstName(String firstName);
-    public List<User> getUserByLastName(String lastName);
-    public List<User> getAllUser();
+    public boolean saveAccount(Account account);
+    public boolean updateAccount(Account account);
+    public boolean deleteAccount(Account account);
+    public boolean deleteAccountById(String accountId);
+    public Account getAccountById(String accountId);
+    public Account getAccountByUserName(String userName);
+    public Account getAccountByUserNameAndPassword(String userName, String password);
+    public List<Account> getAccountByFirstName(String firstName);
+    public List<Account> getAccountByLastName(String lastName);
+    public List<Account> getAllAccount();
 
     // CRUD Room
 }

@@ -1,6 +1,6 @@
 package main.dbsub;
 
-import main.model.User;
+import main.model.Account;
 
 import java.util.List;
 
@@ -10,52 +10,52 @@ import java.util.List;
 public class DBFacade implements DBService {
 
     @Override
-    public boolean saveUser(User user) {
+    public boolean saveAccount(Account account) {
         return false;
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateAccount(Account account) {
         return false;
     }
 
     @Override
-    public boolean deleteUser(User user) {
+    public boolean deleteAccount(Account account) {
         return false;
     }
 
     @Override
-    public boolean deleteUserById(String userId) {
+    public boolean deleteAccountById(String accountId) {
         return false;
     }
 
     @Override
-    public User getUserById(String userId) {
+    public Account getAccountById(String accountId) {
         return null;
     }
 
     @Override
-    public User getUserByUserName(String userName) {
+    public Account getAccountByUserName(String userName) {
         return null;
     }
 
     @Override
-    public User getUserByUserNameAndPassword(String userName, String password) {
+    public Account getAccountByUserNameAndPassword(String userName, String password) {
         return null;
     }
 
     @Override
-    public List<User> getUserByFirstName(String firstName) {
+    public List<Account> getAccountByFirstName(String firstName) {
         return null;
     }
 
     @Override
-    public List<User> getUserByLastName(String lastName) {
+    public List<Account> getAccountByLastName(String lastName) {
         return null;
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<Account> getAllAccount() {
         return null;
     }
 }
