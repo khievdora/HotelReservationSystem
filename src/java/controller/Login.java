@@ -1,4 +1,4 @@
-package java.authentication;
+package java.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="627.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java.controller.AddRoom">
+   <children>
+      <Label layoutX="89.0" layoutY="46.0" prefHeight="36.0" prefWidth="288.0" text="Room Registration Form">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="137.0" text="Code:" />
+      <Label layoutX="41.0" layoutY="174.0" text="Room No:" />
+      <Label layoutX="67.0" layoutY="222.0" text="Floor:" />
+      <Label layoutX="29.0" layoutY="277.0" text="Room Type:" />
+      <Label layoutX="72.0" layoutY="336.0" text="Price:" />
+      <Label layoutX="20.0" layoutY="379.0" text="Max Capacity:" />
+      <Label layoutX="64.0" layoutY="435.0" text="Status:" />
+      <TextField layoutX="140.0" layoutY="132.0" />
+      <TextField layoutX="140.0" layoutY="180.0" />
+      <TextField layoutX="140.0" layoutY="331.0" />
+      <TextField layoutX="140.0" layoutY="430.0" />
+      <Button layoutX="212.0" layoutY="500.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="116.0" text="Save">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="137.0" layoutY="272.0" prefHeight="31.0" prefWidth="187.0" />
+      <Spinner layoutX="140.0" layoutY="217.0" />
+      <Spinner layoutX="140.0" layoutY="374.0" />
+   </children>
+</AnchorPane>
