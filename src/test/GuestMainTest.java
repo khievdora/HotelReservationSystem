@@ -2,6 +2,7 @@ package test;
 
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
+import main.model.Address;
 import main.model.Guest;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class GuestMainTest {
                 "Khiev",
                 "12345678",
                 "294837372",
-                "53 N Maple St",
+                new Address("2", "52556", "52 N Maple St", "Fairfield", "IOWA", "USA"),
                 "0984747363");
         System.out.println(guest.toString());
         dbService.saveGuest(guest);
