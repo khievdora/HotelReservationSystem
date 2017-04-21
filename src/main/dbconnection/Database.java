@@ -13,7 +13,7 @@ public class Database implements IDatabase {
     public void openConnection() {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelReservation?useSSL=false","root","root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelReservation?useSSL=false","root","123456");
         }catch(SQLException e){
             e.printStackTrace();
         }catch(IllegalAccessException e){
