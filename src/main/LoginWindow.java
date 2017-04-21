@@ -48,7 +48,7 @@ public class LoginWindow extends Application {
             stage.setScene(new Scene(root, 800, 500));
             stage.show();
 
-            this.window.close();
+            this.window.hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
