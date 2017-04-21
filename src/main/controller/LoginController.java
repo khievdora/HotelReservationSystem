@@ -40,6 +40,7 @@ public class LoginController implements AuthenticationSubcriber {
     @Override
     public void onLoginSuccess(Account account) {
         // Navigate to Welcome screen
+        this.loginWindow.navigateToMainWindow();
     }
 
     @Override
@@ -56,8 +57,8 @@ public class LoginController implements AuthenticationSubcriber {
 
     public void onButtonLoginClicked() {
         System.out.println("Button login clicked!!!");
-        //authService.login(txtUserName.getText(), txtPassword.getText());
-        this.loginWindow.navigateToMainWindow();
+        authService.login(txtUserName.getText(), txtPassword.getText());
+//        this.loginWindow.navigateToMainWindow();
     }
 
     public void onButtonCancelClicked() {
