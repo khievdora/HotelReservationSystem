@@ -20,11 +20,7 @@ public class DBFacade implements DBService {
     @Override
     public boolean saveAccount(Account account) {
         try{
-<<<<<<< HEAD
             String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES('"+ account.getCode()+"','"+account.getUserName()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getUserRole()+"','"+account.getAccountStatus()+"')";
-=======
-            String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES (?,?,?,?,?,?)";
->>>>>>> 670ff0e8aab01467cdda734989a1a382b191f794
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
@@ -188,10 +184,10 @@ public class DBFacade implements DBService {
     public List<Account> getAllAccount() {
         String query = "SELECT *from account";
         List<Account> accounts = new ArrayList<Account>();
-        Account account=new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
+                Account account=new Account();
                 account.setCode(rs.getInt(1));
                 account.setUserName(rs.getString(2));
                 account.setPassword(rs.getString(3));

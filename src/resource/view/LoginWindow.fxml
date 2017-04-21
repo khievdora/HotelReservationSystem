@@ -29,7 +29,10 @@
          </font>
       </Button>
       <Label fx:id="lblStatus" layoutX="45.0" layoutY="31.0" prefHeight="30.0" prefWidth="301.0" textFill="#f20c0c" />
-      <ImageView fx:id="imgHotel" fitHeight="86.0" fitWidth="111.0" layoutX="131.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgHotel" fitHeight="86.0" fitWidth="111.0" layoutX="131.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/icHotel.png" />
+         </image></ImageView>
       <Label layoutX="141.0" layoutY="124.0" text="Login Form" textAlignment="CENTER">
          <font>
             <Font size="18.0" />

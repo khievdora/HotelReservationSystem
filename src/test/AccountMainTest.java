@@ -25,10 +25,6 @@ public class AccountMainTest {
         mainTest.displayAllAccount(accountList);
 
         // Add new account
-<<<<<<< HEAD
-
-
-=======
         Account account = new Account();
         account.setCode(accountList.size() + 1);
         account.setUserName("dora");
@@ -36,11 +32,10 @@ public class AccountMainTest {
         account.setStatus(Status.ENABLE.toString());
         account.setUserRole(UserRole.USER.toString());
         account.setAccountStatus(AccountStatus.ACTIVE.toString());
-        accountService.saveAccount(account);
->>>>>>> 670ff0e8aab01467cdda734989a1a382b191f794
+        //accountService.saveAccount(account);
         // List all account again
-        accountList = accountService.getAllAccount();
-        mainTest.displayAllAccount(accountList);
+        //accountList = accountService.getAllAccount();
+        //mainTest.displayAllAccount(accountList);
 
         // Edit account
 
