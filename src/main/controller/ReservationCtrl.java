@@ -29,10 +29,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
+
 
 public class ReservationCtrl implements Initializable {
     @FXML
@@ -83,18 +82,19 @@ public class ReservationCtrl implements Initializable {
         ResultSet result = facade.executeQuery(querySql, "1");
         List<Reservation> accList = new ArrayList<>();
 
-        Reservation acc = new Reservation();
+
         try {
             while (result.next()) {
 
                 try {
-                    acc.setCode(result.getString("idReservation"));
-                    acc.setRoom(getRoom(querySqlRoom, result.getString("room1")));
-                    acc.setGuest(getGuest(querySqlGuest, result.getString("guest")));
-                    acc.setCheckInDate(result.getDate("checkInDate"));
-                    acc.setBookedDate(result.getDate("bookedDate"));
-                    acc.setCheckOut(result.getDate("checkOutDate"));
-                    acc.setRegistrationStatus(result.getString("regervationStatus"));
+                    String code = (result.getString("idReservation"));
+                    String room = (getRoom(querySqlRoom, result.getString("room1")));
+                    String guest = (getGuest(querySqlGuest, result.getString("guest")));
+                    Date checkIn = (result.getDate("checkInDate"));
+                    Date booked = (result.getDate("bookedDate"));
+                    Date checkOut = (result.getDate("checkOutDate"));
+                    String status = (result.getString("regervationStatus"));
+                    Reservation acc = new Reservation(code, checkIn, booked, checkOut, guest, room, status);
                     accList.add(acc);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -194,18 +194,18 @@ public class ReservationCtrl implements Initializable {
         try {
 
             while (result.next()) {
-                Room room = new Room();
-                room.setCode(result.getString("idRoom"));
-                room.setRoomName(result.getString("roomName"));
-                room.setRoomNumber(result.getInt("roomNumber"));
-                room.setRoomStatus(result.getString("roomStatus"));
-                room.setFloor(result.getInt("floor"));
-                room.setRoomType(result.getString("roomType"));
-                room.setMaxQuest(result.getInt("maxQuest"));
+//                Room room = new Room();
+//                room.setCode(result.getString("idRoom"));
+//                room.setRoomName(result.getString("roomName"));
+//                room.setRoomNumber(result.getInt("roomNumber"));
+//                room.setRoomStatus(result.getString("roomStatus"));
+//                room.setFloor(result.getInt("floor"));
+//                room.setRoomType(result.getString("roomType"));
+//                room.setMaxQuest(result.getInt("maxQuest"));
                 int roomNo = result.getInt("roomNumber");
 
                 rooms.add(roomNo);
-                allRooms.add(room);
+                //allRooms.add(room);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -235,14 +235,14 @@ public class ReservationCtrl implements Initializable {
         try {
             allGuests = new ArrayList<>();
             while (result.next()) {
-                Guest gu = new Guest();
-                gu.setCode(result.getString("idGuest"));
+                // Guest gu = new Guest();
+                // gu.setCode(result.getString("idGuest"));
                 String fn = result.getString("firstName");
                 String ln = result.getString("lastName");
-                gu.setfName(fn);
-                gu.setlName(ln);
+                //  gu.setfName(fn);
+                // gu.setlName(ln);
                 guests.add(fn + " " + ln);
-                allGuests.add(gu);
+                // allGuests.add(gu);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -271,19 +271,19 @@ public class ReservationCtrl implements Initializable {
     }
 
     public void saveNew() {
-        Reservation resObj = new Reservation();
-        resObj.setCode(txtCode.getText().trim());
 
+        String code = txtCode.getText().trim();
         String guestCode = "001";//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
         String roomCode = "001";
         String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
 
-        resObj.setGuest(guestCode);
-        resObj.setRoom(roomCode);
-        resObj.setCheckInDate(Date.valueOf(dpCheckIn.getValue()));
-        resObj.setBookedDate(Date.valueOf(dpBooked.getValue()));
-        resObj.setCheckOut(Date.valueOf(dpCheckOut.getValue()));
-        resObj.setRegistrationStatus(comboStatus.getValue().toString());
+        // resObj.setGuest(guestCode);
+        // resObj.setRoom(roomCode);
+        Date checkIN = Date.valueOf(dpCheckIn.getValue());
+        Date booked = Date.valueOf(dpCheckIn.getValue());
+        Date checkOut = Date.valueOf(dpCheckIn.getValue());
+        String status = (comboStatus.getValue().toString());
+        Reservation resObj = new Reservation(code, checkIN, checkOut, booked, guestCode, roomCode, status);
         save(resObj);
 
     }
