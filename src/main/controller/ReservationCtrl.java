@@ -4,6 +4,8 @@ package main.controller;
  * Created by Gize on 4/20/2017.
  */
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,6 +62,8 @@ public class ReservationCtrl implements Initializable {
     private TableColumn<Reservation, String> status;
     @FXML
     private ComboBox comboGuest;
+    @FXML
+    private ComboBox comboSearch;
     @FXML
     private ComboBox comboRoom;
     @FXML
@@ -271,6 +275,17 @@ public class ReservationCtrl implements Initializable {
         }
         comboGuest.setItems(null);
         comboGuest.setItems(data2);
+        comboSearch.setItems(null);
+        comboSearch.setItems(data2);
+        comboSearch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                if (t1 != null) {
+                   // ObservableList combox3 = FXCollections.observableArrayList((List) combox3Map.get(t1));
+
+                }
+            }
+        });
 
     }
 
@@ -375,8 +390,8 @@ public class ReservationCtrl implements Initializable {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Look,Confirmation Delete");
             alert.setContentText("Are you sure you want to delete?");
             Optional<ButtonType> result = alert.showAndWait();
 
@@ -397,5 +412,6 @@ public class ReservationCtrl implements Initializable {
             JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
         }
     }
+
 }
 
