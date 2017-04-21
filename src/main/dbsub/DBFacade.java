@@ -45,7 +45,7 @@ public class DBFacade implements DBService {
     @Override
     public boolean deleteAccount(Account account) {
         try{
-            String query = "DELETE *FROM account";
+            String query = "DELETE FROM account WHERE idAccount = '" + account.getCode() + "'";
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
@@ -69,7 +69,7 @@ public class DBFacade implements DBService {
 
     @Override
     public Account getAccountById(String accountId) {
-        String query = "SELECT * from account WHERE username='"+ accountId +"'";
+        String query = "SELECT * from account WHERE idAccount ='"+ accountId +"'";
         Account account = new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);

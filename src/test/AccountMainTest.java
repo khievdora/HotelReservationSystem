@@ -38,6 +38,19 @@ public class AccountMainTest {
         //mainTest.displayAllAccount(accountList);
 
         // Edit account
+        Account doraAccount = accountService.getAccountByUserId("2");
+        System.out.println(doraAccount.toString());
+        doraAccount.setAccountStatus(AccountStatus.SUSPENDED.toString());
+        accountService.updateAccount(doraAccount);
+        System.out.println("After update");
+        System.out.println(doraAccount.toString());
+
+        accountService.deleteAccount(doraAccount);
+
+        accountList = accountService.getAllAccount();
+        mainTest.displayAllAccount(accountList);
+
+
 
         // Load account that has been updated
 
