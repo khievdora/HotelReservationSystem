@@ -29,13 +29,13 @@ public interface DBService {
     public List<Reservation> getAllReservations();*/
 
     //CRUD Guest
-    /*public boolean saveGuest(Guest guest);
-    public boolean UpdateGuest(Guest guest);
-    public boolean deleteGuestById(String guest);
+    public int saveGuest(Guest guest);
+    public boolean updateGuest(Guest guest);
+    public boolean deleteGuestById(String guestId);
     public boolean deleteAllGuest();
-    public Guest getGuestById(String reservationId);
+    public Guest getGuestById(String guestId);
     public List<Guest> getAllGuest();
-*/
+
     //CRUD Address
     /*public boolean saveAddress(Guest guest);
     public boolean updateAddress(Guest guest);

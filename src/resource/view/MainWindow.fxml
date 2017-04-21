@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -131,6 +132,24 @@
                 <Tab text="Report">
                     <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab text="Account">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="186.0" layoutY="50.0" prefHeight="567.0" prefWidth="952.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Separator layoutX="193.0" layoutY="90.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="4.0" />
+                              <Separator layoutX="12.0" layoutY="90.0" prefHeight="0.0" prefWidth="928.0" />
+                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="128.0" text="Add Account" />
+                              <TextField layoutX="211.0" layoutY="48.0" prefHeight="31.0" prefWidth="255.0" />
+                              <Button layoutX="484.0" layoutY="48.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="Search" />
+                              <Button layoutX="40.0" layoutY="216.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="128.0" text="Delete Account" />
+                              <Button layoutX="40.0" layoutY="284.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="129.0" text="Edit Account" />
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>
