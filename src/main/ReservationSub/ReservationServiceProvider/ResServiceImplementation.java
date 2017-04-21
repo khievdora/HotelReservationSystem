@@ -93,14 +93,14 @@ public class ResServiceImplementation implements ResServiceProvider {
         try {
 
             while (result.next()) {
-                Reservation obj = new Reservation();
-                obj.setCode(result.getString("idReservation"));
-                obj.setCheckInDate(result.getDate("checkInDate"));
-                obj.setBookedDate(result.getDate("bookedDate"));
-                obj.setCheckOut(result.getDate("checkOutDate"));
-                obj.setGuest(result.getString("guest"));
-                obj.setRoom(result.getString("room1"));
-                obj.setRegistrationStatus(result.getString("regervationStatus"));
+                String code = (result.getString("idReservation"));
+                String room = (result.getString("room1"));
+                String guest = (result.getString("guest"));
+                Date checkIn = (result.getDate("checkInDate"));
+                Date booked = (result.getDate("bookedDate"));
+                Date checkOut = (result.getDate("checkOutDate"));
+                String status = (result.getString("regervationStatus"));
+                Reservation obj = new Reservation(code, checkIn, booked, checkOut, guest, room, status);
                 guests.add(obj);
             }
         } catch (SQLException e) {
