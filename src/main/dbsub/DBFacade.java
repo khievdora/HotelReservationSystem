@@ -68,12 +68,44 @@ public class DBFacade implements DBService {
 
     @Override
     public Account getAccountById(String accountId) {
-        return null;
+        String query = "SELECT * from account WHERE username='"+ accountId +"'";
+        Account account = new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()) {
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        iDatabase.closeConnection();
+        return account;
     }
 
     @Override
     public Account getAccountByUserName(String userName) {
-        return null;
+        String query = "SELECT * from account WHERE username='"+ userName +"'";
+        Account account = new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()) {
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        iDatabase.closeConnection();
+        return account;
     }
 
     @Override
@@ -99,20 +131,76 @@ public class DBFacade implements DBService {
 
     @Override
     public List<Account> getAccountByFirstName(String firstName) {
-        String query = "SELECT 1 from account WHERE username='"+ firstName +"'";
+        String query = "SELECT *from account WHERE username='"+ firstName +"'";
         List<Account> accounts = new ArrayList<Account>();
+        Account account=new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()){
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+                accounts.add(account);
 
 
-        return null;
+            }
+
+        }catch (Exception e){
+
+        }
+        return accounts;
     }
 
     @Override
     public List<Account> getAccountByLastName(String lastName) {
-        return null;
+        String query = "SELECT *from account WHERE username='"+ lastName +"'";
+        List<Account> accounts = new ArrayList<Account>();
+        Account account=new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()){
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+                accounts.add(account);
+
+
+            }
+
+        }catch (Exception e){
+
+        }
+        return accounts;
     }
 
     @Override
     public List<Account> getAllAccount() {
-        return null;
+        String query = "SELECT *from account";
+        List<Account> accounts = new ArrayList<Account>();
+        Account account=new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()){
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+                accounts.add(account);
+
+
+            }
+
+        }catch (Exception e){
+
+        }
+        return accounts;
     }
 }
