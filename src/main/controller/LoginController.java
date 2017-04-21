@@ -40,6 +40,7 @@ public class LoginController implements AuthenticationSubcriber {
     @Override
     public void onLoginSuccess(Account account) {
         // Navigate to Welcome screen
+        System.out.println("Login success!!!");
         this.loginWindow.navigateToMainWindow();
     }
 
