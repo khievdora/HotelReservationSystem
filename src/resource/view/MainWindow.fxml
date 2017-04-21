@@ -120,6 +120,26 @@
                     <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                 </content>
             </Tab>
+            <Tab text="Account">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="70.0" layoutY="88.0" prefHeight="289.0" prefWidth="797.0">
+                           <columns>
+                              <TableColumn prefWidth="112.0" text="Code" />
+                              <TableColumn prefWidth="226.0" text="Username" />
+                              <TableColumn minWidth="0.0" prefWidth="182.0" text="User Role" />
+                              <TableColumn prefWidth="152.0" text="Status" />
+                              <TableColumn prefWidth="123.0" text="Account Status" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="734.0" layoutY="421.0" mnemonicParsing="false" text="Edit" />
+                        <Button layoutX="668.0" layoutY="421.0" mnemonicParsing="false" text="New" />
+                        <Button layoutX="790.0" layoutY="421.0" mnemonicParsing="false" text="Delete" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>
