@@ -16,13 +16,13 @@ public class Account {
     private  StringProperty userRole;
     private  StringProperty accountStatus;
 
-    public Account(Integer code, String userName, String password, String status, String userRole, String accountStatus) {
-        this.code = new SimpleIntegerProperty(code);
-        this.userName = new SimpleStringProperty(userName);
-        this.password = new SimpleStringProperty(password);
-        this.status = new SimpleStringProperty(status);
-        this.userRole = new SimpleStringProperty(userRole);
-        this.accountStatus = new SimpleStringProperty(accountStatus);
+    public Account(){
+        this.code = new SimpleIntegerProperty();
+        this.userName = new SimpleStringProperty();
+        this.password = new SimpleStringProperty();
+        this.status = new SimpleStringProperty();
+        this.userRole = new SimpleStringProperty();
+        this.accountStatus = new SimpleStringProperty();
     }
 
     public int getCode() {
