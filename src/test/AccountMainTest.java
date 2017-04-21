@@ -23,6 +23,7 @@ public class AccountMainTest {
 
         // Add new account
 
+
         // List all account again
 
         // Edit account
@@ -31,7 +32,9 @@ public class AccountMainTest {
 
 
     }
+    public void addAccount(){
 
+    }
     public void displayAllAccount(List<Account> accountList) {
         printTitle("Account List");
         for (Account item : accountList) {
