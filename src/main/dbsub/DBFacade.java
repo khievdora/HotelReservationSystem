@@ -2,6 +2,8 @@ package main.dbsub;
 
 import main.model.Account;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,12 +78,31 @@ public class DBFacade implements DBService {
 
     @Override
     public Account getAccountByUserNameAndPassword(String userName, String password) {
-        String query = "SELECT username, password from account";
-        return null;
+        String query = "SELECT * from account WHERE username='"+ userName +"' AND password = '" +password+"'";
+        Account account = new Account();
+        try{
+            ResultSet rs = iDatabase.executeQuery(query);
+            while (rs.next()) {
+                account.setCode(rs.getInt(1));
+                account.setUserName(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setStatus(rs.getString(4));
+                account.setUserRole(rs.getString(5));
+                account.setAccountStatus(rs.getString(6));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        iDatabase.closeConnection();
+        return account;
     }
 
     @Override
     public List<Account> getAccountByFirstName(String firstName) {
+        String query = "SELECT 1 from account WHERE username='"+ firstName +"'";
+        List<Account> accounts = new ArrayList<Account>();
+
+
         return null;
     }
 
