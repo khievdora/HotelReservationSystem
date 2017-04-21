@@ -21,7 +21,6 @@ public class DBFacade implements DBService {
     public boolean saveAccount(Account account) {
         try{
             String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES('"+ account.getCode()+"','"+account.getUserName()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getUserRole()+"','"+account.getAccountStatus()+"')";
-
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
@@ -46,7 +45,7 @@ public class DBFacade implements DBService {
     @Override
     public boolean deleteAccount(Account account) {
         try{
-            String query = "DELETE *FROM account";
+            String query = "DELETE FROM account WHERE idAccount = '" + account.getCode() + "'";
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
@@ -70,7 +69,7 @@ public class DBFacade implements DBService {
 
     @Override
     public Account getAccountById(String accountId) {
-        String query = "SELECT * from account WHERE username='"+ accountId +"'";
+        String query = "SELECT * from account WHERE idAccount ='"+ accountId +"'";
         Account account = new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -185,10 +184,10 @@ public class DBFacade implements DBService {
     public List<Account> getAllAccount() {
         String query = "SELECT *from account";
         List<Account> accounts = new ArrayList<Account>();
-        Account account=new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
+                Account account=new Account();
                 account.setCode(rs.getInt(1));
                 account.setUserName(rs.getString(2));
                 account.setPassword(rs.getString(3));

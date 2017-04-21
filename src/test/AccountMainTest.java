@@ -25,10 +25,6 @@ public class AccountMainTest {
         mainTest.displayAllAccount(accountList);
 
         // Add new account
-<<<<<<< HEAD
-
-
-=======
         Account account = new Account();
         account.setCode(accountList.size() + 1);
         account.setUserName("dora");
@@ -36,13 +32,25 @@ public class AccountMainTest {
         account.setStatus(Status.ENABLE.toString());
         account.setUserRole(UserRole.USER.toString());
         account.setAccountStatus(AccountStatus.ACTIVE.toString());
-        accountService.saveAccount(account);
->>>>>>> 670ff0e8aab01467cdda734989a1a382b191f794
+        //accountService.saveAccount(account);
         // List all account again
+        //accountList = accountService.getAllAccount();
+        //mainTest.displayAllAccount(accountList);
+
+        // Edit account
+        Account doraAccount = accountService.getAccountByUserId("2");
+        System.out.println(doraAccount.toString());
+        doraAccount.setAccountStatus(AccountStatus.SUSPENDED.toString());
+        accountService.updateAccount(doraAccount);
+        System.out.println("After update");
+        System.out.println(doraAccount.toString());
+
+        accountService.deleteAccount(doraAccount);
+
         accountList = accountService.getAllAccount();
         mainTest.displayAllAccount(accountList);
 
-        // Edit account
+
 
         // Load account that has been updated
 
