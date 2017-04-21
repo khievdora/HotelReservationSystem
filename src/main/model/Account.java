@@ -1,58 +1,99 @@
 package main.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * Created by Gize on 4/19/2017.
  */
 public class Account {
-    private  String code;
-    private  String userName;
-    private  String password;
-    private  String status;
-    private  String userRole;
-    private  String accountStatus;
+    private  IntegerProperty code;
+    private  StringProperty userName;
+    private  StringProperty password;
+    private  StringProperty status;
+    private  StringProperty userRole;
+    private  StringProperty accountStatus;
 
-    public String getPassword() {
-        return password;
+    public Account(Integer code, String userName, String password, String status, String userRole, String accountStatus) {
+        this.code = new SimpleIntegerProperty(code);
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+        this.status = new SimpleStringProperty(status);
+        this.userRole = new SimpleStringProperty(userRole);
+        this.accountStatus = new SimpleStringProperty(accountStatus);
     }
 
-    public String getStatus() {
-        return status;
+    public int getCode() {
+        return code.get();
     }
 
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public String getAccountStatus() {
-        return accountStatus;
-    }
-
-    public String getCode() {
-
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(int code) {
+        this.code.set(code);
+    }
+
+    public String getUserName() {
+        return userName.get();
+    }
+
+    public StringProperty userNameProperty() {
+        return userName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName.set(userName);
+    }
+
+    public String getPassword() {
+        return password.get();
+    }
+
+    public StringProperty passwordProperty() {
+        return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password.set(password);
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public StringProperty statusProperty() {
+        return status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.status.set(status);
+    }
+
+    public String getUserRole() {
+        return userRole.get();
+    }
+
+    public StringProperty userRoleProperty() {
+        return userRole;
     }
 
     public void setUserRole(String userRole) {
-        this.userRole = userRole;
+        this.userRole.set(userRole);
+    }
+
+    public String getAccountStatus() {
+        return accountStatus.get();
+    }
+
+    public StringProperty accountStatusProperty() {
+        return accountStatus;
     }
 
     public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
+        this.accountStatus.set(accountStatus);
     }
 }

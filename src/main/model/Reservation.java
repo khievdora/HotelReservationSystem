@@ -1,76 +1,29 @@
 package main.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.sql.Date;
 
 /**
  * Created by Gize on 4/19/2017.
  */
 public class Reservation {
-    private  String code;
-    private Date checkInDate;
+    private  StringProperty code;
+    private  Date checkInDate;
     private  Date bookedDate;
     private  Date checkOut;
-    private  String guest;
-    private  String room;
-    private  String registrationStatus;
+    private  StringProperty guest;
+    private  StringProperty room;
+    private  StringProperty registrationStatus;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setCheckInDate(Date checkInDate) {
+    public Reservation(String code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
+        this.code = new SimpleStringProperty(code);
         this.checkInDate = checkInDate;
-    }
-
-    public void setBookedDate(Date bookedDate) {
         this.bookedDate = bookedDate;
-    }
-
-    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
+        this.guest = new SimpleStringProperty(guest);
+        this.room = new SimpleStringProperty(room);
+        this.registrationStatus = new SimpleStringProperty(registrationStatus);
     }
-
-    public void setGuest(String guest) {
-        this.guest = guest;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    public void setRegistrationStatus(String registrationStatus) {
-        this.registrationStatus = registrationStatus;
-    }
-
-
-
-    public String getCode() {
-        return code;
-    }
-
-    public Date getCheckInDate() {
-        return checkInDate;
-    }
-
-    public Date getBookedDate() {
-        return bookedDate;
-    }
-
-    public Date getCheckOut() {
-        return checkOut;
-    }
-
-    public String getGuest() {
-        return guest;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public String getRegistrationStatus() {
-        return registrationStatus;
-    }
-
-
 }
