@@ -11,8 +11,8 @@ import java.sql.Date;
 public class Reservation {
     private  StringProperty code;
     private  Date checkInDate;
-    private  Date bookedDate;
     private  Date checkOut;
+    private  Date bookedDate;
     private  StringProperty guest;
     private  StringProperty room;
     private  StringProperty registrationStatus;
