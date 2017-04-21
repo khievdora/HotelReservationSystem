@@ -20,7 +20,7 @@ public class DBFacade implements DBService {
     @Override
     public boolean saveAccount(Account account) {
         try{
-            String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES(?,?,?,?,?,?)";
+            String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES (?,?,?,?,?,?)";
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
