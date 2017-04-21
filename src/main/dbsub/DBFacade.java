@@ -17,22 +17,50 @@ public class DBFacade implements DBService {
 
     @Override
     public boolean saveAccount(Account account) {
+        try{
+            String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES(?,?,?,?,?,?)";
+            iDatabase.executeUpdate(query);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return false;
     }
 
     @Override
     public boolean updateAccount(Account account) {
+        try{
+            String query ="UPDATE account SET idAccount=?, username=?, password=?, status=?, userRole=?, accountStatus=? WHERE idAccount=?";
+            iDatabase.executeUpdate(query);
+             return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean deleteAccount(Account account) {
+        try{
+            String query = "DELETE FROM account WHERE idAccount=?";
+            iDatabase.executeUpdate(query);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 
+
     @Override
     public boolean deleteAccountById(String accountId) {
+        try{
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -48,6 +76,7 @@ public class DBFacade implements DBService {
 
     @Override
     public Account getAccountByUserNameAndPassword(String userName, String password) {
+        String query = "SELECT username, password from account";
         return null;
     }
 
