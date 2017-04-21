@@ -8,13 +8,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import main.ReservationSub.ReservationServiceProvider.ResServiceImplementation;
 import main.ReservationSub.payment.CreditPayment;
 import main.ReservationSub.payment.PaymentBusiness;
+import main.Shared.UrlLoader;
 import main.dbconnection.DataAccessFacade;
 import main.model.Reservation;
 import main.model.Room;
@@ -23,6 +28,7 @@ import main.model.Guest;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -30,6 +36,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -181,6 +188,12 @@ public class ReservationCtrl implements Initializable {
         dpCheckOut.setValue(LocalDate.now());
     }
 
+    public void refreshHomeTableView() {
+        homeTableView.refresh();
+        homeTableView.setItems(null);
+        homeTableView.setItems((ObservableList) parseUserList());
+    }
+
     List<Room> allRooms = null;
     List<Guest> allGuests = null;
 
@@ -315,10 +328,21 @@ public class ReservationCtrl implements Initializable {
     public void checkOut() {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
-            if (person.getRegistrationStatus() == "CheckIn") {
-                PaymentBusiness payBu = new PaymentBusiness();
-                payBu.setPayment(new CreditPayment());
-                payBu.pay();
+            if (person.getRegistrationStatus().equals("checkin")) {
+                Payment payment = new Payment();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(UrlLoader.loadView("Payment.fxml")));
+                Stage stage = new Stage();
+                try {
+                    Parent root = loader.load();
+                    stage.setTitle("Payment Form");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                    // this.window.hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 person.setRegistrationStatus("CheckedOut");
                 //update reservation here
 
@@ -350,14 +374,25 @@ public class ReservationCtrl implements Initializable {
     public void deleteReservation() {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
-            //delete the selected reservation here.
-            if (true) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setContentText("Are you sure you want to delete?");
+            Optional<ButtonType> result = alert.showAndWait();
 
-                JOptionPane.showMessageDialog(null, "Successfully Deleted!");
+            if (result.get() == ButtonType.OK) {
+                if (true) {
+                    //delete the selected reservation here.
+                    JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                // ... user chose CANCEL or closed the dialog
             }
+
+
         } else {
             JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
         }
