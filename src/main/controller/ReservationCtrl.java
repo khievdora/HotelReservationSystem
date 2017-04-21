@@ -36,6 +36,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -338,7 +339,7 @@ public class ReservationCtrl implements Initializable {
                     stage.setScene(new Scene(root));
                     stage.show();
 
-                   // this.window.hide();
+                    // this.window.hide();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -373,14 +374,25 @@ public class ReservationCtrl implements Initializable {
     public void deleteReservation() {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
-            //delete the selected reservation here.
-            if (true) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setContentText("Are you sure you want to delete?");
+            Optional<ButtonType> result = alert.showAndWait();
 
-                JOptionPane.showMessageDialog(null, "Successfully Deleted!");
+            if (result.get() == ButtonType.OK) {
+                if (true) {
+                    //delete the selected reservation here.
+                    JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                // ... user chose CANCEL or closed the dialog
             }
+
+
         } else {
             JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
         }

@@ -1,4 +1,4 @@
-package java.StatusEnums;
+package main.statusenums;
 
 /**
  * Created by Gize on 4/19/2017.

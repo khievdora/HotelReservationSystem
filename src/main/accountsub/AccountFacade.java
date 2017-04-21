@@ -38,6 +38,11 @@ public class AccountFacade implements AccountService {
     }
 
     @Override
+    public boolean saveAccount(Account account) {
+        return this.dbService.saveAccount(account);
+    }
+
+    @Override
     public boolean updateAccount(Account account) {
         return this.dbService.updateAccount(account);
     }
