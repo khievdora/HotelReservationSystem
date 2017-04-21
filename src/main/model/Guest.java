@@ -18,13 +18,13 @@ public class Guest {
 
     public Guest(String code, String fName, String mName, String lName, String idCard, String passport, String address, String phone) {
         this.code = new SimpleStringProperty(code);
-        this.fName = new SimpleStringProperty(code);
-        this.mName = new SimpleStringProperty(code);
-        this.lName = new SimpleStringProperty(code);
-        this.idCard = new SimpleStringProperty(code);
-        this.passport = new SimpleStringProperty(code);
-        this.address = new SimpleStringProperty(code);
-        this.phone = new SimpleStringProperty(code);
+        this.fName = new SimpleStringProperty(fName);
+        this.mName = new SimpleStringProperty(mName);
+        this.lName = new SimpleStringProperty(lName);
+        this.idCard = new SimpleStringProperty(idCard);
+        this.passport = new SimpleStringProperty(passport);
+        this.address = new SimpleStringProperty(address);
+        this.phone = new SimpleStringProperty(phone);
     }
 
     public String getCode() {
@@ -121,5 +121,19 @@ public class Guest {
 
     public void setPhone(String phone) {
         this.phone.set(phone);
+    }
+
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "code=" + code +
+                ", fName=" + fName +
+                ", mName=" + mName +
+                ", lName=" + lName +
+                ", idCard=" + idCard +
+                ", passport=" + passport +
+                ", address=" + address +
+                ", phone=" + phone +
+                '}';
     }
 }
