@@ -34,5 +34,29 @@ public class Address {
         return country;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     private  String country;
 }

@@ -24,6 +24,22 @@ public class Roomtype {
         return status;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setMaxQuest(int maxQuest) {
+        this.maxQuest = maxQuest;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private  String status;
 
 }

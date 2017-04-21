@@ -17,6 +17,48 @@ public class Room {
     private  String status;
     private  double price;
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setRoomStatus(String roomStatus) {
+        this.roomStatus = roomStatus;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setMaxQuest(int maxQuest) {
+        this.maxQuest = maxQuest;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+
     public String getCode() {
         return code;
     }

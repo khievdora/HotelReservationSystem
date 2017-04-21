@@ -44,4 +44,36 @@ public class Guest {
     public String getPhone() {
         return phone;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public void setPassport(String passport) {
+        this.passport = passport;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

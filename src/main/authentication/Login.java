@@ -28,7 +28,7 @@ public class Login {
             lblStatus.setText("Login successfull");
             Stage primaryStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../../resource/view/MainWindow.fxml"));
-            Scene scene = new Scene(root, 600,400);
+            Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();

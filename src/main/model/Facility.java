@@ -29,5 +29,25 @@ public class Facility {
     public String getRoom() {
         return room;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
 }
 

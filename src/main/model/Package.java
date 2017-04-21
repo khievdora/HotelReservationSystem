@@ -24,4 +24,20 @@ public class Package {
     public String getReservation() {
         return reservation;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setReservation(String reservation) {
+        this.reservation = reservation;
+    }
 }
