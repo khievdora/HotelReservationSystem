@@ -3,6 +3,9 @@ package test;
 import main.accountsub.AccountFacade;
 import main.accountsub.AccountService;
 import main.model.Account;
+import main.statusenums.AccountStatus;
+import main.statusenums.Status;
+import main.statusenums.UserRole;
 
 import java.util.List;
 
@@ -22,9 +25,22 @@ public class AccountMainTest {
         mainTest.displayAllAccount(accountList);
 
         // Add new account
+<<<<<<< HEAD
 
 
+=======
+        Account account = new Account();
+        account.setCode(accountList.size() + 1);
+        account.setUserName("dora");
+        account.setPassword("dora");
+        account.setStatus(Status.ENABLE.toString());
+        account.setUserRole(UserRole.USER.toString());
+        account.setAccountStatus(AccountStatus.ACTIVE.toString());
+        accountService.saveAccount(account);
+>>>>>>> 670ff0e8aab01467cdda734989a1a382b191f794
         // List all account again
+        accountList = accountService.getAllAccount();
+        mainTest.displayAllAccount(accountList);
 
         // Edit account
 
