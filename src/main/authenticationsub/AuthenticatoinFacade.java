@@ -27,7 +27,7 @@ public class AuthenticatoinFacade implements AuthenticationService {
         if (this.authenticationSubcriber == null) {
             throw new NullPointerException("There is no authentication subscriber in this form");
         } else {
-            if (account == null) {
+            if (account == null || account.getCode() == 0) {
                 this.authenticationSubcriber.onLoginFail("Username or password is incorrect!!!");
             } else {
                 this.authenticationSubcriber.onLoginSuccess(account);

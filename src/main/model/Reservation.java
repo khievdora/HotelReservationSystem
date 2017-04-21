@@ -17,6 +17,9 @@ public class Reservation {
     private  StringProperty room;
     private  StringProperty registrationStatus;
 
+    public Reservation() {
+    }
+
     public Reservation(String code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
         this.code = new SimpleStringProperty(code);
         this.checkInDate = checkInDate;
