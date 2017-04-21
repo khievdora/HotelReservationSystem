@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by gebre on 4/21/2017.
  */
-public interface IReservationService {
+public interface IReservation {
     public boolean saveReservation(Reservation reservation);
     public boolean updateReservation(Reservation reservation);
     public List<Reservation> getAllReservation();

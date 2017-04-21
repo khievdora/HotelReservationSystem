@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * Created by gebre on 4/21/2017.
  */
-public class ReservationServiceImpl implements IReservationService {
+public class ReservationImpl implements IReservation {
     private IDatabase iDatabase = null;
 
-    public ReservationServiceImpl() {
+    public ReservationImpl() {
         iDatabase = Database.getInstance();
     }
     @Override
