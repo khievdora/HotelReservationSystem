@@ -22,6 +22,10 @@ public class AccountMainTest {
         mainTest.displayAllAccount(accountList);
 
         // Add new account
+        Account account = new Account();
+        account.setCode(accountList.size() + 1);
+        account.setUserName("dora");
+        account.setPassword("dora");
 
         // List all account again
 

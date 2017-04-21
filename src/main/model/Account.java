@@ -96,4 +96,16 @@ public class Account {
     public void setAccountStatus(String accountStatus) {
         this.accountStatus.set(accountStatus);
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "code=" + code +
+                ", userName=" + userName +
+                ", password=" + password +
+                ", status=" + status +
+                ", userRole=" + userRole +
+                ", accountStatus=" + accountStatus +
+                '}';
+    }
 }
