@@ -21,7 +21,7 @@ public class LoginWindow extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.window = primaryStage;
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(UrlLoader.loadView("Login.fxml")));
+        loader.setLocation(getClass().getResource(UrlLoader.loadView("LoginWindow.fxml")));
         Parent root = loader.load();
         Scene scene = new Scene(root, 400,400);
         this.window.setScene(scene);
