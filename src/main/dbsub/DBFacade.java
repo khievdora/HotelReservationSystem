@@ -58,7 +58,8 @@ public class DBFacade implements DBService {
     @Override
     public boolean deleteAccountById(String accountId) {
         try{
-
+            String query = "DELETE FROM account WHERE idAccount='"+accountId+"'";
+            iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){
             e.printStackTrace();
