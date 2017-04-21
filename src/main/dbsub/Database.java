@@ -10,7 +10,7 @@ public class Database implements IDatabase {
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
     private final String DATABASE_URL = "jdbc:mysql://localhost:3306/hotelreservation?useSSL=false";
     private final String USERNAME = "root";
-    private final String PASSWORD = "123456";
+    private final String PASSWORD = "root";
 
     private static Database database = null;
 

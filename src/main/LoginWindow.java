@@ -52,7 +52,6 @@ public class LoginWindow extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void close() {
