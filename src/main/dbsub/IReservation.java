@@ -8,10 +8,10 @@ import java.util.List;
  * Created by gebre on 4/21/2017.
  */
 public interface IReservation {
-    public boolean saveReservation(Reservation reservation);
-    public boolean updateReservation(Reservation reservation);
+    public int saveReservation(Reservation reservation);
+    public int updateReservation(Reservation reservation);
     public List<Reservation> getAllReservation();
-    public Reservation getReservatinById(String idReservation);
-    public boolean deleteAllReservation();
-    public boolean deleteReservationById(String idReservation);
+    public Reservation getReservatinById(int idReservation);
+    public int deleteAllReservation();
+    public int deleteReservationById(int idReservation);
 }

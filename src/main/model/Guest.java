@@ -12,17 +12,17 @@ public class Guest {
     private  StringProperty lName;
     private  StringProperty idCard;
     private  StringProperty passport;
-    private  IntegerProperty address;
+    private  ObjectProperty<Address> address;
     private  StringProperty phone;
 
-    public Guest(int code, String fName, String mName, String lName, String idCard, String passport, int address, String phone) {
+    public Guest(int code, String fName, String mName, String lName, String idCard, String passport, Address address, String phone) {
         this.code = new SimpleIntegerProperty(code);
         this.fName = new SimpleStringProperty(fName);
         this.mName = new SimpleStringProperty(mName);
         this.lName = new SimpleStringProperty(lName);
         this.idCard =new SimpleStringProperty (idCard);
         this.passport =new SimpleStringProperty(passport);
-        this.address = new SimpleIntegerProperty(address);
+        this.address = new SimpleObjectProperty<>(address);
         this.phone = new SimpleStringProperty(phone);
     }
 
@@ -98,15 +98,15 @@ public class Guest {
         this.passport.set(passport);
     }
 
-    public int getAddress() {
+    public Address getAddress() {
         return address.get();
     }
 
-    public IntegerProperty addressProperty() {
+    public ObjectProperty<Address> addressProperty() {
         return address;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(Address address) {
         this.address.set(address);
     }
 

@@ -1,8 +1,10 @@
 package main.dbsub;
 import main.model.Reservation;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -15,94 +17,130 @@ public class ReservationImpl implements IReservation {
         iDatabase = Database.getInstance();
     }
     @Override
-    public boolean saveReservation(Reservation reservation) {
+    public int saveReservation(Reservation reservation) {
+        int reservationId = 0;
         try{
-            String query = "INSERT INTO reservation(idReservation, checkInDate, CheckOutDate, bookedDate, guest, room1,reservationStatus) " +
-                    "VALUES('"+reservation.getCode()+"'" +
+<<<<<<< HEAD
+            String query = "INSERT INTO reservation(idReservation, checkInDate, CheckOutDate, bookedDate, idGuest, isRoom,reservationStatus) " +
+                    "VALUES('"+reservation.getCode() +
                     ",'"+reservation.getCheckInDate()+"'," +
+=======
+            String query = "INSERT INTO reservation(checkInDate, CheckOutDate, bookedDate, idGuest, idRoom,reservationStatus) " +
+                    "VALUES(" +
+                    "'"+reservation.getCheckInDate()+"'," +
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
                     "'"+reservation.getCheckOut()+"'," +
                     "'"+reservation.getBookedDate()+"'," +
-                    "'"+reservation.getGuest()+"'" +
-                    ",'"+reservation.getRoom()+"'," +
+                    ""+reservation.getGuest().getCode()+"," +
+                    ""+reservation.getRoom().getCode()+"," +
                     "'"+reservation.getRegistrationStatus()+"')";
-            iDatabase.executeUpdate(query);
-            return true;
+            reservationId = iDatabase.executeUpdate(query);
+            reservation.setCode(reservationId);
+            if (reservationId != 0) {
+                reservation.setCode(reservationId);
+            }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return reservationId;
     }
 
     @Override
-    public boolean updateReservation(Reservation reservation) {
-        //idReservation, checkInDate, CheckOutDate, bookedDate, guest, room1,reservationStatus
+    public int updateReservation(Reservation reservation) {
+        int result = 0;
         try{
-            String query ="UPDATE reservation SET idReservation='"+reservation.getCode()+"', " +
+<<<<<<< HEAD
+            String query ="UPDATE reservation SET "+
                     "checkInDate='"+reservation.getCheckInDate()+"', " +
                     "CheckOutDate='"+reservation.getCheckOut()+"'," +
                     "bookedDate='"+reservation.getBookedDate()+"', " +
-                    "guest='"+reservation.getGuest()+"', " +
-                    "room1= '"+reservation.getRoom()+"'," +
+                    "idGuest='"+reservation.getGuest()+"', " +
+                    "idRoom= '"+reservation.getRoom()+"'," +
+                    "reservationStatus= '"+reservation.getRegistrationStatus()+"' " +
+                    "WHERE idReservation=" + reservation.getCode();
+            iDatabase.executeUpdate(query);
+            return true;
+=======
+            String query ="UPDATE reservation SET " +
+                    "checkInDate='"+reservation.getCheckInDate()+"', " +
+                    "CheckOutDate='"+reservation.getCheckOut()+"'," +
+                    "bookedDate='"+reservation.getBookedDate()+"', " +
+                    "idGuest="+reservation.getGuest().getCode()+"," +
+                    "idRoom="+reservation.getRoom().getCode()+"," +
                     "reservationStatus= '"+reservation.getRegistrationStatus()+"'," +
                     " WHERE idReservation='"+reservation.getCode()+"'";
-            iDatabase.executeUpdate(query);
-            return true;
+            result = iDatabase.executeUpdate(query);
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
 
     @Override
-    public boolean deleteReservationById(String idReservation) {
+    public int deleteReservationById(int idReservation) {
+        int result = 0;
         try{
-            String query = "DELETE FROM reservation WHERE idReservation='"+idReservation+"'";
-            iDatabase.executeUpdate(query);
-            return true;
+            String query = "DELETE FROM reservation WHERE idReservation="+idReservation;
+            result = iDatabase.executeUpdate(query);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
 
     @Override
-    public boolean deleteAllReservation() {
+    public int deleteAllReservation() {
+        int result = 0;
         try{
             String query = "DELETE FROM reservation";
-            iDatabase.executeUpdate(query);
-            return true;
+            result = iDatabase.executeUpdate(query);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
     @Override
     public List<Reservation> getAllReservation() {
-        String query = "SELECT *from reservation";
+        String query = "SELECT * FROM reservation";
         List<Reservation> reservations = new ArrayList<Reservation>();
-        Reservation reservation=new Reservation();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
+                Reservation reservation=new Reservation();
                 reservation.setCode(rs.getInt("idReservation"));
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));
                 reservation.setBookedDate(rs.getDate(4));
-                reservation.setGuest(String.valueOf(rs.getString(5)));
-                reservation.setRoom(String.valueOf(rs.getString(6)));
+//                reservation.setCheckInDate(rs.getDate(2));
+//                reservation.setCheckOut(rs.getDate(3));
+//                reservation.setBookedDate(rs.getDate(4));
+                reservation.setGuest(new GuestImpl().getGuestById(rs.getInt(5)));
+                reservation.setRoom(new RoomImpl().getRoomById(rs.getInt(6)));
                 reservation.setRegistrationStatus(rs.getString(7));
+
                 reservations.add(reservation);
             }
 
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         return reservations;
     }
 
     @Override
-    public Reservation getReservatinById(String idReservation) {
-        String query = "SELECT *from reservation WHERE idReservation='"+idReservation+"'";
+    public Reservation getReservatinById(int idReservation) {
+        String query = "SELECT * FROM reservation WHERE idReservation="+idReservation;
         Reservation reservation=new Reservation();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -111,13 +149,14 @@ public class ReservationImpl implements IReservation {
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));
                 reservation.setBookedDate(rs.getDate(4));
-                reservation.setGuest(rs.getString(5));
-                reservation.setRoom(rs.getString(6));
+                reservation.setGuest(new GuestImpl().getGuestById(rs.getInt(5)));
+                reservation.setRoom(new RoomImpl().getRoomById(rs.getInt(6)));
                 reservation.setRegistrationStatus(rs.getString(7));
             }
-
         }catch (Exception e){
-
+            e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         return reservation;
     }

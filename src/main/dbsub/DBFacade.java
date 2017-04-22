@@ -1,9 +1,6 @@
 package main.dbsub;
 
-import main.model.Account;
-import main.model.Guest;
-import main.model.Room;
-import main.model.RoomType;
+import main.model.*;
 
 import java.util.List;
 
@@ -16,6 +13,8 @@ public class DBFacade implements DBService {
     private IGuest guest = null;
     private IRoomType roomType = null;
     private IRoom room = null;
+    private IAddress address = null;
+    private IReservation reservation = null;
 
     public DBFacade() {
         //Geneate Database
@@ -26,6 +25,8 @@ public class DBFacade implements DBService {
         guest = new GuestImpl();
         roomType = new RoomTypeImpl();
         room = new RoomImpl();
+        address = new AddressImpl();
+        reservation = new ReservationImpl();
     }
 
     @Override
@@ -80,27 +81,57 @@ public class DBFacade implements DBService {
     }
 
     @Override
+    public int saveReservation(Reservation reservation) {
+        return this.reservation.saveReservation(reservation);
+    }
+
+    @Override
+    public int updateReservation(Reservation reservation) {
+        return this.reservation.updateReservation(reservation);
+    }
+
+    @Override
+    public List<Reservation> getAllReservation() {
+        return this.reservation.getAllReservation();
+    }
+
+    @Override
+    public Reservation getReservatinById(int idReservation) {
+        return this.reservation.getReservatinById(idReservation);
+    }
+
+    @Override
+    public int deleteAllReservation() {
+        return this.reservation.deleteAllReservation();
+    }
+
+    @Override
+    public int deleteReservationById(int idReservation) {
+        return this.reservation.deleteReservationById(idReservation);
+    }
+
+    @Override
     public int saveGuest(Guest guest) {
         return this.guest.saveGuest(guest);
     }
 
     @Override
-    public boolean updateGuest(Guest guest) {
+    public int updateGuest(Guest guest) {
         return this.guest.updateGuest(guest);
     }
 
     @Override
-    public boolean deleteGuestById(String guestId) {
+    public int deleteGuestById(int guestId) {
         return this.guest.deleteGuestById(guestId);
     }
 
     @Override
-    public boolean deleteAllGuest() {
+    public int deleteAllGuest() {
         return this.guest.deleteAllGuest();
     }
 
     @Override
-    public Guest getGuestById(String guestId) {
+    public Guest getGuestById(int guestId) {
         return this.guest.getGuestById(guestId);
     }
 
@@ -167,5 +198,35 @@ public class DBFacade implements DBService {
     @Override
     public List<Room> getAllRoom() {
         return this.room.getAllRoom();
+    }
+
+    @Override
+    public int saveAddress(Address address) {
+        return this.address.saveAddress(address);
+    }
+
+    @Override
+    public int updateAddress(Address address) {
+        return this.address.updateAddress(address);
+    }
+
+    @Override
+    public int deleteAddress(Address address) {
+        return this.address.deleteAddress(address);
+    }
+
+    @Override
+    public int deleteAddressById(int addressId) {
+        return this.address.deleteAddressById(addressId);
+    }
+
+    @Override
+    public Address getAddressById(int addressId) {
+        return this.address.getAddressById(addressId);
+    }
+
+    @Override
+    public List<Address> getAllAddress() {
+        return this.address.getAllAddress();
     }
 }

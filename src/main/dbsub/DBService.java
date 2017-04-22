@@ -21,28 +21,22 @@ public interface DBService {
     public List<Account> getAllAccount();
 
     //CRUD Reservation
-   /* public boolean saveReservation(Reservation reservation);
-    public boolean updateReservation(Reservation reservation);
-    public boolean deleteReservationById(String reservationId);
-    public boolean deleteAllReservation();
-    public Reservation getReservationById(String reservationId);
-    public List<Reservation> getAllReservations();*/
+    public int saveReservation(Reservation reservation);
+    public int updateReservation(Reservation reservation);
+    public List<Reservation> getAllReservation();
+    public Reservation getReservatinById(int idReservation);
+    public int deleteAllReservation();
+    public int deleteReservationById(int idReservation);
 
     //CRUD Guest
     public int saveGuest(Guest guest);
-    public boolean updateGuest(Guest guest);
-    public boolean deleteGuestById(String guestId);
-    public boolean deleteAllGuest();
-    public Guest getGuestById(String guestId);
+    public int updateGuest(Guest guest);
+    public int deleteGuestById(int guestId);
+    public int deleteAllGuest();
+    public Guest getGuestById(int guestId);
     public List<Guest> getAllGuest();
 
-    //CRUD Address
-    /*public boolean saveAddress(Guest guest);
-    public boolean updateAddress(Guest guest);
-    public Address getAddressById(String address);
-    public List<Address> getAllAddress();*/
-
-    // CRUD RoomController Type
+    // CRUD Room Type
     public int saveRoomType(RoomType roomType);
     public int updateRoomType(RoomType roomType);
     public int deleteRoomType(RoomType roomType);
@@ -50,13 +44,21 @@ public interface DBService {
     public RoomType getRoomTypeById(int roomTypeId);
     public List<RoomType> getAllRoomType();
 
-    // CRUD RoomController
+    // CRUD Room
     public int saveRoom(Room room);
     public int updateRoom(Room room);
     public int deleteRoom(Room room);
     public int deleteRoomById(int roomId);
     public Room getRoomById(int roomId);
     public List<Room> getAllRoom();
+
+    //CRUD Address
+    public int saveAddress(Address address);
+    public int updateAddress(Address address);
+    public int deleteAddress(Address address);
+    public int deleteAddressById(int addressId);
+    public Address getAddressById(int addressId);
+    public List<Address> getAllAddress();
 
 
 }

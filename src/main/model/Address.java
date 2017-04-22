@@ -1,5 +1,7 @@
 package main.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -7,15 +9,15 @@ import javafx.beans.property.StringProperty;
  * Created by Gize on 4/19/2017.
  */
 public class Address {
-    private  StringProperty code;
+    private IntegerProperty code;
     private  StringProperty zip;
     private  StringProperty street;
     private  StringProperty city;
     private  StringProperty state;
     private  StringProperty country;
 
-    public Address(String code, String zip, String street, String city, String state, String country) {
-        this.code = new SimpleStringProperty(code);
+    public Address(int code, String zip, String street, String city, String state, String country) {
+        this.code = new SimpleIntegerProperty(code);
         this.zip = new SimpleStringProperty(zip);
         this.street = new SimpleStringProperty(street);
         this.city = new SimpleStringProperty(city);
@@ -23,15 +25,15 @@ public class Address {
         this.country = new SimpleStringProperty(country);
     }
 
-    public String getCode() {
+    public int getCode() {
         return code.get();
     }
 
-    public StringProperty codeProperty() {
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code.set(code);
     }
 
@@ -93,5 +95,17 @@ public class Address {
 
     public void setCountry(String country) {
         this.country.set(country);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "code=" + code +
+                ", zip=" + zip +
+                ", street=" + street +
+                ", city=" + city +
+                ", state=" + state +
+                ", country=" + country +
+                '}';
     }
 }
