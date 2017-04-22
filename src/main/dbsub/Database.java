@@ -7,8 +7,11 @@ import java.sql.*;
  */
 public class Database implements IDatabase {
 
+    public static final String DATABASE_NAME = "hotelreservation";
+
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    private final String DATABASE_URL = "jdbc:mysql://localhost:3306/hotelreservation?useSSL=false";
+    private final String GENEARTE_DB_URL = "jdbc:mysql://localhost:3306?useSSL=false";
+    private final String DATABASE_URL = "jdbc:mysql://localhost:3306/"+ DATABASE_NAME +"?useSSL=false";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
 
@@ -26,6 +29,15 @@ public class Database implements IDatabase {
             database = new Database();
         }
         return database;
+    }
+
+    @Override
+    public void openConnectionForGenerateDB() throws ClassNotFoundException, SQLException {
+        // Register Driver
+        Class.forName(DRIVER_NAME);
+
+        // Open Connection to generate Database
+        connection = DriverManager.getConnection(GENEARTE_DB_URL, USERNAME, PASSWORD);
     }
 
     @Override
@@ -87,5 +99,14 @@ public class Database implements IDatabase {
         return result;
     }
 
-
+    @Override
+    public int executeUpdateWithConnectionOn(String sql) {
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
