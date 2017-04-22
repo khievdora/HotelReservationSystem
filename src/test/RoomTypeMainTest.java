@@ -18,20 +18,20 @@ public class RoomTypeMainTest {
 
         IRoomType iRoomType = new RoomTypeImpl();
 
-        // Add new RoomType
-        //RoomType roomType = new RoomType(0, "QUEEN ROOM", 5);
+        // Add new RoomTypeController
+        //RoomTypeController roomType = new RoomTypeController(0, "QUEEN ROOM", 5);
         RoomType roomType = iRoomType.getRoomTypeById(4);
         //iRoomType.saveRoomType(roomType);
-        System.out.println("RoomType = " + roomType.toString());
+        System.out.println("RoomTypeController = " + roomType.toString());
 
-        // Delete Room type
+        // Delete RoomController type
         //iRoomType.deleteRoomTypeById(8);
 
-        // Update RoomType
+        // Update RoomTypeController
         roomType.setMaxCapacity(5);
         iRoomType.updateRoomType(roomType);
 
-        //Load List of RoomType
+        //Load List of RoomTypeController
         List<RoomType> roomTypeList = new ArrayList<>();
         roomTypeList = iRoomType.getAllRoomType();
         mainTest.displayAllRoomType(roomTypeList);
@@ -40,7 +40,7 @@ public class RoomTypeMainTest {
 
     public void displayAllRoomType(List<RoomType> roomTypeList) {
         System.out.println("-------------------------------");
-        System.out.println("Room Type List");
+        System.out.println("RoomController Type List");
         System.out.println("-------------------------------");
         for (int i = 0; i < roomTypeList.size(); i++) {
             System.out.println(roomTypeList.get(i).toString());

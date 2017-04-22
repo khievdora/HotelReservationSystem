@@ -21,8 +21,8 @@ public class RoomMainTest {
         List<Room> roomList = iRoom.getAllRoom();
         //main.displayAllRooms(roomList);
 
-        // Add New Room
-//        Room room = new Room(
+        // Add New RoomController
+//        RoomController room = new RoomController(
 //                0,
 //                "B101",
 //                101,
@@ -36,8 +36,8 @@ public class RoomMainTest {
 //        );
 //        iRoom.saveRoom(room);
 
-        // Update Room
-//        Room room = iRoom.getRoomById(4);
+        // Update RoomController
+//        RoomController room = iRoom.getRoomById(4);
 //        room.setFloor(2);
 //        room.setPrice(100);
 //        room.setRoomType(new RoomTypeImpl().getRoomTypeById(3));

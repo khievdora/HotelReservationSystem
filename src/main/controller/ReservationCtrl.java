@@ -145,7 +145,7 @@ public class ReservationCtrl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         code = new TableColumn("Id");
-        firstName = new TableColumn("Room");
+        firstName = new TableColumn("RoomController");
         lastName = new TableColumn("Guest");
         checkInDate = new TableColumn("CheckIn Date");
         bookedDate = new TableColumn("Booked Date");
@@ -193,7 +193,7 @@ public class ReservationCtrl implements Initializable {
         try {
 
             while (result.next()) {
-//                Room room = new Room();
+//                RoomController room = new RoomController();
 //                room.setCode(result.getString("idRoom"));
 //                room.setRoomName(result.getString("roomName"));
 //                room.setRoomNumber(result.getInt("roomNumber"));

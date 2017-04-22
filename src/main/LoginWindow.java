@@ -40,12 +40,14 @@ public class LoginWindow extends Application {
 
     public void navigateToMainWindow() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(UrlLoader.loadView("MainWindow.fxml")));
+        loader.setLocation(getClass().getResource(UrlLoader.loadView("TestMain.fxml")));
         Stage stage = new Stage();
         try {
             Parent root = loader.load();
             stage.setTitle("Reservation System");
-            stage.setScene(new Scene(root, 800, 500));
+            //
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
             stage.show();
 
             this.window.hide();

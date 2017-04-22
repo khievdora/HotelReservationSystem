@@ -42,7 +42,7 @@ public interface DBService {
     public Address getAddressById(String address);
     public List<Address> getAllAddress();*/
 
-    // CRUD Room Type
+    // CRUD RoomController Type
     public int saveRoomType(RoomType roomType);
     public int updateRoomType(RoomType roomType);
     public int deleteRoomType(RoomType roomType);
@@ -50,7 +50,7 @@ public interface DBService {
     public RoomType getRoomTypeById(int roomTypeId);
     public List<RoomType> getAllRoomType();
 
-    // CRUD Room
+    // CRUD RoomController
     public int saveRoom(Room room);
     public int updateRoom(Room room);
     public int deleteRoom(Room room);

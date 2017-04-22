@@ -157,7 +157,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "RoomController{" +
                 "code=" + code +
                 ", roomName=" + roomName +
                 ", roomNumber=" + roomNumber +

@@ -61,7 +61,7 @@ public class RoomType {
 
     @Override
     public String toString() {
-        return "RoomType{" +
+        return "RoomTypeController{" +
                 "code=" + code +
                 ", description=" + description +
                 ", maxCapacity=" + maxCapacity +
