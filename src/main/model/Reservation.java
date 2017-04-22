@@ -36,8 +36,8 @@ public class Reservation {
         this.registrationStatus = new SimpleStringProperty(registrationStatus);
     }
 
-    public IntegerProperty getCode() {
-        return code;
+    public int getCode() {
+        return code.get();
     }
 
     public IntegerProperty codeProperty() {

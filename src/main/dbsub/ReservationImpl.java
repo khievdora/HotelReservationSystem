@@ -17,8 +17,8 @@ public class ReservationImpl implements IReservation {
     @Override
     public boolean saveReservation(Reservation reservation) {
         try{
-            String query = "INSERT INTO reservation(idReservation, checkInDate, CheckOutDate, bookedDate, guest, room1,reservationStatus) " +
-                    "VALUES('"+reservation.getCode()+"'" +
+            String query = "INSERT INTO reservation(idReservation, checkInDate, CheckOutDate, bookedDate, idGuest, isRoom,reservationStatus) " +
+                    "VALUES('"+reservation.getCode() +
                     ",'"+reservation.getCheckInDate()+"'," +
                     "'"+reservation.getCheckOut()+"'," +
                     "'"+reservation.getBookedDate()+"'," +
@@ -37,14 +37,14 @@ public class ReservationImpl implements IReservation {
     public boolean updateReservation(Reservation reservation) {
         //idReservation, checkInDate, CheckOutDate, bookedDate, guest, room1,reservationStatus
         try{
-            String query ="UPDATE reservation SET idReservation='"+reservation.getCode()+"', " +
+            String query ="UPDATE reservation SET "+
                     "checkInDate='"+reservation.getCheckInDate()+"', " +
                     "CheckOutDate='"+reservation.getCheckOut()+"'," +
                     "bookedDate='"+reservation.getBookedDate()+"', " +
-                    "guest='"+reservation.getGuest()+"', " +
-                    "room1= '"+reservation.getRoom()+"'," +
-                    "reservationStatus= '"+reservation.getRegistrationStatus()+"'," +
-                    " WHERE idReservation='"+reservation.getCode()+"'";
+                    "idGuest='"+reservation.getGuest()+"', " +
+                    "idRoom= '"+reservation.getRoom()+"'," +
+                    "reservationStatus= '"+reservation.getRegistrationStatus()+"' " +
+                    "WHERE idReservation=" + reservation.getCode();
             iDatabase.executeUpdate(query);
             return true;
         }catch (Exception e){

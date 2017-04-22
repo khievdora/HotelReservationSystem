@@ -16,6 +16,6 @@ public class DeleteReservationCommand implements ReservationCommands {
 
     @Override
     public boolean executeReservationCommands() {
-        return imple.deleteReservationById(obj.getCode().toString());
+        return imple.deleteReservationById(new Integer(obj.getCode()).toString());
     }
 }
