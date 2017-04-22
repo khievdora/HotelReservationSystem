@@ -65,7 +65,7 @@ public class GenerateDBImpl implements IGenerateDB {
                     "floor INT NOT NULL," +
                     "description VARCHAR(255) NULL," +
                     "idRoomType INT NULL," +
-                    "maxQuest INT NULL," +
+                    "maxGuest INT NULL," +
                     "status VARCHAR(20) NOT NULL," +
                     "price FLOAT NULL," +
                     "PRIMARY KEY (idRoom)," +

@@ -42,11 +42,21 @@ public interface DBService {
     public Address getAddressById(String address);
     public List<Address> getAllAddress();*/
 
+    // CRUD Room Type
     public int saveRoomType(RoomType roomType);
     public int updateRoomType(RoomType roomType);
     public int deleteRoomType(RoomType roomType);
     public int deleteRoomTypeById(int roomTypeId);
     public RoomType getRoomTypeById(int roomTypeId);
     public List<RoomType> getAllRoomType();
+
+    // CRUD Room
+    public int saveRoom(Room room);
+    public int updateRoom(Room room);
+    public int deleteRoom(Room room);
+    public int deleteRoomById(int roomId);
+    public Room getRoomById(int roomId);
+    public List<Room> getAllRoom();
+
 
 }
