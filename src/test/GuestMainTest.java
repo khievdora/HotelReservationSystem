@@ -21,7 +21,7 @@ public class GuestMainTest {
                 "Khiev",
                 "12345678",
                 "294837372",
-                new Address("2", "52556", "52 N Maple St", "Fairfield", "IOWA", "USA"),
+                "001",
                 "0984747363");
         System.out.println(guest.toString());
         dbService.saveGuest(guest);
