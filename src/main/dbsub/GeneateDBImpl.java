@@ -1,5 +1,6 @@
 package main.dbsub;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -9,25 +10,6 @@ public class GeneateDBImpl implements IGenerateDB {
 
     private final String CREATE_DATABASE = "CREATE DATABASE IF NOT EXISTS " + Database.DATABASE_NAME;
 
-    private final String CREATE_TABLE_ACCOUNT = "CREATE TABLE IF NOT EXISTS account (" +
-            "idAccount INT NOT NULL AUTO_INCREMENT," +
-            "username VARCHAR(50) NOT NULL," +
-            "password VARCHAR(50) NOT NULL," +
-            "status VARCHAR(20) NOT NULL," +
-            "userRole VARCHAR(50) NOT NULL," +
-            "accountStatus VARCHAR(50) NOT NULL," +
-            "PRIMARY KEY (idAccount)" +
-            ")";
-
-    private final String CREATE_TABLE_ADDRESS = "CREATE TABLE IF NOT EXISTS address (" +
-            "idAddress INT NOT NULL AUTO_INCREMENT," +
-            "zip VARCHAR(10) NULL," +
-            "street VARCHAR(255) NULL," +
-            "city VARCHAR(100) NULL," +
-            "state VARCHAR(100) NULL," +
-            "country VARCHAR(100) NULL," +
-            "PRIMARY KEY (idAddress)" +
-            ")";
     private final String[] generateTableScripts = new String[]{
             "CREATE TABLE IF NOT EXISTS account (" +
                     "idAccount INT NOT NULL AUTO_INCREMENT," +
@@ -79,7 +61,7 @@ public class GeneateDBImpl implements IGenerateDB {
                     "idRoom INT NOT NULL AUTO_INCREMENT," +
                     "roomName VARCHAR(100) NULL," +
                     "roomNumber VARCHAR(20) NULL," +
-                    "roomStatus VARCHAR(20) NOT NULL," +
+                    "roomStatus VARCHAR(20) NULL," +
                     "floor INT NOT NULL," +
                     "description VARCHAR(255) NULL," +
                     "idRoomType INT NULL," +
@@ -161,7 +143,150 @@ public class GeneateDBImpl implements IGenerateDB {
                     "   ON DELETE SET NULL" +
                     "   ON UPDATE CASCADE" +
                     ")Engine=InnoDB",
+    };
 
+    private final String[] generateTestDataScripts = new String[] {
+            "INSERT INTO account (username, password, status, userRole, accountStatus) VALUES (" +
+                    "'admin'," +
+                    "'admin'," +
+                    "'ENABLE'," +
+                    "'ADMIN'," +
+                    "'ACTIVE'" +
+                    ")",
+            "INSERT INTO account (username, password, status, userRole, accountStatus) VALUES (" +
+                    "'manager'," +
+                    "'manager'," +
+                    "'ENABLE'," +
+                    "'MANAGER'," +
+                    "'ACTIVE'" +
+                    ")",
+            "INSERT INTO account (username, password, status, userRole, accountStatus) VALUES (" +
+                    "'user'," +
+                    "'user'," +
+                    "'ENABLE'," +
+                    "'USER'," +
+                    "'ACTIVE'" +
+                    ")",
+
+            "INSERT INTO address (zip, street, city, state, country) VALUES (" +
+                    "'52556'," +
+                    "'53 N Maple St'," +
+                    "'Fairfield'," +
+                    "'IOWA'," +
+                    "'USA'" +
+                    ")",
+            "INSERT INTO address (zip, street, city, state, country) VALUES (" +
+                    "'52557'," +
+                    "'1000 N FOURTH ST'," +
+                    "'Fairfield'," +
+                    "'IOWA'," +
+                    "'USA'" +
+                    ")",
+
+            "INSERT INTO employee (firstName, lastName, email, idAddress, status) VALUES (" +
+                    "'Dora'," +
+                    "'Khiev'," +
+                    "'khievdora@gmail.com'," +
+                    "1," +
+                    "'ENABLE'" +
+                    ")",
+
+            "INSERT INTO roomtype (description, maxCapacity, status) VALUES (" +
+                    "'FAMILY ROOM'," +
+                    "4," +
+                    "'ENABLE'" +
+                    ")",
+            "INSERT INTO roomtype (description, maxCapacity, status) VALUES (" +
+                    "'SINGLE ROOM'," +
+                    "1," +
+                    "'ENABLE'" +
+                    ")",
+            "INSERT INTO roomtype (description, maxCapacity, status) VALUES (" +
+                    "'DOUBLE ROOM'," +
+                    "4," +
+                    "'ENABLE'" +
+                    ")",
+
+            "INSERT INTO room (roomName, roomNumber, floor, idRoomType, status, price) VALUES (" +
+                    "'A001'," +
+                    "'001'," +
+                    "1," +
+                    "1," +
+                    "'ENABLE'," +
+                    "100" +
+                    ")",
+            "INSERT INTO room (roomName, roomNumber, floor, idRoomType, status, price) VALUES (" +
+                    "'A002'," +
+                    "'002'," +
+                    "1," +
+                    "2," +
+                    "'ENABLE'," +
+                    "50" +
+                    ")",
+            "INSERT INTO room (roomName, roomNumber, floor, idRoomType, status, price) VALUES (" +
+                    "'A003'," +
+                    "'003'," +
+                    "2," +
+                    "3," +
+                    "'ENABLE'," +
+                    "75" +
+                    ")",
+
+            "INSERT INTO facility (description, quantity, status, idRoom) VALUES (" +
+                    "'TV'," +
+                    "1," +
+                    "'GOOD'," +
+                    "1" +
+                    ")",
+            "INSERT INTO facility (description, quantity, status, idRoom) VALUES (" +
+                    "'Fridge'," +
+                    "1," +
+                    "'GOOD'," +
+                    "1" +
+                    ")",
+            "INSERT INTO facility (description, quantity, status, idRoom) VALUES (" +
+                    "'TV'," +
+                    "1," +
+                    "'GOOD'," +
+                    "2" +
+                    ")",
+            "INSERT INTO facility (description, quantity, status, idRoom) VALUES (" +
+                    "'Fridge'," +
+                    "1," +
+                    "'GOOD'," +
+                    "2" +
+                    ")",
+
+            "INSERT INTO guest (firstName, lastName, idAddress) VALUES (" +
+                    "'David'," +
+                    "'John'," +
+                    "2" +
+                    ")",
+
+            "INSERT INTO reservation (checkInDate, checkOutDate, bookedDate, idGuest, idRoom, reservationStatus) VALUES (" +
+                    "'2017-04-22'," +
+                    "'2017-04-24'," +
+                    "'2017-04-21'," +
+                    "1," +
+                    "1," +
+                    "'CONFIRMED'" +
+                    ")",
+            "INSERT INTO reservation (checkInDate, checkOutDate, bookedDate, idGuest, idRoom, reservationStatus) VALUES (" +
+                    "'2017-04-25'," +
+                    "'2017-04-26'," +
+                    "'2017-04-20'," +
+                    "1," +
+                    "2," +
+                    "'WAITING'" +
+                    ")",
+            "INSERT INTO reservation (checkInDate, checkOutDate, bookedDate, idGuest, idRoom, reservationStatus) VALUES (" +
+                    "'2017-04-29'," +
+                    "'2017-04-30'," +
+                    "'2017-04-21'," +
+                    "1," +
+                    "3," +
+                    "'WAITING'" +
+                    ")",
     };
 
     private IDatabase iDatabase = null;
@@ -173,10 +298,27 @@ public class GeneateDBImpl implements IGenerateDB {
     @Override
     public void generateDB() {
         try {
+            boolean firstGenerateDB = false;
+
             this.iDatabase.openConnectionForGenerateDB();
-            this.iDatabase.executeUpdateWithConnectionOn(CREATE_DATABASE);
+            // Check database exist or not
+            String sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '"+ Database.DATABASE_NAME +"'";
+            ResultSet resultSet = this.iDatabase.executeQueryWithConnectionOn(sql);
+            if (!resultSet.next()) {
+                System.out.println("No database!!!");
+                firstGenerateDB = true;
+            }
+
+            int result = this.iDatabase.executeUpdateWithConnectionOn(CREATE_DATABASE);
             for (int i = 0; i < generateTableScripts.length; i++) {
                 this.iDatabase.executeUpdate(generateTableScripts[i]);
+            }
+
+            // Generate Test data
+            if (firstGenerateDB) {
+                for (int i = 0; i < generateTestDataScripts.length; i++) {
+                    this.iDatabase.executeUpdate(generateTestDataScripts[i]);
+                }
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -185,6 +327,5 @@ public class GeneateDBImpl implements IGenerateDB {
         } finally {
             this.iDatabase.closeConnection();
         }
-
     }
 }

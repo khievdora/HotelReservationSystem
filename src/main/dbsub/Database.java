@@ -101,12 +101,25 @@ public class Database implements IDatabase {
 
     @Override
     public int executeUpdateWithConnectionOn(String sql) {
+        int result = 0;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            result = statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return result;
+    }
+
+    @Override
+    public ResultSet executeQueryWithConnectionOn(String sql) {
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 }
