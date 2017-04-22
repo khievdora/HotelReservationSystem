@@ -24,9 +24,13 @@ import main.ReservationSub.payment.CreditPayment;
 import main.ReservationSub.payment.PaymentBusiness;
 import main.Shared.UrlLoader;
 import main.dbconnection.DataAccessFacade;
+<<<<<<< HEAD
 import main.dbsub.GuestImpl;
 import main.dbsub.ReservationImpl;
 import main.dbsub.RoomImpl;
+=======
+import main.dbsub.*;
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
 import main.model.Reservation;
 import main.model.Room;
 import main.model.Guest;
@@ -82,6 +86,12 @@ public class ReservationCtrl implements Initializable {
     @FXML
     private TextField txtCode;
 
+    private DBService dbService;
+
+    public ReservationCtrl() {
+        this.dbService = new DBFacade();
+    }
+
     public void initialize(ActionEvent actionEvent) {
 
 
@@ -91,25 +101,26 @@ public class ReservationCtrl implements Initializable {
 
     private List<Reservation> parseReservationList() {
 
-
-        String querySqlRoom = "select * from room where idRoom=?";
-
-
-        regList = new ReservationImpl().getAllReservation();
+        regList = this.dbService.getAllReservation();
         List<Reservation> modifiedList = new ArrayList<>();
 
         for (Reservation reg : regList) {
+<<<<<<< HEAD
 
             int code = reg.getCode();
             String room = getRoom(querySqlRoom, reg.getRoom());
             String guest = (getGuest(reg.getGuest()));
+=======
+            int code = reg.getCode();
+            Room room = reg.getRoom();
+            Guest guest = reg.getGuest();
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
             Date checkIn = reg.getCheckInDate();
             Date booked = reg.getBookedDate();
             Date checkOut = reg.getCheckOut();
             String status = reg.getRegistrationStatus();
             Reservation acc = new Reservation(code, checkIn, booked, checkOut, guest, room, status);
             modifiedList.add(acc);
-
         }
         final ObservableList<Reservation> list = FXCollections.observableArrayList();
         list.addAll(modifiedList);
@@ -136,7 +147,7 @@ public class ReservationCtrl implements Initializable {
     }
 
     private String getGuest(String value) {
-        main.model.Guest guest = new GuestImpl().getGuestById(value);
+        main.model.Guest guest = new GuestImpl().getGuestById(Integer.parseInt(value));
         if (guest != null) {
             return guest.getfName();
         } else {
@@ -245,15 +256,24 @@ public class ReservationCtrl implements Initializable {
     public void saveNew() {
 
         String code = txtCode.getText().trim();
+<<<<<<< HEAD
         String guestCode = "001";//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
         String roomCode = "001";
         // String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
 
+=======
+        Guest guest = this.dbService.getGuestById(1);//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
+        Room room = this.dbService.getRoomById(1);
+        String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
+
+        // resObj.setGuest(guest);
+        // resObj.setRoom(room);
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
         Date checkIN = Date.valueOf(dpCheckIn.getValue());
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());
         String status = (comboStatus.getValue().toString());
-        Reservation resObj = new Reservation(Integer.parseInt(code), checkIN, checkOut, booked, guestCode, roomCode, status);
+        Reservation resObj = new Reservation(Integer.parseInt(code), checkIN, checkOut, booked, guest, room, status);
         save(resObj);
 
     }
@@ -344,8 +364,8 @@ public class ReservationCtrl implements Initializable {
     }
 
     public void deleteReservation() {
-        Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
-        if (person != null) {
+        Reservation reservation = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
+        if (reservation != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete Confirmation");
             alert.setHeaderText("Confirmation Delete");
@@ -355,8 +375,14 @@ public class ReservationCtrl implements Initializable {
             if (result.get() == ButtonType.OK) {
                 //delete the selected reservation here.
 
+<<<<<<< HEAD
                 boolean isDeleted = new ReservationSubSystemOperations().deleteReservationById(person);
                 if (isDeleted) {
+=======
+//                boolean isDeleted = new ReservationImpl().deleteReservationById(reservation.getCode().toString());
+                int isDeleted = this.dbService.deleteReservationById(reservation.getCode());
+                if (isDeleted != 0) {
+>>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
 
                     JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 

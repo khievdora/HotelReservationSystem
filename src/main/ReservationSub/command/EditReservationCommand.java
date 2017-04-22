@@ -1,13 +1,14 @@
 package main.ReservationSub.command;
 
-import main.dbsub.ReservationImpl;
+import main.dbsub.DBFacade;
+import main.dbsub.DBService;
 import main.model.Reservation;
 
 /**
  * Created by Gize on 4/22/2017.
  */
 public class EditReservationCommand implements ReservationCommands {
-    ReservationImpl imple = new ReservationImpl();
+    DBService dbService = new DBFacade();
     Reservation obj;
 
     public EditReservationCommand(Reservation reservation) {
@@ -16,6 +17,6 @@ public class EditReservationCommand implements ReservationCommands {
 
     @Override
     public boolean executeReservationCommands() {
-        return imple.updateReservation(obj);
+        return dbService.updateReservation(obj) != 0 ? true : false;
     }
 }

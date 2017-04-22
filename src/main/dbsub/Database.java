@@ -92,7 +92,6 @@ public class Database implements IDatabase {
             result = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 
             if (result == 0) {
-                //throw new SQLException("Create and update sql statement fail!!!");
                 System.err.println("Create and update sql statement fail!!!");
             }
 
