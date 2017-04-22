@@ -15,13 +15,13 @@ public class GuestMainTest {
         DBService dbService = new DBFacade();
 
         // Add new guest
-        Guest guest = new Guest("1",
+        Guest guest = new Guest(1,
                 "Dora",
                 "",
                 "Khiev",
                 "12345678",
                 "294837372",
-                "001",
+                001,
                 "0984747363");
         System.out.println(guest.toString());
         dbService.saveGuest(guest);

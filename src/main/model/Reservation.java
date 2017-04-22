@@ -1,5 +1,7 @@
 package main.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,37 +11,37 @@ import java.sql.Date;
  * Created by Gize on 4/19/2017.
  */
 public class Reservation {
-    private  String code;
+    private IntegerProperty code;
     private  Date checkInDate;
     private  Date checkOut;
     private  Date bookedDate;
-    private  String guest;
-    private  String room;
-    private  String registrationStatus;
+    private  StringProperty guest;
+    private  StringProperty room;
+    private  StringProperty registrationStatus;
 
     public Reservation() {
     }
 
-    public Reservation(String code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
-        this.code = code;
+    public Reservation(int code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
+        this.code = new SimpleIntegerProperty(code);
         this.checkInDate = checkInDate;
         this.bookedDate = bookedDate;
         this.checkOut = checkOut;
-        this.guest = guest;
-        this.room = room;
-        this.registrationStatus = registrationStatus;
+        this.guest = new SimpleStringProperty(guest);
+        this.room = new SimpleStringProperty(room);
+        this.registrationStatus = new SimpleStringProperty(registrationStatus);
     }
 
-    public String getCode() {
+    public IntegerProperty getCode() {
         return code;
     }
 
-    public String codeProperty() {
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code=code;
+    public void setCode(int code) {
+        this.code.set(code);
     }
 
     public Date getCheckInDate() {
@@ -50,14 +52,6 @@ public class Reservation {
         this.checkInDate = checkInDate;
     }
 
-    public Date getBookedDate() {
-        return bookedDate;
-    }
-
-    public void setBookedDate(Date bookedDate) {
-        this.bookedDate = bookedDate;
-    }
-
     public Date getCheckOut() {
         return checkOut;
     }
@@ -66,39 +60,47 @@ public class Reservation {
         this.checkOut = checkOut;
     }
 
-    public String getGuest() {
-        return guest;
+    public Date getBookedDate() {
+        return bookedDate;
     }
 
-    public String guestProperty() {
+    public void setBookedDate(Date bookedDate) {
+        this.bookedDate = bookedDate;
+    }
+
+    public String getGuest() {
+        return guest.get();
+    }
+
+    public StringProperty guestProperty() {
         return guest;
     }
 
     public void setGuest(String guest) {
-        this.guest=guest;
+        this.guest.set(guest);
     }
 
     public String getRoom() {
-        return room;
+        return room.get();
     }
 
-    public String roomProperty() {
+    public StringProperty roomProperty() {
         return room;
     }
 
     public void setRoom(String room) {
-        this.room=room;
+        this.room.set(room);
     }
 
     public String getRegistrationStatus() {
-        return registrationStatus;
+        return registrationStatus.get();
     }
 
-    public String registrationStatusProperty() {
+    public StringProperty registrationStatusProperty() {
         return registrationStatus;
     }
 
     public void setRegistrationStatus(String registrationStatus) {
-        this.registrationStatus=(registrationStatus);
+        this.registrationStatus.set(registrationStatus);
     }
 }
