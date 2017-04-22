@@ -19,7 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import main.ReservationSub.ReservationServiceProvider.ResServiceImplementation;
+import main.ReservationSub.command.ReservationSubSystemOperations;
 import main.ReservationSub.payment.CreditPayment;
 import main.ReservationSub.payment.PaymentBusiness;
 import main.Shared.UrlLoader;
@@ -298,7 +298,7 @@ public class ReservationCtrl implements Initializable {
 
     public void save(Reservation res) {
         try {
-            ResServiceImplementation impl = new ResServiceImplementation();
+            ReservationSubSystemOperations impl = new ReservationSubSystemOperations();
             boolean isSaved = impl.addReservation(res);
             if (isSaved) {
                 JOptionPane.showMessageDialog(null, "Reserved Successfully.!");
