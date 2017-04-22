@@ -80,10 +80,10 @@ public class ReservationImpl implements IReservation {
     public List<Reservation> getAllReservation() {
         String query = "SELECT *from reservation";
         List<Reservation> reservations = new ArrayList<Reservation>();
-        Reservation reservation=new Reservation();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
+                 Reservation reservation=new Reservation();
                 reservation.setCode(rs.getInt("idReservation"));
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));

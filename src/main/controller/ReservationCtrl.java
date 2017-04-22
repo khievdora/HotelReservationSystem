@@ -94,7 +94,7 @@ public class ReservationCtrl implements Initializable {
 
 
         regList = new ReservationImpl().getAllReservation();
-        List<Reservation> modifiedList = new ReservationImpl().getAllReservation();
+        List<Reservation> modifiedList = new ArrayList<>();
 
         for (Reservation reg : regList) {
 
