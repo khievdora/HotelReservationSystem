@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Created by Dora on 4/21/2017.
  */
-public class GeneateDBImpl implements IGenerateDB {
+public class GenerateDBImpl implements IGenerateDB {
 
     private final String CREATE_DATABASE = "CREATE DATABASE IF NOT EXISTS " + Database.DATABASE_NAME;
 
@@ -291,7 +291,7 @@ public class GeneateDBImpl implements IGenerateDB {
 
     private IDatabase iDatabase = null;
 
-    public GeneateDBImpl() {
+    public GenerateDBImpl() {
         iDatabase = Database.getInstance();
     }
 
@@ -307,17 +307,18 @@ public class GeneateDBImpl implements IGenerateDB {
             if (!resultSet.next()) {
                 System.out.println("No database!!!");
                 firstGenerateDB = true;
-            }
 
-            int result = this.iDatabase.executeUpdateWithConnectionOn(CREATE_DATABASE);
-            for (int i = 0; i < generateTableScripts.length; i++) {
-                this.iDatabase.executeUpdate(generateTableScripts[i]);
-            }
 
-            // Generate Test data
-            if (firstGenerateDB) {
-                for (int i = 0; i < generateTestDataScripts.length; i++) {
-                    this.iDatabase.executeUpdate(generateTestDataScripts[i]);
+                int result = this.iDatabase.executeUpdateWithConnectionOn(CREATE_DATABASE);
+                for (int i = 0; i < generateTableScripts.length; i++) {
+                    this.iDatabase.executeUpdate(generateTableScripts[i]);
+                }
+
+                // Generate Test data
+                if (firstGenerateDB) {
+                    for (int i = 0; i < generateTestDataScripts.length; i++) {
+                        this.iDatabase.executeUpdate(generateTestDataScripts[i]);
+                    }
                 }
             }
         } catch (ClassNotFoundException e) {

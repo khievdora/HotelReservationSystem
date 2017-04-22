@@ -89,7 +89,18 @@ public class Database implements IDatabase {
             openConnection();
 
             statement = connection.createStatement();
-            result = statement.executeUpdate(sql);
+            result = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+
+            if (result == 0) {
+                //throw new SQLException("Create and update sql statement fail!!!");
+                System.err.println("Create and update sql statement fail!!!");
+            }
+
+            try (ResultSet rs = statement.getGeneratedKeys()) {
+                if (rs.next()) {
+                    result = rs.getInt(1);
+                }
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

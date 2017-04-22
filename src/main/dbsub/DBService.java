@@ -42,6 +42,11 @@ public interface DBService {
     public Address getAddressById(String address);
     public List<Address> getAllAddress();*/
 
-    //
+    public int saveRoomType(RoomType roomType);
+    public int updateRoomType(RoomType roomType);
+    public int deleteRoomType(RoomType roomType);
+    public int deleteRoomTypeById(int roomTypeId);
+    public RoomType getRoomTypeById(int roomTypeId);
+    public List<RoomType> getAllRoomType();
 
 }

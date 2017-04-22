@@ -24,6 +24,7 @@ public class AuthenticatoinFacade implements AuthenticationService {
     @Override
     public void login(String userName, String password) throws NullPointerException {
         Account account = this.accountService.getAccount(userName, password);
+        System.out.println("Account = " + account.toString());
         if (this.authenticationSubcriber == null) {
             throw new NullPointerException("There is no authentication subscriber in this form");
         } else {

@@ -199,7 +199,7 @@ public class ReservationCtrl implements Initializable {
 //                room.setRoomStatus(result.getString("roomStatus"));
 //                room.setFloor(result.getInt("floor"));
 //                room.setRoomType(result.getString("roomType"));
-//                room.setMaxQuest(result.getInt("maxQuest"));
+//                room.setMaxCapacity(result.getInt("maxQuest"));
                 int roomNo = result.getInt("roomNumber");
 
                 rooms.add(roomNo);

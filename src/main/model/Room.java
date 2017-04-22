@@ -2,46 +2,49 @@ package main.model;
 
 import javafx.beans.property.*;
 
-import java.sql.Date;
-
 /**
  * Created by Gize on 4/19/2017.
  */
 public class Room {
-    private  StringProperty code;
+    private  IntegerProperty code;
     private  StringProperty roomName;
     private  IntegerProperty roomNumber;
     private  StringProperty roomStatus;
     private  IntegerProperty floor;
     private  StringProperty description;
-    private  StringProperty roomType;
+    private  ObjectProperty<RoomType> roomType;
     private  IntegerProperty maxQuest;
     private  StringProperty status;
-    private  DoubleProperty price;
+    private  FloatProperty price;
 
-    public Room(String code, String roomName, Integer roomNumber, String roomStatus, Integer floor, String description, String roomType, Integer maxQuest, String status, Double price) {
-        this.code = new SimpleStringProperty(code);
+    public Room(int code, String roomName, Integer roomNumber, String roomStatus, Integer floor, String description,
+                RoomType roomType, Integer maxQuest, String status, float price) {
+        this.code = new SimpleIntegerProperty(code);
         this.roomName = new SimpleStringProperty(roomName);
         this.roomNumber = new SimpleIntegerProperty(roomNumber);
         this.roomStatus = new SimpleStringProperty(roomStatus);
         this.floor = new SimpleIntegerProperty(floor);
         this.description = new SimpleStringProperty(description);
-        this.roomType = new SimpleStringProperty(roomType);
+        this.roomType = new SimpleObjectProperty<>(roomType);
         this.maxQuest = new SimpleIntegerProperty(maxQuest);
         this.status = new SimpleStringProperty(status);
-        this.price = new SimpleDoubleProperty(price);
+        this.price = new SimpleFloatProperty(price);
     }
 
-    public String getCode() {
+    public int getCode() {
         return code.get();
     }
 
-    public StringProperty codeProperty() {
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code.set(code);
+    }
+
+    public void setCode(String code) {
+        this.code.set(Integer.parseInt(code));
     }
 
     public String getRoomName() {
@@ -104,15 +107,15 @@ public class Room {
         this.description.set(description);
     }
 
-    public String getRoomType() {
+    public RoomType getRoomType() {
         return roomType.get();
     }
 
-    public StringProperty roomTypeProperty() {
+    public ObjectProperty<RoomType> roomTypeProperty() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType.set(roomType);
     }
 
@@ -140,15 +143,15 @@ public class Room {
         this.status.set(status);
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price.get();
     }
 
-    public DoubleProperty priceProperty() {
+    public FloatProperty priceProperty() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price.set(price);
     }
 }
