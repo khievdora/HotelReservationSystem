@@ -154,4 +154,20 @@ public class Room {
     public void setPrice(float price) {
         this.price.set(price);
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "code=" + code +
+                ", roomName=" + roomName +
+                ", roomNumber=" + roomNumber +
+                ", roomStatus=" + roomStatus +
+                ", floor=" + floor +
+                ", description=" + description +
+                ", roomType=" + roomType.toString() +
+                ", maxQuest=" + maxQuest +
+                ", status=" + status +
+                ", price=" + price +
+                '}';
+    }
 }

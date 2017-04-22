@@ -2,8 +2,8 @@ package main.dbsub;
 
 import main.model.Room;
 
-import java.awt.image.DataBuffer;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class RoomImpl implements IRoom {
 
     @Override
     public int saveRoom(Room room) {
-        int result = 0;
+        int roomId = 0;
         try {
             String sql = "INSERT INTO room (roomName, roomNumber, roomStatus, floor, description, idRoomType, maxGuest, " +
                     "status, price) VALUES (" +
@@ -33,20 +33,22 @@ public class RoomImpl implements IRoom {
                     "'"+ room.getStatus() +"'," +
                     room.getPrice() +
                     ")";
-            result = this.iDatabase.executeUpdate(sql);
+            roomId = this.iDatabase.executeUpdate(sql);
+            if (roomId != 0) {
+                room.setCode(roomId);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.iDatabase.closeConnection();
         }
-        return result;
+        return roomId;
     }
 
     @Override
     public int updateRoom(Room room) {
         int result = 0;
         try {
-
             String sql = "UPDATE room SET " +
                     "roomName = '"+ room.getRoomName() +"'," +
                     "roomNumber = '"+ room.getRoomNumber() +"'," +
@@ -109,7 +111,7 @@ public class RoomImpl implements IRoom {
                     rs.getString("roomStatus"),
                     rs.getInt("floor"),
                     rs.getString("description"),
-                    null,
+                    new RoomTypeImpl().getRoomTypeById(rs.getInt("idRoomType")),
                     rs.getInt("maxGuest"),
                     rs.getString("status"),
                     rs.getFloat("price")
@@ -125,6 +127,30 @@ public class RoomImpl implements IRoom {
 
     @Override
     public List<Room> getAllRoom() {
-        return null;
+        List<Room> roomList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM room";
+            ResultSet rs = this.iDatabase.executeQuery(sql);
+            while (rs.next()) {
+                Room room = new Room(
+                        rs.getInt("idRoom"),
+                        rs.getString("roomName"),
+                        rs.getInt("roomNumber"),
+                        rs.getString("roomStatus"),
+                        rs.getInt("floor"),
+                        rs.getString("description"),
+                        new RoomTypeImpl().getRoomTypeById(rs.getInt("idRoomType")),
+                        rs.getInt("maxGuest"),
+                        rs.getString("status"),
+                        rs.getFloat("price")
+                );
+                roomList.add(room);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
+        }
+        return roomList;
     }
 }
