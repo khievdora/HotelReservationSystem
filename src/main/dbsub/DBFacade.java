@@ -1,9 +1,6 @@
 package main.dbsub;
 
-import main.model.Account;
-import main.model.Guest;
-import main.model.Room;
-import main.model.RoomType;
+import main.model.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public class DBFacade implements DBService {
     private IGuest guest = null;
     private IRoomType roomType = null;
     private IRoom room = null;
+    private IAddress address = null;
 
     public DBFacade() {
         //Geneate Database
@@ -26,6 +24,7 @@ public class DBFacade implements DBService {
         guest = new GuestImpl();
         roomType = new RoomTypeImpl();
         room = new RoomImpl();
+        address = new AddressImpl();
     }
 
     @Override
@@ -167,5 +166,35 @@ public class DBFacade implements DBService {
     @Override
     public List<Room> getAllRoom() {
         return this.room.getAllRoom();
+    }
+
+    @Override
+    public int saveAddress(Address address) {
+        return this.address.saveAddress(address);
+    }
+
+    @Override
+    public int updateAddress(Address address) {
+        return this.address.updateAddress(address);
+    }
+
+    @Override
+    public int deleteAddress(Address address) {
+        return this.address.deleteAddress(address);
+    }
+
+    @Override
+    public int deleteAddressById(int addressId) {
+        return this.address.deleteAddressById(addressId);
+    }
+
+    @Override
+    public Address getAddressById(int addressId) {
+        return this.address.getAddressById(addressId);
+    }
+
+    @Override
+    public List<Address> getAllAddress() {
+        return this.address.getAllAddress();
     }
 }

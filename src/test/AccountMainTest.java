@@ -32,18 +32,18 @@ public class AccountMainTest {
         account.setStatus(Status.ENABLE.toString());
         account.setUserRole(UserRole.USER.toString());
         account.setAccountStatus(AccountStatus.ACTIVE.toString());
-        //accountService.saveAccount(account);
+//        accountService.saveAccount(account);
+
         // List all account again
         //accountList = accountService.getAllAccount();
         //mainTest.displayAllAccount(accountList);
 
         // Edit account
-        Account doraAccount = accountService.getAccountByUserId("2");
-        System.out.println(doraAccount.toString());
-        doraAccount.setAccountStatus(AccountStatus.SUSPENDED.toString());
-        accountService.updateAccount(doraAccount);
-        System.out.println("After update");
-        System.out.println(doraAccount.toString());
+        Account doraAccount = accountService.getAccountByUserId("4");
+//        doraAccount.setAccountStatus(AccountStatus.SUSPENDED.toString());
+//        accountService.updateAccount(doraAccount);
+//        System.out.println("After update");
+//        System.out.println(doraAccount.toString());
 
         accountService.deleteAccount(doraAccount);
 
