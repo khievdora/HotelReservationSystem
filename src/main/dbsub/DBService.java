@@ -36,12 +36,6 @@ public interface DBService {
     public Guest getGuestById(String guestId);
     public List<Guest> getAllGuest();
 
-    //CRUD Address
-    /*public boolean saveAddress(Guest guest);
-    public boolean updateAddress(Guest guest);
-    public Address getAddressById(String address);
-    public List<Address> getAllAddress();*/
-
     // CRUD Room Type
     public int saveRoomType(RoomType roomType);
     public int updateRoomType(RoomType roomType);
@@ -57,6 +51,14 @@ public interface DBService {
     public int deleteRoomById(int roomId);
     public Room getRoomById(int roomId);
     public List<Room> getAllRoom();
+
+    //CRUD Address
+    public int saveAddress(Address address);
+    public int updateAddress(Address address);
+    public int deleteAddress(Address address);
+    public int deleteAddressById(int addressId);
+    public Address getAddressById(int addressId);
+    public List<Address> getAllAddress();
 
 
 }
