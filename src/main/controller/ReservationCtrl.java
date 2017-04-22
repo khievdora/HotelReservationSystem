@@ -4,6 +4,7 @@ package main.controller;
  * Created by Gize on 4/20/2017.
  */
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -97,14 +98,14 @@ public class ReservationCtrl implements Initializable {
 
         for (Reservation reg : regList) {
 
-            String code = reg.getCode();
+            IntegerProperty code = reg.getCode();
             String room = getRoom(querySqlRoom, reg.getRoom());
             String guest = (getGuest(reg.getGuest()));
             Date checkIn = reg.getCheckInDate();
             Date booked = reg.getBookedDate();
             Date checkOut = reg.getCheckOut();
             String status = reg.getRegistrationStatus();
-            Reservation acc = new Reservation(code, checkIn, booked, checkOut, guest, room, status);
+            Reservation acc = new Reservation(code.get(), checkIn, booked, checkOut, guest, room, status);
             modifiedList.add(acc);
 
         }
@@ -290,7 +291,7 @@ public class ReservationCtrl implements Initializable {
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());
         String status = (comboStatus.getValue().toString());
-        Reservation resObj = new Reservation(code, checkIN, checkOut, booked, guestCode, roomCode, status);
+        Reservation resObj = new Reservation(Integer.parseInt(code), checkIN, checkOut, booked, guestCode, roomCode, status);
         save(resObj);
 
     }
@@ -376,7 +377,8 @@ public class ReservationCtrl implements Initializable {
 
             if (result.get() == ButtonType.OK) {
                 //delete the selected reservation here.
-                boolean isDeleted = new ReservationImpl().deleteReservationById(person.getCode());
+
+                boolean isDeleted = new ReservationImpl().deleteReservationById(person.getCode().toString());
                 if (isDeleted) {
 
                     JOptionPane.showMessageDialog(null, "Successfully Deleted!");

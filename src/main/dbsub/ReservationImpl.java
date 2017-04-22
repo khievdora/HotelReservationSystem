@@ -84,7 +84,7 @@ public class ReservationImpl implements IReservation {
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
-                reservation.setCode(rs.getString("idReservation"));
+                reservation.setCode(rs.getInt("idReservation"));
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));
                 reservation.setBookedDate(rs.getDate(4));
@@ -95,7 +95,7 @@ public class ReservationImpl implements IReservation {
             }
 
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         return reservations;
     }
@@ -107,7 +107,7 @@ public class ReservationImpl implements IReservation {
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
-                reservation.setCode(rs.getString(1));
+                reservation.setCode(rs.getInt(1));
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));
                 reservation.setBookedDate(rs.getDate(4));

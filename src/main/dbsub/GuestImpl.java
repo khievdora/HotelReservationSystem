@@ -83,13 +83,13 @@ public class GuestImpl implements IGuest {
             String sql = "SELECT * FROM guest WHERE idGuest = '" + guestId + "' LIMIT 1";
             ResultSet rs = this.database.executeQuery(sql);
             if (rs.next()) {
-                guest = new Guest(rs.getString(1),
+                guest = new Guest(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7),
+                        rs.getInt(7),
                         rs.getString(8));
             }
 
@@ -110,13 +110,13 @@ public class GuestImpl implements IGuest {
             ResultSet rs = this.database.executeQuery(sql);
             while (rs.next()) {
 
-                guest = new Guest(String.valueOf(rs.getInt(1)),
+                guest = new Guest(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(3),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7),
+                        rs.getInt(7),
                         rs.getString(8));
 
                 guestList.add(guest);

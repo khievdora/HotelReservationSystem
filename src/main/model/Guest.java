@@ -1,95 +1,125 @@
 package main.model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by Gize on 4/19/2017.
  */
 public class Guest {
-    private  String code;
-    private  String fName;
-    private  String mName;
-    private  String lName;
-    private  String idCard;
-    private  String passport;
-    private  String address;
-    private  String phone;
+    private IntegerProperty code;
+    private  StringProperty fName;
+    private  StringProperty mName;
+    private  StringProperty lName;
+    private  StringProperty idCard;
+    private  StringProperty passport;
+    private  IntegerProperty address;
+    private  StringProperty phone;
 
-    public Guest(String code, String fName, String mName, String lName, String idCard, String passport, String address, String phone) {
-        this.code = (code);
-        this.fName = (fName);
-        this.mName = (mName);
-        this.lName = (lName);
-        this.idCard = (idCard);
-        this.passport = (passport);
-        this.address = address;
-        this.phone = (phone);
+    public Guest(int code, String fName, String mName, String lName, String idCard, String passport, int address, String phone) {
+        this.code = new SimpleIntegerProperty(code);
+        this.fName = new SimpleStringProperty(fName);
+        this.mName = new SimpleStringProperty(mName);
+        this.lName = new SimpleStringProperty(lName);
+        this.idCard =new SimpleStringProperty (idCard);
+        this.passport =new SimpleStringProperty(passport);
+        this.address = new SimpleIntegerProperty(address);
+        this.phone = new SimpleStringProperty(phone);
     }
 
-    public String getCode() {
+    public int getCode() {
+        return code.get();
+    }
+
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(int code) {
+        this.code.set(code);
     }
 
     public String getfName() {
+        return fName.get();
+    }
+
+    public StringProperty fNameProperty() {
         return fName;
     }
 
     public void setfName(String fName) {
-        this.fName = fName;
+        this.fName.set(fName);
     }
 
     public String getmName() {
+        return mName.get();
+    }
+
+    public StringProperty mNameProperty() {
         return mName;
     }
 
     public void setmName(String mName) {
-        this.mName = mName;
+        this.mName.set(mName);
     }
 
     public String getlName() {
+        return lName.get();
+    }
+
+    public StringProperty lNameProperty() {
         return lName;
     }
 
     public void setlName(String lName) {
-        this.lName = lName;
+        this.lName.set(lName);
     }
 
     public String getIdCard() {
+        return idCard.get();
+    }
+
+    public StringProperty idCardProperty() {
         return idCard;
     }
 
     public void setIdCard(String idCard) {
-        this.idCard = idCard;
+        this.idCard.set(idCard);
     }
 
     public String getPassport() {
+        return passport.get();
+    }
+
+    public StringProperty passportProperty() {
         return passport;
     }
 
     public void setPassport(String passport) {
-        this.passport = passport;
+        this.passport.set(passport);
     }
 
-    public String getAddress() {
+    public int getAddress() {
+        return address.get();
+    }
+
+    public IntegerProperty addressProperty() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(int address) {
+        this.address.set(address);
     }
 
     public String getPhone() {
+        return phone.get();
+    }
+
+    public StringProperty phoneProperty() {
         return phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone.set(phone);
     }
 
     @Override
