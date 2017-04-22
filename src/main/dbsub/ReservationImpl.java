@@ -84,12 +84,12 @@ public class ReservationImpl implements IReservation {
         try{
             ResultSet rs = iDatabase.executeQuery(query);
             while (rs.next()){
-                reservation.setCode(rs.getString(1));
+                reservation.setCode(rs.getString("idReservation"));
                 reservation.setCheckInDate(rs.getDate(2));
                 reservation.setCheckOut(rs.getDate(3));
                 reservation.setBookedDate(rs.getDate(4));
-                reservation.setGuest(rs.getString(5));
-                reservation.setRoom(rs.getString(6));
+                reservation.setGuest(String.valueOf(rs.getString(5)));
+                reservation.setRoom(String.valueOf(rs.getString(6)));
                 reservation.setRegistrationStatus(rs.getString(7));
                 reservations.add(reservation);
             }
