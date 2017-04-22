@@ -9,37 +9,37 @@ import java.sql.Date;
  * Created by Gize on 4/19/2017.
  */
 public class Reservation {
-    private  StringProperty code;
+    private  String code;
     private  Date checkInDate;
     private  Date checkOut;
     private  Date bookedDate;
-    private  StringProperty guest;
-    private  StringProperty room;
-    private  StringProperty registrationStatus;
+    private  String guest;
+    private  String room;
+    private  String registrationStatus;
 
     public Reservation() {
     }
 
     public Reservation(String code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
-        this.code = new SimpleStringProperty(code);
+        this.code = code;
         this.checkInDate = checkInDate;
         this.bookedDate = bookedDate;
         this.checkOut = checkOut;
-        this.guest = new SimpleStringProperty(guest);
-        this.room = new SimpleStringProperty(room);
-        this.registrationStatus = new SimpleStringProperty(registrationStatus);
+        this.guest = guest;
+        this.room = room;
+        this.registrationStatus = registrationStatus;
     }
 
     public String getCode() {
-        return code.get();
+        return code;
     }
 
-    public StringProperty codeProperty() {
+    public String codeProperty() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code.set(code);
+        this.code=code;
     }
 
     public Date getCheckInDate() {
@@ -67,38 +67,38 @@ public class Reservation {
     }
 
     public String getGuest() {
-        return guest.get();
+        return guest;
     }
 
-    public StringProperty guestProperty() {
+    public String guestProperty() {
         return guest;
     }
 
     public void setGuest(String guest) {
-        this.guest.set(guest);
+        this.guest=guest;
     }
 
     public String getRoom() {
-        return room.get();
+        return room;
     }
 
-    public StringProperty roomProperty() {
+    public String roomProperty() {
         return room;
     }
 
     public void setRoom(String room) {
-        this.room.set(room);
+        this.room=room;
     }
 
     public String getRegistrationStatus() {
-        return registrationStatus.get();
+        return registrationStatus;
     }
 
-    public StringProperty registrationStatusProperty() {
+    public String registrationStatusProperty() {
         return registrationStatus;
     }
 
     public void setRegistrationStatus(String registrationStatus) {
-        this.registrationStatus.set(registrationStatus);
+        this.registrationStatus=(registrationStatus);
     }
 }
