@@ -22,10 +22,10 @@ public class AddressImpl implements IAddress {
         int addressId = 0;
         try {
             String sql = "INSERT INTO address (zip, street, city, state, country) VALUES (" +
-                    "'"+ address.getZip() +"'" +
-                    "'"+ address.getStreet() +"'" +
-                    "'"+ address.getCity() +"'" +
-                    "'"+ address.getState() +"'" +
+                    "'"+ address.getZip() +"'," +
+                    "'"+ address.getStreet() +"'," +
+                    "'"+ address.getCity() +"'," +
+                    "'"+ address.getState() +"'," +
                     "'"+ address.getCountry() +"'" +
                     ")";
             addressId = this.iDatabase.executeUpdate(sql);

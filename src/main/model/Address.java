@@ -96,4 +96,16 @@ public class Address {
     public void setCountry(String country) {
         this.country.set(country);
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "code=" + code +
+                ", zip=" + zip +
+                ", street=" + street +
+                ", city=" + city +
+                ", state=" + state +
+                ", country=" + country +
+                '}';
+    }
 }
