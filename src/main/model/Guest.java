@@ -8,120 +8,88 @@ import javafx.beans.property.StringProperty;
  * Created by Gize on 4/19/2017.
  */
 public class Guest {
-    private  StringProperty code;
-    private  StringProperty fName;
-    private  StringProperty mName;
-    private  StringProperty lName;
-    private  StringProperty idCard;
-    private  StringProperty passport;
-    private  Address address;
-    private  StringProperty phone;
+    private  String code;
+    private  String fName;
+    private  String mName;
+    private  String lName;
+    private  String idCard;
+    private  String passport;
+    private  String address;
+    private  String phone;
 
-    public Guest(String code, String fName, String mName, String lName, String idCard, String passport, Address address, String phone) {
-        this.code = new SimpleStringProperty(code);
-        this.fName = new SimpleStringProperty(fName);
-        this.mName = new SimpleStringProperty(mName);
-        this.lName = new SimpleStringProperty(lName);
-        this.idCard = new SimpleStringProperty(idCard);
-        this.passport = new SimpleStringProperty(passport);
+    public Guest(String code, String fName, String mName, String lName, String idCard, String passport, String address, String phone) {
+        this.code = (code);
+        this.fName = (fName);
+        this.mName = (mName);
+        this.lName = (lName);
+        this.idCard = (idCard);
+        this.passport = (passport);
         this.address = address;
-        this.phone = new SimpleStringProperty(phone);
+        this.phone = (phone);
     }
 
     public String getCode() {
-        return code.get();
-    }
-
-    public StringProperty codeProperty() {
         return code;
     }
 
     public void setCode(String code) {
-        this.code.set(code);
+        this.code = code;
     }
 
     public String getfName() {
-        return fName.get();
-    }
-
-    public StringProperty fNameProperty() {
         return fName;
     }
 
     public void setfName(String fName) {
-        this.fName.set(fName);
+        this.fName = fName;
     }
 
     public String getmName() {
-        return mName.get();
-    }
-
-    public StringProperty mNameProperty() {
         return mName;
     }
 
     public void setmName(String mName) {
-        this.mName.set(mName);
+        this.mName = mName;
     }
 
     public String getlName() {
-        return lName.get();
-    }
-
-    public StringProperty lNameProperty() {
         return lName;
     }
 
     public void setlName(String lName) {
-        this.lName.set(lName);
+        this.lName = lName;
     }
 
     public String getIdCard() {
-        return idCard.get();
-    }
-
-    public StringProperty idCardProperty() {
         return idCard;
     }
 
     public void setIdCard(String idCard) {
-        this.idCard.set(idCard);
+        this.idCard = idCard;
     }
 
     public String getPassport() {
-        return passport.get();
-    }
-
-    public StringProperty passportProperty() {
         return passport;
     }
 
     public void setPassport(String passport) {
-        this.passport.set(passport);
+        this.passport = passport;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public Address addressProperty() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
     public String getPhone() {
-        return phone.get();
-    }
-
-    public StringProperty phoneProperty() {
         return phone;
     }
 
     public void setPhone(String phone) {
-        this.phone.set(phone);
+        this.phone = phone;
     }
 
     @Override
