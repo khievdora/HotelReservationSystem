@@ -39,6 +39,7 @@ public class AddressMainTest {
         iAddress.deleteAddressById(3);
         addressList = iAddress.getAllAddress();
         main.displayAllAddresses(addressList);
+
     }
 
     public void displayAllAddresses(List<Address> addressList) {

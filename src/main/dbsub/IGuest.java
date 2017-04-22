@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface IGuest {
     public int saveGuest(Guest guest);
-    public boolean updateGuest(Guest guest);
-    public boolean deleteGuestById(String guestId);
-    public boolean deleteAllGuest();
-    public Guest getGuestById(String guestId);
+    public int updateGuest(Guest guest);
+    public int deleteGuestById(int guestId);
+    public int deleteAllGuest();
+    public Guest getGuestById(int guestId);
     public List<Guest> getAllGuest();
 
 }

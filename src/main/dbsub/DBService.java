@@ -21,19 +21,19 @@ public interface DBService {
     public List<Account> getAllAccount();
 
     //CRUD Reservation
-   /* public boolean saveReservation(Reservation reservation);
-    public boolean updateReservation(Reservation reservation);
-    public boolean deleteReservationById(String reservationId);
-    public boolean deleteAllReservation();
-    public Reservation getReservationById(String reservationId);
-    public List<Reservation> getAllReservations();*/
+    public int saveReservation(Reservation reservation);
+    public int updateReservation(Reservation reservation);
+    public List<Reservation> getAllReservation();
+    public Reservation getReservatinById(int idReservation);
+    public int deleteAllReservation();
+    public int deleteReservationById(int idReservation);
 
     //CRUD Guest
     public int saveGuest(Guest guest);
-    public boolean updateGuest(Guest guest);
-    public boolean deleteGuestById(String guestId);
-    public boolean deleteAllGuest();
-    public Guest getGuestById(String guestId);
+    public int updateGuest(Guest guest);
+    public int deleteGuestById(int guestId);
+    public int deleteAllGuest();
+    public Guest getGuestById(int guestId);
     public List<Guest> getAllGuest();
 
     // CRUD Room Type

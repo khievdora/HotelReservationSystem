@@ -35,8 +35,8 @@ public class Payment implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         if (reservation != null) {
-            txtGuest.setText(reservation.getGuest());
-            txtRoom.setText(reservation.getRoom());
+            txtGuest.setText(reservation.getGuest().getlName());
+            txtRoom.setText(reservation.getRoom().getRoomName());
             txtCheckIn.setText(reservation.getCheckInDate().toString());
             txtCheckOut.setText(reservation.getCheckOut().toString());
             comboStatusList();

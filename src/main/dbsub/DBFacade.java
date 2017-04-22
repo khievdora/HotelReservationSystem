@@ -14,6 +14,7 @@ public class DBFacade implements DBService {
     private IRoomType roomType = null;
     private IRoom room = null;
     private IAddress address = null;
+    private IReservation reservation = null;
 
     public DBFacade() {
         //Geneate Database
@@ -25,6 +26,7 @@ public class DBFacade implements DBService {
         roomType = new RoomTypeImpl();
         room = new RoomImpl();
         address = new AddressImpl();
+        reservation = new ReservationImpl();
     }
 
     @Override
@@ -79,27 +81,57 @@ public class DBFacade implements DBService {
     }
 
     @Override
+    public int saveReservation(Reservation reservation) {
+        return this.reservation.saveReservation(reservation);
+    }
+
+    @Override
+    public int updateReservation(Reservation reservation) {
+        return this.reservation.updateReservation(reservation);
+    }
+
+    @Override
+    public List<Reservation> getAllReservation() {
+        return this.reservation.getAllReservation();
+    }
+
+    @Override
+    public Reservation getReservatinById(int idReservation) {
+        return this.reservation.getReservatinById(idReservation);
+    }
+
+    @Override
+    public int deleteAllReservation() {
+        return this.reservation.deleteAllReservation();
+    }
+
+    @Override
+    public int deleteReservationById(int idReservation) {
+        return this.reservation.deleteReservationById(idReservation);
+    }
+
+    @Override
     public int saveGuest(Guest guest) {
         return this.guest.saveGuest(guest);
     }
 
     @Override
-    public boolean updateGuest(Guest guest) {
+    public int updateGuest(Guest guest) {
         return this.guest.updateGuest(guest);
     }
 
     @Override
-    public boolean deleteGuestById(String guestId) {
+    public int deleteGuestById(int guestId) {
         return this.guest.deleteGuestById(guestId);
     }
 
     @Override
-    public boolean deleteAllGuest() {
+    public int deleteAllGuest() {
         return this.guest.deleteAllGuest();
     }
 
     @Override
-    public Guest getGuestById(String guestId) {
+    public Guest getGuestById(int guestId) {
         return this.guest.getGuestById(guestId);
     }
 
