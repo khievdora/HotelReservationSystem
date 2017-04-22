@@ -14,6 +14,10 @@ public class DBFacade implements DBService {
     private IGuest guest = null;
 
     public DBFacade() {
+        //Geneate Database
+        IGenerateDB generateDB = new GeneateDBImpl();
+        generateDB.generateDB();
+
         account = new AccountImpl();
         guest = new GuestImpl();
     }
