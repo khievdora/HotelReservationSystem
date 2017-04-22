@@ -1,5 +1,7 @@
 package main.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,7 +11,7 @@ import java.sql.Date;
  * Created by Gize on 4/19/2017.
  */
 public class Reservation {
-    private  StringProperty code;
+    private IntegerProperty code;
     private  Date checkInDate;
     private  Date checkOut;
     private  Date bookedDate;
@@ -20,8 +22,8 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
-        this.code = new SimpleStringProperty(code);
+    public Reservation(int code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
+        this.code = new SimpleIntegerProperty(code);
         this.checkInDate = checkInDate;
         this.bookedDate = bookedDate;
         this.checkOut = checkOut;
@@ -30,15 +32,15 @@ public class Reservation {
         this.registrationStatus = new SimpleStringProperty(registrationStatus);
     }
 
-    public String getCode() {
-        return code.get();
-    }
-
-    public StringProperty codeProperty() {
+    public IntegerProperty getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public IntegerProperty codeProperty() {
+        return code;
+    }
+
+    public void setCode(int code) {
         this.code.set(code);
     }
 
@@ -50,20 +52,20 @@ public class Reservation {
         this.checkInDate = checkInDate;
     }
 
-    public Date getBookedDate() {
-        return bookedDate;
-    }
-
-    public void setBookedDate(Date bookedDate) {
-        this.bookedDate = bookedDate;
-    }
-
     public Date getCheckOut() {
         return checkOut;
     }
 
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
+    }
+
+    public Date getBookedDate() {
+        return bookedDate;
+    }
+
+    public void setBookedDate(Date bookedDate) {
+        this.bookedDate = bookedDate;
     }
 
     public String getGuest() {

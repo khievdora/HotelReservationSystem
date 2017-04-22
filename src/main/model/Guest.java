@@ -1,41 +1,40 @@
 package main.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by Gize on 4/19/2017.
  */
 public class Guest {
-    private  StringProperty code;
+    private IntegerProperty code;
     private  StringProperty fName;
     private  StringProperty mName;
     private  StringProperty lName;
     private  StringProperty idCard;
     private  StringProperty passport;
-    private  StringProperty address;
+    private  IntegerProperty address;
     private  StringProperty phone;
 
-    public Guest(String code, String fName, String mName, String lName, String idCard, String passport, String address, String phone) {
-        this.code = new SimpleStringProperty(code);
+    public Guest(int code, String fName, String mName, String lName, String idCard, String passport, int address, String phone) {
+        this.code = new SimpleIntegerProperty(code);
         this.fName = new SimpleStringProperty(fName);
         this.mName = new SimpleStringProperty(mName);
         this.lName = new SimpleStringProperty(lName);
-        this.idCard = new SimpleStringProperty(idCard);
-        this.passport = new SimpleStringProperty(passport);
-        this.address = new SimpleStringProperty(address);
+        this.idCard =new SimpleStringProperty (idCard);
+        this.passport =new SimpleStringProperty(passport);
+        this.address = new SimpleIntegerProperty(address);
         this.phone = new SimpleStringProperty(phone);
     }
 
-    public String getCode() {
+    public int getCode() {
         return code.get();
     }
 
-    public StringProperty codeProperty() {
+    public IntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code.set(code);
     }
 
@@ -99,15 +98,15 @@ public class Guest {
         this.passport.set(passport);
     }
 
-    public String getAddress() {
+    public int getAddress() {
         return address.get();
     }
 
-    public StringProperty addressProperty() {
+    public IntegerProperty addressProperty() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(int address) {
         this.address.set(address);
     }
 

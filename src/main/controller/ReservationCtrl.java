@@ -4,6 +4,9 @@ package main.controller;
  * Created by Gize on 4/20/2017.
  */
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +24,8 @@ import main.ReservationSub.payment.CreditPayment;
 import main.ReservationSub.payment.PaymentBusiness;
 import main.Shared.UrlLoader;
 import main.dbconnection.DataAccessFacade;
+import main.dbsub.GuestImpl;
+import main.dbsub.ReservationImpl;
 import main.model.Reservation;
 import main.model.Room;
 import main.model.Guest;
@@ -61,6 +66,8 @@ public class ReservationCtrl implements Initializable {
     @FXML
     private ComboBox comboGuest;
     @FXML
+    private ComboBox comboSearch;
+    @FXML
     private ComboBox comboRoom;
     @FXML
     private ComboBox comboStatus;
@@ -78,41 +85,32 @@ public class ReservationCtrl implements Initializable {
 
     }
 
-    private List<Reservation> parseUserList() {
-        DataAccessFacade facade = new DataAccessFacade();
-        final ObservableList<Reservation> obserList;
-        facade.openConnection();
-        String querySql = "select * from reservation where idReservation=?";
+    List<Reservation> regList = null;
+
+    private List<Reservation> parseReservationList() {
+
+
         String querySqlRoom = "select * from room where idRoom=?";
-        String querySqlGuest = "select * from guest where idGuest=?";
-
-        ResultSet result = facade.executeQuery(querySql, "1");
-        List<Reservation> accList = new ArrayList<>();
 
 
-        try {
-            while (result.next()) {
+        regList = new ReservationImpl().getAllReservation();
+        List<Reservation> modifiedList = new ReservationImpl().getAllReservation();
 
-                try {
-                    String code = (result.getString("idReservation"));
-                    String room = (getRoom(querySqlRoom, result.getString("room1")));
-                    String guest = (getGuest(querySqlGuest, result.getString("guest")));
-                    Date checkIn = (result.getDate("checkInDate"));
-                    Date booked = (result.getDate("bookedDate"));
-                    Date checkOut = (result.getDate("checkOutDate"));
-                    String status = (result.getString("regervationStatus"));
-                    Reservation acc = new Reservation(code, checkIn, booked, checkOut, guest, room, status);
-                    accList.add(acc);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        for (Reservation reg : regList) {
 
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            IntegerProperty code = reg.getCode();
+            String room = getRoom(querySqlRoom, reg.getRoom());
+            String guest = (getGuest(reg.getGuest()));
+            Date checkIn = reg.getCheckInDate();
+            Date booked = reg.getBookedDate();
+            Date checkOut = reg.getCheckOut();
+            String status = reg.getRegistrationStatus();
+            Reservation acc = new Reservation(code.get(), checkIn, booked, checkOut, guest, room, status);
+            modifiedList.add(acc);
+
         }
         final ObservableList<Reservation> list = FXCollections.observableArrayList();
-        list.addAll(accList);
+        list.addAll(modifiedList);
         return list;
     }
 
@@ -135,25 +133,13 @@ public class ReservationCtrl implements Initializable {
         return null;
     }
 
-    private String getGuest(String sql, String value) {
-        DataAccessFacade facade = new DataAccessFacade();
-        facade.openConnection();
-
-        final ObservableList<Reservation> obserList;
-        List<String> rooms = new ArrayList<>();
-        ResultSet result = facade.executeQuery(sql, value);
-        try {
-            while (result.next()) {
-                rooms.add(result.getString("firstName"));
-                rooms.add(result.getString("lastName"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    private String getGuest(String value) {
+        main.model.Guest guest = new GuestImpl().getGuestById(value);
+        if (guest != null) {
+            return guest.getlName();
+        } else {
+            return null;
         }
-        if (rooms.size() > 0) {
-            return rooms.get(0) + " " + rooms.get(1);
-        }
-        return null;
     }
 
     @Override
@@ -174,7 +160,7 @@ public class ReservationCtrl implements Initializable {
         checkOutDate.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         status.setCellValueFactory(new PropertyValueFactory<>("registrationStatus"));
 
-        homeTableView.getItems().setAll(parseUserList());
+        homeTableView.getItems().setAll(parseReservationList());
         homeTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         // homeTableView.getColumns().remove(0);
         // homeTableView.getColumns().remove(0);
@@ -191,7 +177,7 @@ public class ReservationCtrl implements Initializable {
     public void refreshHomeTableView() {
         homeTableView.refresh();
         homeTableView.setItems(null);
-        homeTableView.setItems((ObservableList) parseUserList());
+        regList = null;
     }
 
     List<Room> allRooms = null;
@@ -214,7 +200,7 @@ public class ReservationCtrl implements Initializable {
 //                room.setRoomStatus(result.getString("roomStatus"));
 //                room.setFloor(result.getInt("floor"));
 //                room.setRoomType(result.getString("roomType"));
-//                room.setMaxQuest(result.getInt("maxQuest"));
+//                room.setMaxCapacity(result.getInt("maxQuest"));
                 int roomNo = result.getInt("roomNumber");
 
                 rooms.add(roomNo);
@@ -240,37 +226,46 @@ public class ReservationCtrl implements Initializable {
 
     public void comboGuestlist() {
 
-        DataAccessFacade facade = new DataAccessFacade();
-        String querySqlRoom = "select * from guest where idGuest=?";
-        facade.openConnection();
-        List<String> guests = new ArrayList<>();
-        ResultSet result = facade.executeQuery(querySqlRoom, "1");
-        try {
-            allGuests = new ArrayList<>();
-            while (result.next()) {
-                // Guest gu = new Guest();
-                // gu.setCode(result.getString("idGuest"));
-                String fn = result.getString("firstName");
-                String ln = result.getString("lastName");
-                //  gu.setfName(fn);
-                // gu.setlName(ln);
-                guests.add(fn + " " + ln);
-                // allGuests.add(gu);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        List<Guest> guests = new GuestImpl().getAllGuest();
+
+//        try {
+//            allGuests = new ArrayList<>();
+//            while (result.next()) {
+//                // Guest gu = new Guest();
+//                // gu.setCode(result.getString("idGuest"));
+//                String fn = result.getString("firstName");
+//                String ln = result.getString("lastName");
+//                //  gu.setfName(fn);
+//                // gu.setlName(ln);
+//                guests.add(fn + " " + ln);
+//                // allGuests.add(gu);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         // List<String> roomNums = rooms.stream().map(rm -> rm.getRoomNumber()).collect(Collectors.toList());
 
-        ObservableList<String> data2 = FXCollections.observableArrayList();
+        ObservableList<Guest> data2 = FXCollections.observableArrayList();
 
-        for (String id : guests) {
+        for (Guest id : guests) {
             data2.add(id);
 
         }
         comboGuest.setItems(null);
         comboGuest.setItems(data2);
+        comboSearch.setItems(null);
+        comboSearch.setItems(data2);
+        comboSearch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                if (t1 != null) {
+                    // ObservableList combox3 = FXCollections.observableArrayList((List) combox3Map.get(t1));
+
+                }
+            }
+        });
 
     }
 
@@ -296,7 +291,7 @@ public class ReservationCtrl implements Initializable {
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());
         String status = (comboStatus.getValue().toString());
-        Reservation resObj = new Reservation(code, checkIN, checkOut, booked, guestCode, roomCode, status);
+        Reservation resObj = new Reservation(Integer.parseInt(code), checkIN, checkOut, booked, guestCode, roomCode, status);
         save(resObj);
 
     }
@@ -362,7 +357,7 @@ public class ReservationCtrl implements Initializable {
             if (person.getRegistrationStatus() != "Cancelled") {
                 person.setRegistrationStatus("Cancelled");
                 //update the registration here
-
+                //  new ReservationImpl().updateReservation(person);
             } else {
                 JOptionPane.showMessageDialog(null, "This reservation is already cancelled!");
             }
@@ -375,14 +370,17 @@ public class ReservationCtrl implements Initializable {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Look,Confirmation Delete");
             alert.setContentText("Are you sure you want to delete?");
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
-                if (true) {
-                    //delete the selected reservation here.
+                //delete the selected reservation here.
+
+                boolean isDeleted = new ReservationImpl().deleteReservationById(person.getCode().toString());
+                if (isDeleted) {
+
                     JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 
                 } else {
@@ -397,5 +395,6 @@ public class ReservationCtrl implements Initializable {
             JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
         }
     }
+
 }
 

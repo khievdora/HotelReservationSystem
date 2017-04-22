@@ -2,6 +2,7 @@ package test;
 
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
+import main.model.Address;
 import main.model.Guest;
 
 import java.util.List;
@@ -14,13 +15,13 @@ public class GuestMainTest {
         DBService dbService = new DBFacade();
 
         // Add new guest
-        Guest guest = new Guest("1",
+        Guest guest = new Guest(1,
                 "Dora",
                 "",
                 "Khiev",
                 "12345678",
                 "294837372",
-                "53 N Maple St",
+                001,
                 "0984747363");
         System.out.println(guest.toString());
         dbService.saveGuest(guest);

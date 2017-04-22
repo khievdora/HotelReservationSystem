@@ -16,11 +16,11 @@ public class GuestImpl implements IGuest {
     @Override
     public int saveGuest(Guest guest) {
         int result = 0;
-        try{
+        try {
             String sql = "INSERT INTO guest (idGuest, firstName, middleName, lastName, idCard, passport, address1, " +
-                    "phone) VALUES ("+ guest.getCode() +",'"+ guest.getfName() + "','" + guest.getmName()+"','"+
-                    guest.getlName() + "','"+ guest.getIdCard() + "','" + guest.getPassport() +"','" + guest.getAddress() +
-                    "','" + guest.getPhone() +"')";
+                    "phone) VALUES (" + guest.getCode() + ",'" + guest.getfName() + "','" + guest.getmName() + "','" +
+                    guest.getlName() + "','" + guest.getIdCard() + "','" + guest.getPassport() + "','" + guest.getAddress() +
+                    "','" + guest.getPhone() + "')";
             result = this.database.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,8 +33,8 @@ public class GuestImpl implements IGuest {
     @Override
     public boolean updateGuest(Guest guest) {
         boolean result = false;
-        try{
-            String sql = "UPDATE guest SET firstName = '" + guest.getfName() +"'," +
+        try {
+            String sql = "UPDATE guest SET firstName = '" + guest.getfName() + "'," +
                     "middleName = '" + guest.getmName() + "'," +
                     "lastName = '" + guest.getlName() + "'," +
                     "idCard = '" + guest.getIdCard() + "'," +
@@ -82,15 +82,18 @@ public class GuestImpl implements IGuest {
         try {
             String sql = "SELECT * FROM guest WHERE idGuest = '" + guestId + "' LIMIT 1";
             ResultSet rs = this.database.executeQuery(sql);
-            guest = new Guest(String.valueOf(rs.getInt(1)),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(3),
-                    rs.getString(5),
-                    rs.getString(6),
-                    rs.getString(7),
-                    rs.getString(8));
-        }catch (Exception e) {
+            if (rs.next()) {
+                guest = new Guest(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getString(8));
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             this.database.closeConnection();
@@ -105,15 +108,17 @@ public class GuestImpl implements IGuest {
         try {
             String sql = "SELECT * FROM guest";
             ResultSet rs = this.database.executeQuery(sql);
-            while(rs.next()) {
-                guest = new Guest(String.valueOf(rs.getInt(1)),
+            while (rs.next()) {
+
+                guest = new Guest(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(3),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7),
+                        rs.getInt(7),
                         rs.getString(8));
+
                 guestList.add(guest);
             }
         } catch (Exception e) {

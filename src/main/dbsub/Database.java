@@ -7,10 +7,13 @@ import java.sql.*;
  */
 public class Database implements IDatabase {
 
+    public static final String DATABASE_NAME = "hotelreservation";
+
     private final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    private final String DATABASE_URL = "jdbc:mysql://localhost:3306/hotelreservation?useSSL=false";
+    private final String GENEARTE_DB_URL = "jdbc:mysql://localhost:3306?useSSL=false";
+    private final String DATABASE_URL = "jdbc:mysql://localhost:3306/"+ DATABASE_NAME +"?useSSL=false";
     private final String USERNAME = "root";
-    private final String PASSWORD = "123456";
+    private final String PASSWORD = "root";
 
     private static Database database = null;
 
@@ -26,6 +29,15 @@ public class Database implements IDatabase {
             database = new Database();
         }
         return database;
+    }
+
+    @Override
+    public void openConnectionForGenerateDB() throws ClassNotFoundException, SQLException {
+        // Register Driver
+        Class.forName(DRIVER_NAME);
+
+        // Open Connection to generate Database
+        connection = DriverManager.getConnection(GENEARTE_DB_URL, USERNAME, PASSWORD);
     }
 
     @Override
@@ -77,7 +89,18 @@ public class Database implements IDatabase {
             openConnection();
 
             statement = connection.createStatement();
-            result = statement.executeUpdate(sql);
+            result = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+
+            if (result == 0) {
+                //throw new SQLException("Create and update sql statement fail!!!");
+                System.err.println("Create and update sql statement fail!!!");
+            }
+
+            try (ResultSet rs = statement.getGeneratedKeys()) {
+                if (rs.next()) {
+                    result = rs.getInt(1);
+                }
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -87,5 +110,27 @@ public class Database implements IDatabase {
         return result;
     }
 
+    @Override
+    public int executeUpdateWithConnectionOn(String sql) {
+        int result = 0;
+        try {
+            statement = connection.createStatement();
+            result = statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    @Override
+    public ResultSet executeQueryWithConnectionOn(String sql) {
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
 }
