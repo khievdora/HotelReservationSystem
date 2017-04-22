@@ -20,6 +20,10 @@ public class Reservation {
     private  StringProperty registrationStatus;
 
     public Reservation() {
+        this.code = new SimpleIntegerProperty();
+        this.guest = new SimpleStringProperty();
+        this.room = new SimpleStringProperty();
+        this.registrationStatus = new SimpleStringProperty();
     }
 
     public Reservation(int code, Date checkInDate, Date bookedDate, Date checkOut, String guest, String room, String registrationStatus) {
