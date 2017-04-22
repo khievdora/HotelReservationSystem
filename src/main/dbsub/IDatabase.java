@@ -14,4 +14,5 @@ public interface IDatabase {
     public ResultSet executeQuery(String sql);
     public int executeUpdate(String sql);
     public int executeUpdateWithConnectionOn(String sql);
+    public ResultSet executeQueryWithConnectionOn(String sql);
 }
