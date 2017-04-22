@@ -24,13 +24,10 @@ import main.ReservationSub.payment.CreditPayment;
 import main.ReservationSub.payment.PaymentBusiness;
 import main.Shared.UrlLoader;
 import main.dbconnection.DataAccessFacade;
-<<<<<<< HEAD
 import main.dbsub.GuestImpl;
 import main.dbsub.ReservationImpl;
 import main.dbsub.RoomImpl;
-=======
 import main.dbsub.*;
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
 import main.model.Reservation;
 import main.model.Room;
 import main.model.Guest;
@@ -105,16 +102,10 @@ public class ReservationCtrl implements Initializable {
         List<Reservation> modifiedList = new ArrayList<>();
 
         for (Reservation reg : regList) {
-<<<<<<< HEAD
 
-            int code = reg.getCode();
-            String room = getRoom(querySqlRoom, reg.getRoom());
-            String guest = (getGuest(reg.getGuest()));
-=======
             int code = reg.getCode();
             Room room = reg.getRoom();
             Guest guest = reg.getGuest();
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
             Date checkIn = reg.getCheckInDate();
             Date booked = reg.getBookedDate();
             Date checkOut = reg.getCheckOut();
@@ -219,7 +210,7 @@ public class ReservationCtrl implements Initializable {
 
 
         List<Guest> guests = new GuestImpl().getAllGuest();
-        allGuests=guests;
+        allGuests = guests;
         List<String> roomNums = guests.stream().map(rm -> rm.getfName()).collect(Collectors.toList());
 
         ObservableList<String> data2 = FXCollections.observableArrayList();
@@ -256,19 +247,13 @@ public class ReservationCtrl implements Initializable {
     public void saveNew() {
 
         String code = txtCode.getText().trim();
-<<<<<<< HEAD
-        String guestCode = "001";//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
-        String roomCode = "001";
-        // String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
 
-=======
         Guest guest = this.dbService.getGuestById(1);//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
         Room room = this.dbService.getRoomById(1);
         String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
 
         // resObj.setGuest(guest);
         // resObj.setRoom(room);
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
         Date checkIN = Date.valueOf(dpCheckIn.getValue());
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());
@@ -337,10 +322,10 @@ public class ReservationCtrl implements Initializable {
         Reservation person = (Reservation) homeTableView.getSelectionModel().getSelectedItem();
         if (person != null) {
             if (person.getRegistrationStatus() != "CANCELLED") {
-                String gu=person.getGuest();
-                String rm=person.getRoom();
-                person.setGuest(String.valueOf(allGuests.stream().filter(r->r.getfName().equals(gu)).map(r->r.getCode()).findFirst()));
-                person.setRoom((allRooms.stream().filter(r->r.getRoomNumber()==Integer.parseInt(rm)).map(r->r.getCode()).findFirst().toString()));
+               // Guest gu = person.getGuest();
+               // Room rm = person.getRoom();
+               // person.setGuest((Guest) allGuests.stream().filter(r -> r.getfName().equals(gu.getfName())));
+              //  person.setRoom((Room) allRooms.stream().filter(r -> r.getRoomNumber() == rm.getRoomNumber()));
                 person.setRegistrationStatus("CANCELLED");
                 //update the registration here
                 try {
@@ -375,29 +360,26 @@ public class ReservationCtrl implements Initializable {
             if (result.get() == ButtonType.OK) {
                 //delete the selected reservation here.
 
-<<<<<<< HEAD
-                boolean isDeleted = new ReservationSubSystemOperations().deleteReservationById(person);
-                if (isDeleted) {
-=======
+
+                boolean isDeleted = new ReservationSubSystemOperations().deleteReservationById(reservation);
+//                if (isDeleted) {
 //                boolean isDeleted = new ReservationImpl().deleteReservationById(reservation.getCode().toString());
-                int isDeleted = this.dbService.deleteReservationById(reservation.getCode());
-                if (isDeleted != 0) {
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
+                 //   int isDeleted = this.dbService.deleteReservationById(reservation.getCode());
+                    if (isDeleted) {
+                        JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 
-                    JOptionPane.showMessageDialog(null, "Successfully Deleted!");
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "There is an error in deleting the reservation!");
+                    // ... user chose CANCEL or closed the dialog
                 }
+
+
             } else {
-                // ... user chose CANCEL or closed the dialog
+                JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
             }
-
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Please first select the row to delete!");
         }
-    }
 
-}
+    }
 

@@ -20,15 +20,10 @@ public class ReservationImpl implements IReservation {
     public int saveReservation(Reservation reservation) {
         int reservationId = 0;
         try{
-<<<<<<< HEAD
-            String query = "INSERT INTO reservation(idReservation, checkInDate, CheckOutDate, bookedDate, idGuest, isRoom,reservationStatus) " +
-                    "VALUES('"+reservation.getCode() +
-                    ",'"+reservation.getCheckInDate()+"'," +
-=======
+
             String query = "INSERT INTO reservation(checkInDate, CheckOutDate, bookedDate, idGuest, idRoom,reservationStatus) " +
                     "VALUES(" +
                     "'"+reservation.getCheckInDate()+"'," +
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
                     "'"+reservation.getCheckOut()+"'," +
                     "'"+reservation.getBookedDate()+"'," +
                     ""+reservation.getGuest().getCode()+"," +
@@ -51,18 +46,7 @@ public class ReservationImpl implements IReservation {
     public int updateReservation(Reservation reservation) {
         int result = 0;
         try{
-<<<<<<< HEAD
-            String query ="UPDATE reservation SET "+
-                    "checkInDate='"+reservation.getCheckInDate()+"', " +
-                    "CheckOutDate='"+reservation.getCheckOut()+"'," +
-                    "bookedDate='"+reservation.getBookedDate()+"', " +
-                    "idGuest='"+reservation.getGuest()+"', " +
-                    "idRoom= '"+reservation.getRoom()+"'," +
-                    "reservationStatus= '"+reservation.getRegistrationStatus()+"' " +
-                    "WHERE idReservation=" + reservation.getCode();
-            iDatabase.executeUpdate(query);
-            return true;
-=======
+
             String query ="UPDATE reservation SET " +
                     "checkInDate='"+reservation.getCheckInDate()+"', " +
                     "CheckOutDate='"+reservation.getCheckOut()+"'," +
@@ -72,7 +56,6 @@ public class ReservationImpl implements IReservation {
                     "reservationStatus= '"+reservation.getRegistrationStatus()+"'," +
                     " WHERE idReservation='"+reservation.getCode()+"'";
             result = iDatabase.executeUpdate(query);
->>>>>>> edb7f986eab27816d9fbb7e236651d41dc19b58f
         }catch (Exception e){
             e.printStackTrace();
         } finally {
