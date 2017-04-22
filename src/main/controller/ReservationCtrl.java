@@ -356,7 +356,7 @@ public class ReservationCtrl implements Initializable {
             if (person.getRegistrationStatus() != "Cancelled") {
                 person.setRegistrationStatus("Cancelled");
                 //update the registration here
-
+                //  new ReservationImpl().updateReservation(person);
             } else {
                 JOptionPane.showMessageDialog(null, "This reservation is already cancelled!");
             }
@@ -375,8 +375,10 @@ public class ReservationCtrl implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
-                if (true) {
-                    //delete the selected reservation here.
+                //delete the selected reservation here.
+                boolean isDeleted = new ReservationImpl().deleteReservationById(person.getCode());
+                if (isDeleted) {
+
                     JOptionPane.showMessageDialog(null, "Successfully Deleted!");
 
                 } else {
