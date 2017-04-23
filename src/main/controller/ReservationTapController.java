@@ -154,7 +154,7 @@ public class ReservationTapController implements Initializable {
 
                 if (person.getGuest().getfName().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
-                } else if (person.getGuest().getfName().toLowerCase().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (person.getGuest().getlName().toLowerCase().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches last name.
                 }
                 return false; // Does not match.
