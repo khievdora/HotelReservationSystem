@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="994.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="-2.0" layoutY="91.0" prefHeight="321.0" prefWidth="994.0" />
+      <TextField fx:id="txtRoom" layoutX="354.0" layoutY="41.0" prefHeight="31.0" prefWidth="395.0" />
+      <Button fx:id="btnSearch" layoutX="768.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+      <HBox layoutX="655.0" layoutY="435.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" text="Add" />
+            <Button mnemonicParsing="false" text="Refresh" />
+            <Button mnemonicParsing="false" text="Edit" />
+            <Button mnemonicParsing="false" text="Delete" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

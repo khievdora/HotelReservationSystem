@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="697.0" layoutY="38.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Search" />
+      <TextField layoutX="324.0" layoutY="38.0" prefHeight="31.0" prefWidth="355.0" />
+      <ListView layoutX="120.0" layoutY="100.0" prefHeight="248.0" prefWidth="817.0" />
+      <HBox layoutX="668.0" layoutY="392.0" spacing="10.0" AnchorPane.leftAnchor="668.0">
+         <children>
+            <Button mnemonicParsing="false" text="Add" />
+            <Button mnemonicParsing="false" text="Refresh" />
+            <Button mnemonicParsing="false" text="Edit" />
+            <Button mnemonicParsing="false" text="Delete" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
