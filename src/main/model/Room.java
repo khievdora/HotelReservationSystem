@@ -9,6 +9,7 @@ public class Room {
     private  IntegerProperty code;
     private  StringProperty roomName;
     private  IntegerProperty roomNumber;
+
     private  StringProperty roomStatus;
     private  IntegerProperty floor;
     private  StringProperty description;
