@@ -248,12 +248,8 @@ public class ReservationCtrl implements Initializable {
 
         String code = txtCode.getText().trim();
 
-        Guest guest = this.dbService.getGuestById(1);//String.valueOf(allGuests.stream().filter(g->(g.getfName()+" "+g.getlName()).equals(comboGuest.getValue().toString())).findFirst());
+        Guest guest = this.dbService.getGuestById(1);
         Room room = this.dbService.getRoomById(1);
-        String.valueOf(allRooms.stream().filter(r -> new Integer(r.getRoomNumber()).equals(comboRoom.getValue().toString().trim())).findFirst());
-
-        // resObj.setGuest(guest);
-        // resObj.setRoom(room);
         Date checkIN = Date.valueOf(dpCheckIn.getValue());
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());

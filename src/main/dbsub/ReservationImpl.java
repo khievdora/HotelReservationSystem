@@ -53,8 +53,9 @@ public class ReservationImpl implements IReservation {
                     "bookedDate='"+reservation.getBookedDate()+"', " +
                     "idGuest="+reservation.getGuest().getCode()+"," +
                     "idRoom="+reservation.getRoom().getCode()+"," +
-                    "reservationStatus= '"+reservation.getRegistrationStatus()+"'," +
-                    " WHERE idReservation='"+reservation.getCode()+"'";
+                    "reservationStatus= '"+reservation.getRegistrationStatus()+"'" +
+                    " WHERE idReservation="+reservation.getCode()+"";
+            System.out.println(query);
             result = iDatabase.executeUpdate(query);
         }catch (Exception e){
             e.printStackTrace();
