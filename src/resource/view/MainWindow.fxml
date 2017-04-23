@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +20,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ReservationTapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ReservationTapController">
    <padding>
       <Insets top="10.0" />
    </padding>
@@ -67,7 +72,7 @@
                                 <tabs>
                                   <Tab fx:id="reservationTabPage" closable="false" text="Reservation">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1135.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1137.0">
                                              <children>
                                                 <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
@@ -79,12 +84,13 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
-                                                <TableView fx:id="tblVWReservation" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="1130.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
-                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
+                                                <TableView fx:id="tblVWReservation" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="1130.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="464.0" layoutY="468.0" prefHeight="38.0" prefWidth="464.0" spacing="10.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="464.0" AnchorPane.topAnchor="468.0">
                                                    <children>
-                                                      <Button fx:id="btnReservationAdd" mnemonicParsing="false" onAction="#onBtnReservationAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
                                                       <Button fx:id="btnReservationRefresh" mnemonicParsing="false" onAction="#onBtnReservationRefreshClicked" text="Refresh" />
-                                                      <Button fx:id="btnReservationCheckOut" mnemonicParsing="false" onAction="#onBtnReservationCheckOutClicked" text="Check Out" />
+                                                      <Button fx:id="btnReservationAdd" mnemonicParsing="false" onAction="#onBtnReservationAddClicked" prefHeight="31.0" prefWidth="59.0" text="Add" />
+                                                      <Button fx:id="btnReservationEdit" mnemonicParsing="false" onAction="#onBtnReservationEditClicked" prefHeight="31.0" prefWidth="61.0" text="Edit" />
+                                                      <Button fx:id="btnReservationCheckOut" mnemonicParsing="false" onAction="#onBtnReservationCheckOutClicked" prefHeight="31.0" prefWidth="92.0" text="Check Out" />
                                                       <Button fx:id="btnReservationCancel" mnemonicParsing="false" onAction="#onBtnReservationCancelClicked" text="Cancel" />
                                                       <Button fx:id="btnReservationDelete" mnemonicParsing="false" onAction="#onBtnReservationDeleteClicked" text="Delete" />
                                                    </children>
@@ -94,7 +100,7 @@
                                        </content>
 
                                   </Tab>
-                                  <Tab  closable="false" text="Rooms">
+                                  <Tab closable="false" text="Rooms">
                                        <content>
                                            <fx:include fx:id="roomTapPage" source="RoomTap.fxml" />
                                        </content>

@@ -158,7 +158,7 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
 
     @Override
     public void onSaveRoomSuccess(Room room) {
-
+        System.out.println("Save button clicked!!");
     }
 
     @Override

@@ -104,6 +104,9 @@ public class ReservationTapController implements Initializable {
     public void onBtnReservationDeleteClicked() {
         deleteReservation();
     }
+    public void onBtnReservationEditClicked(){
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
