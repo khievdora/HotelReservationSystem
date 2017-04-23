@@ -8,13 +8,10 @@ public class ReservationTapController {
 
     }
     //
-    public void onReservationSearch(){
-
-    }
-    //
     public void onBtnReservationSearch(){
 
     }
+
     //
     public void onBtnReservationAddClicked(){
 
