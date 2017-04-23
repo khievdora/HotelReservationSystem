@@ -17,7 +17,16 @@ public class RoomController extends Application {
 
 
     }
-    public void onReservationClicked(){
+    public void onBtnAddRoom(){
+
+    }
+    public void onBtnRefreshRoom(){
+
+    }
+    public void onBtnEditRoom(){
+
+    }
+    public void onBtnDeleteRoom(){
 
     }
 }

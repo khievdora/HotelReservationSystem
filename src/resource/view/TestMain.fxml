@@ -32,11 +32,11 @@
                <children>
                   <MenuBar layoutY="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <menus>
-                      <Menu mnemonicParsing="false" text="File">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
-                        </items>
-                      </Menu>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Close" />
+                           </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Edit">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Delete" />
@@ -71,81 +71,97 @@
                            <children>
                               <TabPane layoutX="37.0" layoutY="22.0" prefHeight="200.0" prefWidth="304.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <tabs>
-                                  <Tab text="Reservation">
+                                  <Tab closable="false" text="Reservation">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1094.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1130.0">
                                              <children>
-                                                <TableView layoutX="13.0" layoutY="68.0" prefHeight="377.0" prefWidth="1111.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                <TextField layoutX="350.0" layoutY="26.0" prefHeight="31.0" prefWidth="395.0" />
-                                                <Button layoutX="758.0" layoutY="26.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
-                                                <HBox layoutX="571.0" layoutY="500.0" prefHeight="31.0" prefWidth="410.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="630.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="469.0">
+                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <Button fx:id="reservation" mnemonicParsing="false" onAction="#onReservationClicked" prefHeight="31.0" prefWidth="63.0" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Refresh" />
-                                                      <Button mnemonicParsing="false" text="Check Out" />
-                                                      <Button mnemonicParsing="false" text="Cancel" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <TextField prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                   </children>
+                                                </HBox>
+                                                <TableView layoutX="13.0" layoutY="63.0" prefHeight="382.0" prefWidth="1126.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
+                                                <HBox layoutX="663.0" layoutY="470.0" prefHeight="39.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="470.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="63.0" text="Add" />
+                                                      <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="70.0" text="Refresh" />
+                                                      <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="89.0" text="Check Out" />
+                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="67.0" text="Cancel" />
+                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
                                        </content>
                                   </Tab>
-                                  <Tab text="Rooms">
+                                  <Tab closable="false" text="Rooms">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1050.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1128.0">
                                              <children>
-                                                <TextField fx:id="txtRoom" layoutX="350.0" layoutY="26.0" prefHeight="31.0" prefWidth="395.0" />
-                                                <Button fx:id="btnSearch" layoutX="758.0" layoutY="26.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
-                                                <HBox layoutX="571.0" layoutY="500.0" prefHeight="31.0" prefWidth="410.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="630.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="469.0" />
-                                                <TableView fx:id="roomTableView" layoutX="18.0" layoutY="74.0" prefHeight="370.0" prefWidth="1039.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                <Button fx:id="btnAddRoom" layoutX="675.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBtnAddRoom" prefHeight="31.0" prefWidth="128.0" text="Add New Room" />
-                                                <Button fx:id="btnRefreshRoom" layoutX="812.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBtnRefreshRoom" text="Refresh" />
-                                                <Button fx:id="btnEditRoom" layoutX="889.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBtnEditRoom" prefHeight="31.0" prefWidth="57.0" text="Edit" />
-                                                <Button fx:id="btnDeletRoom" layoutX="954.0" layoutY="474.0" mnemonicParsing="false" onAction="#onBtnDeleteRoom" text="Delete" />
+                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
+                                                   <children>
+                                                      <TextField fx:id="txtRoom" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="roomTableView" layoutX="18.0" layoutY="64.0" prefHeight="380.0" prefWidth="1050.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
+                                                <HBox layoutX="712.0" layoutY="470.0" prefHeight="42.0" prefWidth="348.0" spacing="10.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddRoom" mnemonicParsing="false" onAction="#onBtnAddRoom" prefHeight="41.0" prefWidth="128.0" text="Add New Room" />
+                                                      <Button fx:id="btnRefreshRoom" mnemonicParsing="false" onAction="#onBtnRefreshRoom" prefHeight="39.0" prefWidth="70.0" text="Refresh" />
+                                                      <Button fx:id="btnEditRoom" mnemonicParsing="false" onAction="#onBtnEditRoom" prefHeight="40.0" prefWidth="57.0" text="Edit" />
+                                                      <Button fx:id="btnDeletRoom" mnemonicParsing="false" onAction="#onBtnDeleteRoom" prefHeight="39.0" prefWidth="63.0" text="Delete" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </AnchorPane>
                                        </content>
                                   </Tab>
-                                    <Tab text="Room Type">
+                                    <Tab closable="false" text="Room Type">
                                        <content>
                                           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="1127.0">
                                              <children>
-                                                <TableView layoutX="17.0" layoutY="91.0" prefHeight="321.0" prefWidth="1110.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="0.0" />
-                                                <TextField fx:id="txtRoom1" layoutX="354.0" layoutY="41.0" prefHeight="31.0" prefWidth="395.0" />
-                                                <Button fx:id="btnSearch1" layoutX="768.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
-                                                <HBox layoutX="655.0" layoutY="435.0" spacing="10.0">
+                                                <TableView layoutX="17.0" layoutY="91.0" prefHeight="321.0" prefWidth="1110.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
+                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Refresh" />
-                                                      <Button mnemonicParsing="false" text="Edit" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <TextField fx:id="txtRoom1" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnSearch1" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="788.0" layoutY="468.0" prefHeight="39.0" prefWidth="257.0" spacing="10.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" text="Add" />
+                                                      <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" text="Refresh" />
+                                                      <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="46.0" text="Edit" />
+                                                      <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="63.0" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab text="Account">
+                                    <Tab closable="false" text="Account">
                                        <content>
                                           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="1125.0">
                                              <children>
-                                                <Button layoutX="697.0" layoutY="38.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Search" />
-                                                <TextField layoutX="324.0" layoutY="38.0" prefHeight="31.0" prefWidth="355.0" />
-                                                <ListView layoutX="120.0" layoutY="100.0" prefHeight="248.0" prefWidth="817.0" />
-                                                <HBox layoutX="668.0" layoutY="392.0" spacing="10.0" AnchorPane.leftAnchor="668.0">
+                                                <HBox layoutX="324.0" layoutY="21.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Refresh" />
-                                                      <Button mnemonicParsing="false" text="Edit" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <TextField prefHeight="31.0" prefWidth="404.0" />
+                                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="147.0" text="Search" />
                                                    </children>
                                                 </HBox>
+                                                <ListView layoutX="120.0" layoutY="100.0" prefHeight="248.0" prefWidth="817.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
+                                                <HBox layoutX="668.0" layoutY="392.0" spacing="10.0" AnchorPane.leftAnchor="668.0" />
+                                                <Button layoutX="735.0" layoutY="462.0" mnemonicParsing="false" text="Refresh" />
+                                                <Button layoutX="818.0" layoutY="464.0" mnemonicParsing="false" text="Edit" />
+                                                <Button layoutX="888.0" layoutY="465.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" text="Delete" />
+                                                <Button layoutX="672.0" layoutY="462.0" mnemonicParsing="false" text="Add" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab text="Guest">
+                                    <Tab closable="false" text="Guest">
                                        <content>
                                           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="1128.0">
                                              <children>
@@ -164,7 +180,7 @@
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab text="Report">
+                                    <Tab closable="false" text="Report">
                                        <content>
                                           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="1127.0">
                                              <children>
