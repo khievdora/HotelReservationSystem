@@ -8,21 +8,21 @@ import javafx.stage.Stage;
  */
 public abstract class IController {
     @FXML
-    private RoomController roomAdd;
+    private RoomRegistrationController roomAdd;
     @FXML
-    private RoomController roomRefresh;
+    private RoomRegistrationController roomRefresh;
     @FXML
-    private RoomController roomEdit;
+    private RoomRegistrationController roomEdit;
     @FXML
-    private RoomController roomDelete;
+    private RoomRegistrationController roomDelete;
     @FXML
-    private RoomController roomTypeAdd;
+    private RoomRegistrationController roomTypeAdd;
     @FXML
-    private RoomController roomTypeRefresh;
+    private RoomRegistrationController roomTypeRefresh;
     @FXML
-    private RoomController roomTypeEdit;
+    private RoomRegistrationController roomTypeEdit;
     @FXML
-    private RoomController roomTypeDelete;
+    private RoomRegistrationController roomTypeDelete;
 
     public abstract void onAddNewForm(Stage stage);
     public abstract void onRefreshForm(Stage stage);
