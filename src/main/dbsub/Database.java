@@ -13,7 +13,7 @@ public class Database implements IDatabase {
     private final String GENEARTE_DB_URL = "jdbc:mysql://localhost:3306?useSSL=false";
     private final String DATABASE_URL = "jdbc:mysql://localhost:3306/"+ DATABASE_NAME +"?useSSL=false";
     private final String USERNAME = "root";
-    private final String PASSWORD = "root";
+    private final String PASSWORD = "123456";
 
     private static Database database = null;
 
