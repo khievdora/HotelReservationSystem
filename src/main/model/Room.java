@@ -157,17 +157,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return "RoomController{" +
-                "code=" + code +
-                ", roomName=" + roomName +
-                ", roomNumber=" + roomNumber +
-                ", roomStatus=" + roomStatus +
-                ", floor=" + floor +
-                ", description=" + description +
-                ", roomType=" + roomType.toString() +
-                ", maxQuest=" + maxQuest +
-                ", status=" + status +
-                ", price=" + price +
-                '}';
+        return roomNumberProperty().getValue().toString();
     }
 }

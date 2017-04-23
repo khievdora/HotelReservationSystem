@@ -124,15 +124,6 @@ public class Guest {
 
     @Override
     public String toString() {
-        return "Guest{" +
-                "code=" + code +
-                ", fName=" + fName +
-                ", mName=" + mName +
-                ", lName=" + lName +
-                ", idCard=" + idCard +
-                ", passport=" + passport +
-                ", address=" + address +
-                ", phone=" + phone +
-                '}';
+        return fName.getValue()+" "+lName.getValue();
     }
 }

@@ -31,15 +31,6 @@ public class RoomTabController {
 
     }
     public void onBtnRoomAddClicked(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/view/AddRoom.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
 
     }
     public void onBtnRoomRefreshClicked(){

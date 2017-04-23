@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import main.ReservationSub.command.ReservationSubSystemOperations;
 import main.ReservationSub.payment.CashPayment;
 import main.ReservationSub.payment.PaymentBusiness;
 import main.model.Reservation;
@@ -29,18 +31,23 @@ public class Payment implements Initializable {
     @FXML
     private TextField txtCheckOut;
 
-    public Reservation reservation;
-
+    private Reservation reservation;
+                                  Stage stage;
     @Override
 
     public void initialize(URL location, ResourceBundle resources) {
-        if (reservation != null) {
-            txtGuest.setText(reservation.getGuest().getlName());
-            txtRoom.setText(reservation.getRoom().getRoomName());
-            txtCheckIn.setText(reservation.getCheckInDate().toString());
-            txtCheckOut.setText(reservation.getCheckOut().toString());
-            comboStatusList();
-        }
+
+
+        comboStatusList();
+    }
+
+    public void setReservation(Reservation reservation,Stage st) {
+        this.reservation = reservation;
+        txtGuest.setText(reservation.getGuest().getlName());
+        txtRoom.setText(reservation.getRoom().getRoomName());
+        txtCheckIn.setText(reservation.getCheckInDate().toString());
+        txtCheckOut.setText(reservation.getCheckOut().toString());
+                              stage=st;
     }
 
     public void comboStatusList() {
@@ -56,7 +63,16 @@ public class Payment implements Initializable {
         PaymentBusiness payBu = new PaymentBusiness();
         payBu.setPayment(new CashPayment());
         payBu.pay();
-        JOptionPane.showMessageDialog(null, "Payment Successfully.!");
+        //update reservation here
+        reservation.setRegistrationStatus("CHECKOUT");
+        boolean isCheckOut = new ReservationSubSystemOperations().editReservation(reservation);
+        if (isCheckOut) {
 
+            JOptionPane.showMessageDialog(null, "Successfully check out!");
+        } else {
+            JOptionPane.showMessageDialog(null, "There is an error in updating the check out status.!");
+        }
+      //  JOptionPane.showMessageDialog(null, "Payment Successfully.!");
+                     stage.hide();
     }
 }
