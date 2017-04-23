@@ -92,11 +92,12 @@
                                              </children>
                                           </AnchorPane>
                                        </content>
+
                                   </Tab>
-                                  <Tab fx:id="roomTapPage" closable="false" text="Rooms">
+                                  <Tab  closable="false" text="Rooms">
                                        <content>
-                                           <fx:include  source="RoomTap.fxml" />
-                                          </content>
+                                           <fx:include fx:id="roomTapPage" source="RoomTap.fxml" />
+                                       </content>
                                   </Tab>
                                     <Tab fx:id="roomTypeTabPage" closable="false" text="Room Type">
                                        <content>
