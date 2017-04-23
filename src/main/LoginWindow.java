@@ -40,7 +40,7 @@ public class LoginWindow extends Application {
 
     public void navigateToMainWindow() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(UrlLoader.loadView("TestMain.fxml")));
+        loader.setLocation(getClass().getResource(UrlLoader.loadView("MainWindow.fxml")));
         Stage stage = new Stage();
         try {
             Parent root = loader.load();

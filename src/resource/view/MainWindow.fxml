@@ -1,160 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ReservationCtrl">
-    <children>
-        <TabPane layoutX="22.0" prefHeight="606.0" prefWidth="952.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <tabs>
-                <Tab text="Home">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <Label layoutX="64.0" layoutY="25.0" prefHeight="36.0" prefWidth="313.0" text="Hotel Reservation System">
-                                    <font>
-                                        <Font size="25.0" />
-                                    </font>
-                                </Label>
-                                <TableView fx:id="homeTableView" layoutX="40.0" layoutY="77.0" prefHeight="343.0" prefWidth="733.0">
-
-                                </TableView>
-                        <Button fx:id="btnRefresh" layoutX="273.0" layoutY="433.0" mnemonicParsing="false" onAction="#refreshHomeTableView" text="Refresh" />
-                        <Button fx:id="btnCheckOut" layoutX="357.0" layoutY="433.0" mnemonicParsing="false" onAction="#checkOut" text="Check Out" />
-                        <Button fx:id="btnCancel" layoutX="465.0" layoutY="433.0" mnemonicParsing="false" onAction="#cancelReservation" text="Cancel Reservation" />
-                        <Button fx:id="btnDelete" layoutX="619.0" layoutY="433.0" mnemonicParsing="false" onAction="#deleteReservation" text="Delete" />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Rooms">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <TableView layoutX="30.0" layoutY="91.0" prefHeight="311.0" prefWidth="707.0" />
-                                <Label layoutX="108.0" layoutY="25.0" prefHeight="21.0" prefWidth="399.0" text="List of Aveliable Rooms">
-                                    <font>
-                                        <Font size="29.0" />
-                                    </font>
-                                </Label>
-                                <Button layoutX="556.0" layoutY="428.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="130.0" text="Add New Room" />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Reservation">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <Button fx:id="btnSave" layoutX="456.0" layoutY="438.0" mnemonicParsing="false" onAction="#saveNew" text="Save" textAlignment="JUSTIFY">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Button>
-                                <Label layoutX="92.0" layoutY="24.0" prefHeight="35.0" prefWidth="289.0" text="New Reservation Room">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Label>
-                        <GridPane layoutX="199.0" layoutY="130.0" prefHeight="275.0" prefWidth="416.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="119.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="361.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                                      <Label text="Code" />
-                                      <TextField fx:id="txtCode" prefHeight="31.0" prefWidth="285.0" GridPane.columnIndex="1" />
-                                      <Label text="Checked In Date" GridPane.rowIndex="1" />
-                                      <DatePicker fx:id="dpCheckIn" prefHeight="25.0" prefWidth="383.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                      <Label text="Book Date" GridPane.rowIndex="2" />
-                                      <DatePicker fx:id="dpBooked" prefHeight="25.0" prefWidth="384.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                      <Label text="Check Out Date" GridPane.rowIndex="3" />
-                                      <DatePicker fx:id="dpCheckOut" prefHeight="25.0" prefWidth="391.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                      <Label text="Guest" GridPane.rowIndex="4" />
-                                      <ComboBox fx:id="comboGuest" prefHeight="31.0" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                      <Label text="Room" GridPane.rowIndex="5" />
-                                      <ComboBox fx:id="comboRoom" prefHeight="35.0" prefWidth="384.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                      <Label text="Status" GridPane.rowIndex="6" />
-                              <ComboBox fx:id="comboStatus" prefHeight="35.0" prefWidth="361.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                           </children>
-                        </GridPane>
-                        <Label layoutX="199.0" layoutY="74.0" text="Search Reservation By Guest" />
-                        <ComboBox fx:id="comboSearch" layoutX="360.0" layoutY="70.0" prefWidth="150.0" />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Guest">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <Label layoutX="257.0" layoutY="29.0" text="LIst of guests">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Label>
-                                <TableView layoutX="75.0" layoutY="84.0" prefHeight="289.0" prefWidth="797.0">
-                                    <columns>
-                                        <TableColumn prefWidth="112.0" text="First Name" />
-                                        <TableColumn prefWidth="140.0" text="Middle Name" />
-                                        <TableColumn minWidth="0.0" prefWidth="144.0" text="Last Name" />
-                                        <TableColumn prefWidth="87.0" text="Id Card" />
-                                        <TableColumn prefWidth="155.0" text="Passport" />
-                                        <TableColumn prefWidth="143.0" text="Address" />
-                                    </columns>
-                                </TableView>
-                                <Button layoutX="702.0" layoutY="450.0" mnemonicParsing="false" text="Add New Guest" />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Miscellaneous">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
-                <Tab text="Report">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
-                <Tab text="Account">
-                    <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ReservationTapController">
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+   <children>
+      <SplitPane dividerPositions="0.20855614973262032" layoutX="220.0" layoutY="24.0" orientation="VERTICAL" prefHeight="549.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="1128.0">
+               <children>
+                  <MenuBar layoutY="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Close" />
+                           </items>
+                        </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <HBox alignment="CENTER" layoutX="271.0" layoutY="34.0" prefHeight="152.0" prefWidth="1128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane layoutX="186.0" layoutY="50.0" prefHeight="567.0" prefWidth="952.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="99.0" prefWidth="301.0" text="Hotel Reservation System" textFill="#e10b0b" textOverrun="WORD_ELLIPSIS">
+                           <font>
+                              <Font name="AR DECODE" size="36.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane layoutX="149.0" prefHeight="588.0" prefWidth="1128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Separator layoutX="193.0" layoutY="90.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="4.0" />
-                              <Separator layoutX="12.0" layoutY="90.0" prefHeight="0.0" prefWidth="928.0" />
-                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="128.0" text="Add Account" />
-                              <TextField layoutX="211.0" layoutY="48.0" prefHeight="31.0" prefWidth="255.0" />
-                              <Button layoutX="484.0" layoutY="48.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="Search" />
-                              <Button layoutX="40.0" layoutY="216.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="128.0" text="Delete Account" />
-                              <Button layoutX="40.0" layoutY="284.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="129.0" text="Edit Account" />
+                              <TabPane layoutX="37.0" layoutY="22.0" prefHeight="200.0" prefWidth="304.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <tabs>
+                                  <Tab closable="false" text="Reservation">
+                                       <content>
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1135.0">
+                                             <children>
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
+                                                   <children>
+                                                      <TextField fx:id="txtReservationSearch" onAction="#onTxtReservationSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnReservationSearch" mnemonicParsing="false" onAction="#onBtnReservationSearch" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="tblVWReservation" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="1130.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
+                                                   <children>
+                                                      <Button fx:id="btnReservationAdd" mnemonicParsing="false" onAction="#onBtnReservationAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnReservationRefresh" mnemonicParsing="false" onAction="#onBtnReservationRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnReservationCheckOut" mnemonicParsing="false" onAction="#onBtnReservationCheckOutClicked" text="Check Out" />
+                                                      <Button fx:id="btnReservationCancel" mnemonicParsing="false" onAction="#onBtnReservationCancelClicked" text="Cancel" />
+                                                      <Button fx:id="btnReservationDelete" mnemonicParsing="false" onAction="#onBtnReservationDeleteClicked" text="Delete" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                  </Tab>
+                                  <Tab closable="false" text="Rooms">
+                                       <content>
+                                           <fx:include source="RoomTap.fxml" fx:id="roomTapPage" />
+                                          </content>
+                                  </Tab>
+                                    <Tab closable="false" text="Room Type">
+                                       <content>
+                                           <fx:include fx:id="roomTypeTapPage" source="RoomTypeTap.fxml" />
+                                       </content>
+                                    </Tab>
+                                    <Tab closable="false" text="Account">
+                                       <content>
+                                           <fx:include fx:id="accountTapPage" source="AccountTap.fxml" />
+                                          </content>
+                                    </Tab>
+                                    <Tab closable="false" text="Guest">
+                                       <content>
+                                           <fx:include fx:id="guestTapPage" source="GuestTap.fxml" />
+                                          </content>
+                                    </Tab>
+                                    <Tab closable="false" text="Report">
+                                       <content>
+                                           <fx:include fx:id="reportTapPage" source="ReportTap.fxml" />
+                                          </content>
+                                    </Tab>
+                                </tabs>
+                              </TabPane>
                            </children>
                         </AnchorPane>
-                     </children></AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
