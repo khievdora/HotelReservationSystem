@@ -73,22 +73,26 @@
                                 <tabs>
                                   <Tab closable="false" text="Reservation">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1130.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1135.0">
                                              <children>
-                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <TextField prefHeight="31.0" prefWidth="395.0" />
-                                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                      <TextField fx:id="txtReservationSearch" onAction="#onTxtReservationSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnReservationSearch" mnemonicParsing="false" onAction="#onBtnReservationSearch" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </HBox>
-                                                <TableView layoutX="13.0" layoutY="63.0" prefHeight="382.0" prefWidth="1126.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
-                                                <HBox layoutX="663.0" layoutY="470.0" prefHeight="39.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="470.0">
+                                                <TableView fx:id="tblVWReservation" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="1130.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="63.0" text="Add" />
-                                                      <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="70.0" text="Refresh" />
-                                                      <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="89.0" text="Check Out" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="67.0" text="Cancel" />
-                                                      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" text="Delete" />
+                                                      <Button fx:id="btnReservationAdd" mnemonicParsing="false" onAction="#onBtnReservationAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnReservationRefresh" mnemonicParsing="false" onAction="#onBtnReservationRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnReservationCheckOut" mnemonicParsing="false" onAction="#onBtnReservationCheckOutClicked" text="Check Out" />
+                                                      <Button fx:id="btnReservationCancel" mnemonicParsing="false" onAction="#onBtnReservationCancelClicked" text="Cancel" />
+                                                      <Button fx:id="btnReservationDelete" mnemonicParsing="false" onAction="#onBtnReservationDeleteClicked" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -97,21 +101,25 @@
                                   </Tab>
                                   <Tab closable="false" text="Rooms">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1128.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1136.0">
                                              <children>
-                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <TextField fx:id="txtRoom" prefHeight="31.0" prefWidth="395.0" />
-                                                      <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                      <TextField fx:id="txtRoomSearch" onAction="#onTxtRoomSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnRoomSearch" mnemonicParsing="false" onAction="#onBtnRoomSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </HBox>
-                                                <TableView fx:id="roomTableView" layoutX="18.0" layoutY="64.0" prefHeight="380.0" prefWidth="1050.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
-                                                <HBox layoutX="712.0" layoutY="470.0" prefHeight="42.0" prefWidth="348.0" spacing="10.0">
+                                                <TableView fx:id="tblVWRoom" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="820.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
                                                    <children>
-                                                      <Button fx:id="btnAddRoom" mnemonicParsing="false" onAction="#onBtnAddRoom" prefHeight="41.0" prefWidth="128.0" text="Add New Room" />
-                                                      <Button fx:id="btnRefreshRoom" mnemonicParsing="false" onAction="#onBtnRefreshRoom" prefHeight="39.0" prefWidth="70.0" text="Refresh" />
-                                                      <Button fx:id="btnEditRoom" mnemonicParsing="false" onAction="#onBtnEditRoom" prefHeight="40.0" prefWidth="57.0" text="Edit" />
-                                                      <Button fx:id="btnDeletRoom" mnemonicParsing="false" onAction="#onBtnDeleteRoom" prefHeight="39.0" prefWidth="63.0" text="Delete" />
+                                                      <Button fx:id="btnRoomAdd" mnemonicParsing="false" onAction="#onBtnRoomAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnRoomRefresh" mnemonicParsing="false" onAction="#onBtnRoomRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnRoomEdit" mnemonicParsing="false" onAction="#onBtnRoomEditClicked" text="Edit" />
+                                                      <Button fx:id="btnRoomDelete" mnemonicParsing="false" onAction="#onBtnRoomDeleteClicked" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -120,21 +128,25 @@
                                   </Tab>
                                     <Tab closable="false" text="Room Type">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="1127.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1135.0">
                                              <children>
-                                                <TableView layoutX="17.0" layoutY="91.0" prefHeight="321.0" prefWidth="1110.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
-                                                <HBox layoutX="350.0" layoutY="26.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="26.0">
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <TextField fx:id="txtRoom1" prefHeight="31.0" prefWidth="395.0" />
-                                                      <Button fx:id="btnSearch1" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="search" />
+                                                      <TextField fx:id="txtRoomTypeSearch" onAction="#onTxtRoomTypeSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnRoomTypeSearch" mnemonicParsing="false" onAction="#onBtnRoomTypeSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </HBox>
-                                                <HBox layoutX="788.0" layoutY="468.0" prefHeight="39.0" prefWidth="257.0" spacing="10.0">
+                                                <TableView fx:id="tblVWRoomType" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="820.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" text="Add" />
-                                                      <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" text="Refresh" />
-                                                      <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="46.0" text="Edit" />
-                                                      <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="63.0" text="Delete" />
+                                                      <Button fx:id="btnRoomTypeAdd" mnemonicParsing="false" onAction="#onBtnRoomTypeAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnRoomTypeRefresh" mnemonicParsing="false" onAction="#onBtnRoomTypeRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnRoomTypeEdit" mnemonicParsing="false" onAction="#onBtnRoomTypeEditClicked" text="Edit" />
+                                                      <Button fx:id="btnRoomTypeDelete" mnemonicParsing="false" onAction="#onBtnRoomTypeDeleteClicked" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -143,37 +155,52 @@
                                     </Tab>
                                     <Tab closable="false" text="Account">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="1125.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1136.0">
                                              <children>
-                                                <HBox layoutX="324.0" layoutY="21.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="26.0">
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <TextField prefHeight="31.0" prefWidth="404.0" />
-                                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="147.0" text="Search" />
+                                                      <TextField fx:id="txtAccountSearch" onAction="#onTxtAccountSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnAccountSearch" mnemonicParsing="false" onAction="#onBtnAccountSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </HBox>
-                                                <ListView layoutX="120.0" layoutY="100.0" prefHeight="248.0" prefWidth="817.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="63.0" />
-                                                <HBox layoutX="668.0" layoutY="392.0" spacing="10.0" AnchorPane.leftAnchor="668.0" />
-                                                <Button layoutX="735.0" layoutY="462.0" mnemonicParsing="false" text="Refresh" />
-                                                <Button layoutX="818.0" layoutY="464.0" mnemonicParsing="false" text="Edit" />
-                                                <Button layoutX="888.0" layoutY="465.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" text="Delete" />
-                                                <Button layoutX="672.0" layoutY="462.0" mnemonicParsing="false" text="Add" />
+                                                <TableView fx:id="tblVWAccount" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="820.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
+                                                   <children>
+                                                      <Button fx:id="btnAccountAdd" mnemonicParsing="false" onAction="#onBtnAccountAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnAccountRefresh" mnemonicParsing="false" onAction="#onBtnAccountRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnAccountEdit" mnemonicParsing="false" onAction="#onBtnAccountEditClicked" text="Edit" />
+                                                      <Button fx:id="btnAccountDelete" mnemonicParsing="false" onAction="#onBtnAccountDeleteClicked" text="Delete" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </Tab>
                                     <Tab closable="false" text="Guest">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="1128.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1136.0">
                                              <children>
-                                                <TableView layoutX="87.0" layoutY="97.0" prefHeight="359.0" prefWidth="892.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                <Button layoutX="820.0" layoutY="45.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="109.0" text="Search" />
-                                                <TextField layoutX="474.0" layoutY="45.0" prefHeight="31.0" prefWidth="335.0" />
-                                                <HBox layoutX="712.0" layoutY="471.0" spacing="10.0">
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Refresh" />
-                                                      <Button mnemonicParsing="false" text="Edit" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <TextField fx:id="txtGuestSearch" onAction="#onTxtGuestSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnGuestSearch" mnemonicParsing="false" onAction="#onBtnGuestSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="tblVWGuest" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="820.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
+                                                   <children>
+                                                      <Button fx:id="btnGuestAdd" mnemonicParsing="false" onAction="#onBtnGuestAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                                      <Button fx:id="btnGuestRefresh" mnemonicParsing="false" onAction="#onBtnGuestRefreshClicked" text="Refresh" />
+                                                      <Button fx:id="btnGuestEdit" mnemonicParsing="false" onAction="#onBtnGuestEditClicked" text="Edit" />
+                                                      <Button fx:id="btnGuestDelete" mnemonicParsing="false" onAction="#onBtnGuestDeleteClicked" text="Delete" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -182,12 +209,24 @@
                                     </Tab>
                                     <Tab closable="false" text="Report">
                                        <content>
-                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="1127.0">
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1137.0">
                                              <children>
-                                                <TextArea layoutX="106.0" layoutY="140.0" prefHeight="298.0" prefWidth="969.0" />
-                                                <TextField layoutX="401.0" layoutY="71.0" prefHeight="31.0" prefWidth="366.0" />
-                                                <Button layoutX="797.0" layoutY="71.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="93.0" text="Search" />
-                                                <Button layoutX="735.0" layoutY="457.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="179.0" text="Generate Report" />
+                                                <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
+                                                   <children>
+                                                      <TextField fx:id="txtReportSearch" onAction="#onTxtReportSearch" prefHeight="31.0" prefWidth="395.0" />
+                                                      <Button fx:id="btnGuestSearch1" mnemonicParsing="false" onAction="#onBtnGuestSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
+                                                   <children>
+                                                      <Button fx:id="btnReportGenerate" mnemonicParsing="false" onAction="#onBtnReportGenerateClicked" prefHeight="31.0" prefWidth="165.0" text="Generate Report" />
+                                                   </children>
+                                                </HBox>
+                                                <TextArea fx:id="txtAreaReport" layoutX="71.0" layoutY="116.0" prefHeight="200.0" prefWidth="291.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
                                              </children>
                                           </AnchorPane>
                                        </content>

@@ -4,6 +4,9 @@ package main.controller;
  * Created by gebre on 4/22/2017.
  */
 public class ReservationTapController {
+    public void onTxtReservationSearch(){
+
+    }
     //
     public void onReservationSearch(){
 

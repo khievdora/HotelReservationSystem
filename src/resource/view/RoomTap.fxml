@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.RoomTapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.RoomTabController">
    <children>
-      <HBox layoutX="350.0" layoutY="26.0" spacing="10.0">
+      <HBox layoutX="351.0" layoutY="26.0" prefHeight="31.0" prefWidth="446.0" spacing="10.0" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="26.0">
          <children>
-            <TextField fx:id="txtRoom" prefHeight="31.0" prefWidth="395.0" />
-            <Button fx:id="btnRoomSearch" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" text="search" />
+            <TextField fx:id="txtRoomSearch" onAction="#onTxtRoomSearch" prefHeight="31.0" prefWidth="395.0" />
+            <Button fx:id="btnRoomSearch" mnemonicParsing="false" onAction="#onBtnRoomSearchClicked" prefHeight="31.0" prefWidth="116.0" text="Search">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
-      <HBox layoutX="571.0" layoutY="500.0" prefHeight="31.0" prefWidth="410.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="630.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="469.0" />
-      <TableView fx:id="tblVWRoom" layoutX="18.0" layoutY="74.0" prefHeight="370.0" prefWidth="1050.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <HBox layoutX="675.0" layoutY="474.0" spacing="10.0">
+      <TableView fx:id="tblVWRoom" layoutX="139.0" layoutY="68.0" prefHeight="377.0" prefWidth="820.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0" />
+      <HBox layoutX="475.0" layoutY="469.0" prefHeight="38.0" prefWidth="398.0" spacing="10.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="469.0">
          <children>
-            <Button fx:id="btnRoomAdd" mnemonicParsing="false" onAction="#onBtnRoomAddClicked" prefHeight="31.0" prefWidth="79.0" text="Add" />
-            <Button fx:id="btnRoomRefresh" mnemonicParsing="false" onAction="#onBtnRefreshRoomClicked" text="Refresh" />
-            <Button fx:id="btnRoomEdit" mnemonicParsing="false" onAction="#onBtnRoomEditClicked" prefHeight="31.0" prefWidth="57.0" text="Edit" />
-            <Button fx:id="btnRoomDelete" mnemonicParsing="false" onAction="#onBtnRookDeleteClicked" text="Delete" />
+            <Button fx:id="btnRoomAdd" mnemonicParsing="false" onAction="#onBtnRoomAddClicked" prefHeight="31.0" prefWidth="65.0" text="Add" />
+            <Button fx:id="btnRoomRefresh" mnemonicParsing="false" onAction="#onBtnRoomRefreshClicked" text="Refresh" />
+            <Button fx:id="btnRoomEdit" mnemonicParsing="false" onAction="#onBtnRoomEditClicked" text="Edit" />
+            <Button fx:id="btnRoomDelete" mnemonicParsing="false" onAction="#onBtnRoomDeleteClicked" text="Delete" />
          </children>
       </HBox>
    </children>
