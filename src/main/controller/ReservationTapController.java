@@ -2,6 +2,8 @@ package main.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,6 +52,8 @@ public class ReservationTapController implements Initializable {
     private TableColumn<Reservation, Date> checkOutDate;
     @FXML
     private TableColumn<Reservation, String> status;
+    @FXML
+    private TextField txtReservationSearch;
 
     List<Reservation> regList = null;
     private DBService dbService;
@@ -100,6 +104,9 @@ public class ReservationTapController implements Initializable {
     public void onBtnReservationDeleteClicked() {
         deleteReservation();
     }
+    public void onBtnReservationEditClicked(){
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -119,8 +126,9 @@ public class ReservationTapController implements Initializable {
         checkOutDate.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         status.setCellValueFactory(new PropertyValueFactory<>("registrationStatus"));
 
+        refreshHomeTableView();
 
-        tblVWReservation.getItems().setAll(parseReservationList());
+        // tblVWReservation.getItems().setAll(parseReservationList());
         tblVWReservation.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
@@ -129,10 +137,40 @@ public class ReservationTapController implements Initializable {
     }
 
     public void refreshHomeTableView() {
-        tblVWReservation.refresh();
-        tblVWReservation.setItems(null);
+        //tblVWReservation.refresh();
+        //  tblVWReservation.setItems(null);
         regList = null;
-        tblVWReservation.setItems((ObservableList) parseReservationList());
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        ObservableList<Reservation> masterData = (ObservableList<Reservation>) parseReservationList();
+        FilteredList<Reservation> filteredData = new FilteredList<>(masterData, p -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        txtReservationSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (person.getGuest().getfName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else if (person.getGuest().getlName().toLowerCase().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Reservation> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(tblVWReservation.comparatorProperty());
+        // 5. Add sorted (and filtered) data to the table.
+        tblVWReservation.setItems(sortedData);
     }
 
     private List<Reservation> parseReservationList() {
@@ -167,7 +205,7 @@ public class ReservationTapController implements Initializable {
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     Payment payment = fxmlLoader.<Payment>getController();
-                    payment.setReservation(reservation,stage);
+                    payment.setReservation(reservation, stage);
                     stage.setScene(new Scene(root1));
                     stage.show();
                 } catch (Exception e) {
