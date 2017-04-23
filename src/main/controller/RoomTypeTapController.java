@@ -1,22 +1,12 @@
 package main.controller;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
-import javafx.stage.Stage;
-import main.Shared.UrlLoader;
 import main.Shared.WindowNavigation;
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
@@ -78,6 +68,12 @@ public class RoomTypeTapController implements Initializable, RoomTypeController.
     }
 
     @Override
+    public void onUpdateSuccess(RoomType roomType) {
+        //onBtnRoomTypeRefreshClicked();
+        tblRoomType.notifyAll();
+    }
+
+    @Override
     public void onSaveFail(String errMessage) {
         // Alert message box to inform user.
 
@@ -130,10 +126,23 @@ public class RoomTypeTapController implements Initializable, RoomTypeController.
     }
 
     public void onBtnRoomTypeEditClicked(){
-
+        RoomTypeController roomTypeController = (RoomTypeController) new WindowNavigation().navigateToWindow("Edit Room Type",
+                "../../resource/view/RoomType.fxml");
+        roomTypeController.setEditedRoomType((RoomType) tblRoomType.getSelectionModel().getSelectedItem());
+        roomTypeController.setEditWindow(true);
+        roomTypeController.setRoomTypeControllerListener(this);
     }
     public void onBtnRoomTypeDeleteClicked(){
-
+        RoomType selectedRoomType = (RoomType) tblRoomType.getSelectionModel().getSelectedItem();
+        int result = this.dbService.deleteRoomType(selectedRoomType);
+        // Display confirm message to delete item.
+        if (result != 0) {
+            // Delete success
+            originalRoomTypeList.remove(selectedRoomType);
+            onBtnRoomTypeRefreshClicked();
+        } else {
+            // Delete false;
+        }
     }
 
     public void searchRoomType(String value) {
