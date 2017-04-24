@@ -7,12 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.Shared.WindowNavigation;
 import main.accountsub.AccountFacade;
 import main.accountsub.AccountService;
-import main.dbsub.DBFacade;
-import main.dbsub.DBService;
 import main.model.Account;
-import main.model.RoomType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * Created by gebre on 4/23/2017.
  */
-public class AccountTapController implements Initializable {
+public class AccountTapController implements Initializable, AccountController.AccountControllerListener {
 
     @FXML
     private TextField txtAccountSearch;
@@ -69,6 +67,24 @@ public class AccountTapController implements Initializable {
         loadAccountListIntoTableView();
     }
 
+    @Override
+    public void onSaveSuccess(Account account) {
+        originalAccountList.add(account);
+        onBtnAccountRefreshClicked();
+        //originalAccountList.notify();
+    }
+
+    @Override
+    public void onUpdateSuccess(Account account) {
+        onBtnAccountRefreshClicked();
+        //originalAccountList.notify();
+    }
+
+    @Override
+    public void onSaveFail(String errMessage) {
+
+    }
+
     public void loadAccountListIntoTableView() {
         num = new TableColumn<>("No");
         idAccount = new TableColumn<>("ID");
@@ -114,7 +130,9 @@ public class AccountTapController implements Initializable {
     }
 
     public void onBtnAccountAddClicked(){
-
+        AccountController accountController = (AccountController) new WindowNavigation().navigateToWindow("Add New Account",
+                "../../resource/view/Account.fxml");
+        accountController.setAccountControllerListener(this);
     }
 
     public void onBtnAccountRefreshClicked(){
@@ -123,11 +141,19 @@ public class AccountTapController implements Initializable {
     }
 
     public void onBtnAccountEditClicked(){
-
+        AccountController accountController = (AccountController) new WindowNavigation().navigateToWindow("Add New Account",
+                "../../resource/view/Account.fxml");
+        accountController.setAccountControllerListener(this);
+        accountController.setAccount((Account) tblAccount.getSelectionModel().getSelectedItem());
     }
 
     public void onBtnAccountDeleteClicked(){
-
+        Account deletedAccount = (Account) tblAccount.getSelectionModel().getSelectedItem();
+        int result = this.accountService.deleteAccount(deletedAccount);
+        if (result != 0) {
+            originalAccountList.remove(deletedAccount);
+        }
+        onBtnAccountRefreshClicked();
     }
 
     public void searchAccount(String value) {

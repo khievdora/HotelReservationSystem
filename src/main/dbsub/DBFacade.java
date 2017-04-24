@@ -30,23 +30,23 @@ public class DBFacade implements DBService {
     }
 
     @Override
-    public boolean saveAccount(Account account) {
+    public int saveAccount(Account account) {
         return this.account.saveAccount(account);
     }
 
     @Override
-    public boolean updateAccount(Account account) {
+    public int updateAccount(Account account) {
         return this.account.updateAccount(account);
     }
 
     @Override
-    public boolean deleteAccount(Account account) {
+    public int deleteAccount(Account account) {
         return this.account.deleteAccount(account);
     }
 
 
     @Override
-    public boolean deleteAccountById(String accountId) {
+    public int deleteAccountById(String accountId) {
         return this.account.deleteAccountById(accountId);
     }
 
