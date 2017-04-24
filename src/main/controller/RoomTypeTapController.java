@@ -70,7 +70,8 @@ public class RoomTypeTapController implements Initializable, RoomTypeController.
     @Override
     public void onUpdateSuccess(RoomType roomType) {
         //onBtnRoomTypeRefreshClicked();
-        tblRoomType.notifyAll();
+        //tblRoomType.notifyAll();
+        originalRoomTypeList.notify();
     }
 
     @Override
