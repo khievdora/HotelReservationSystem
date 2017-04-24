@@ -77,8 +77,9 @@ public class ReservationTapController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/view/addReservation.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-
+            ReservationController reserveCtrl = fxmlLoader.<main.controller.ReservationController>getController();
             stage.setScene(new Scene(root1));
+            reserveCtrl.setStage(stage);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,7 +106,19 @@ public class ReservationTapController implements Initializable {
         deleteReservation();
     }
     public void onBtnReservationEditClicked(){
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/view/addReservation.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            ReservationController reserveCtrl = fxmlLoader.<main.controller.ReservationController>getController();
+            reserveCtrl.setEditedReservation((Reservation) tblVWReservation.getSelectionModel().getSelectedItem());
+            reserveCtrl.setEditWindow(true);
+            stage.setScene(new Scene(root1));
+            reserveCtrl.setStage(stage);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
