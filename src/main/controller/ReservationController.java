@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import main.ReservationSub.ReservationBusiness;
 import main.ReservationSub.command.ReservationSubSystemOperations;
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
@@ -141,16 +142,22 @@ public class ReservationController implements Initializable {
             JOptionPane.showMessageDialog(null, "Please select guest!");
             return;
         }
+        if (comboRoom.getValue() == null) {
+            JOptionPane.showMessageDialog(null, "Please select room!");
+            return;
+        }
         main.model.Guest guest = this.dbService.getAllGuest().stream().filter(g -> g.getfName().equals(comboGuest.getValue())).findAny().get();
         Room room = this.dbService.getAllRoom().stream().filter(r -> r.getRoomNumber() == Integer.parseInt(comboRoom.getValue().toString())).findAny().get();
         Date checkIN = Date.valueOf(dpCheckIn.getValue());
-        Date booked = Date.valueOf(dpCheckIn.getValue());
-        Date checkOut = Date.valueOf(dpCheckIn.getValue());
+        Date booked = Date.valueOf(dpBooked.getValue());
+        Date checkOut = Date.valueOf(dpCheckOut.getValue());
         String status = (comboStatus.getValue().toString());
         Reservation resObj = new Reservation(1, checkIN, checkOut, booked, guest, room, status);
 
+        ReservationBusiness reservationBusiness= new ReservationBusiness(status,this);
         if (!isEditWindow) {
-            save(resObj);
+            reservationBusiness.reserve(resObj);
+           // save(resObj);
         } else {
             Edit(resObj);
         }
@@ -190,7 +197,15 @@ public class ReservationController implements Initializable {
         this.reserveStage.close();
     }
 
-    public void makeValidation() {
+    public void makeValidation(Reservation resObj) {
+        if (!resObj.getCheckInDate().equals(Date.valueOf(LocalDate.now()))){
+            JOptionPane.showMessageDialog(null, "To check In, Check Date should be the same as today's date!");
+            return;
+        }
+        if (resObj.getRoom()==null){
+            JOptionPane.showMessageDialog(null, "To check in a guest you must select a room!");
+            return;
+        }
 
     }
 
