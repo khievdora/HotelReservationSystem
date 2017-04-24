@@ -36,7 +36,7 @@ public class RoomRegistrationController implements Initializable, IController {
     @FXML
     private TextField txtRoomStatus;
     @FXML
-    private Spinner spnrRoomFloor;
+    private Spinner<Integer> spnrRoomFloor;
     @FXML
     private TextField txtDescription;
     @FXML
@@ -53,7 +53,7 @@ public class RoomRegistrationController implements Initializable, IController {
 
     @FXML
     private ComboBox cbRoomRegistration;
-    private List<Room> lstRooms = null;
+    private List<RoomType> lstRooms = null;
 
     private Stage roomStage;
     private DBService dbService;
@@ -64,6 +64,7 @@ public class RoomRegistrationController implements Initializable, IController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.dbService = new DBFacade();
+        spnrRoomFloor = new Spinner(0, 120, 30);
         comboRoomTypelist();
     }
 
@@ -81,7 +82,7 @@ public class RoomRegistrationController implements Initializable, IController {
         txtRoomNumber.setText(String.valueOf(this.editedRoom.getRoomNumber()));
         txtRoomStatus.setText(this.editedRoom.getRoomStatus());
         spnrRoomFloor.getValueFactory().setValue(this.editedRoom.getFloor());
-        cbRoomRegistration.getSelectionModel();
+        cbRoomRegistration.setValue(room.getRoomType().getDescription());
         txtDescription.setText(this.editedRoom.getDescription());
         spnrRoomMaxCapacity.getValueFactory().setValue(this.editedRoom.getMaxQuest());
         txtRoomPrice.setText(String.valueOf(this.editedRoom.getPrice()));
@@ -96,28 +97,30 @@ public class RoomRegistrationController implements Initializable, IController {
 
     public void onBtnRoomSaveClicked() {
         System.out.println("Button save clicked!!!");
-        final Spinner<Integer> spinner = new Spinner<Integer>();
-        final int initialValue = 3;
-        SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, initialValue);
-
-        spinner.setValueFactory(valueFactory);
+//        final Spinner<Integer> spinner = new Spinner<Integer>();
+//        final int initialValue = 3;
+//        SpinnerValueFactory<Integer> valueFactory =
+//                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, initialValue);
+//        SpinnerValueFactory svf = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
+//
+//        spinner.setValueFactory(valueFactory);
 
         int code = Integer.parseInt(txtRoomCode.getText());
         String rName = txtRoomName.getText();
         int rNumber = Integer.parseInt(txtRoomNumber.getText());
         String rStatus = txtRoomStatus.getText();
 
-        int rFloor = (int) spnrRoomFloor.getValueFactory().getValue();
+        int rFloor = spnrRoomFloor.getValueFactory().getValue();
         String desc = txtDescription.getText();
 
-//        String selected_txt = cmbRoomType.getItems(cmbRoomType.getSelectionModel());
+        String selected_txt = (String) cbRoomRegistration.getSelectionModel().getSelectedItem();
         int maxCapacity = (int) spnrRoomMaxCapacity.getValueFactory().getValue();
         float rPrice = Float.parseFloat(txtRoomPrice.getText());
         String status = txtStatus.getText();
 
+        RoomType roomType=this.dbService.getAllRoomType().stream().filter(r->r.getDescription().equals(selected_txt)).findAny().get();
 
-        Room room = new Room(code, rName, rNumber, rStatus, rFloor, desc,null, maxCapacity, status, rPrice);
+        Room room = new Room(code, rName, rNumber, rStatus, rFloor, desc,roomType, maxCapacity, status, rPrice);
         int result = 0;
         if (!isEditWindow) {
             // Add new Room Type
@@ -175,7 +178,7 @@ public class RoomRegistrationController implements Initializable, IController {
     }
     public void comboRoomTypelist() {
 
-        List<Room> roomTypes = new RoomImpl().getAllRoom();
+        List<RoomType> roomTypes = new RoomTypeImpl().getAllRoomType();
         lstRooms = new ArrayList<>();
         lstRooms = roomTypes;
         List<String> rooms = roomTypes.stream().map(rm -> rm.getDescription()).collect(Collectors.toList());

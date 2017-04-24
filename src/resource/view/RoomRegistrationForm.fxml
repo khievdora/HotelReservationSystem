@@ -77,8 +77,8 @@
             <TextField fx:id="txtRoomPrice" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="txtStatus" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="cbRoomRegistration" prefHeight="31.0" prefWidth="266.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Spinner fx:id="spnrRoomFloor" accessibleRole="INCREMENT_BUTTON" editable="true" prefHeight="31.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Spinner fx:id="spnrRoomMaxCapacity" editable="true" prefHeight="31.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Spinner fx:id="spnrRoomFloor" initialValue="3" max="10" min="0" prefHeight="31.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Spinner fx:id="spnrRoomMaxCapacity" initialValue="2" max="4" min="1" prefHeight="31.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label text="Room Name" GridPane.rowIndex="1">
                <padding>
                   <Insets left="10.0" />
