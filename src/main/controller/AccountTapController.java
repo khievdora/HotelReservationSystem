@@ -3,17 +3,23 @@ package main.controller;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Shared.WindowNavigation;
 import main.accountsub.AccountFacade;
 import main.accountsub.AccountService;
 import main.model.Account;
 
+import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -70,14 +76,14 @@ public class AccountTapController implements Initializable, AccountController.Ac
     @Override
     public void onSaveSuccess(Account account) {
         originalAccountList.add(account);
-        onBtnAccountRefreshClicked();
-        //originalAccountList.notify();
+        //onBtnAccountRefreshClicked();
+        refreshAccountTableView();
     }
 
     @Override
     public void onUpdateSuccess(Account account) {
-        onBtnAccountRefreshClicked();
-        //originalAccountList.notify();
+        //onBtnAccountRefreshClicked();
+        refreshAccountTableView();
     }
 
     @Override
@@ -136,15 +142,20 @@ public class AccountTapController implements Initializable, AccountController.Ac
     }
 
     public void onBtnAccountRefreshClicked(){
-        //tblAccount.getItems().clear();
-        tblAccount.setItems(originalAccountList);
+        //tblAccount.setItems(originalAccountList);
+        refreshAccountTableView();
     }
 
     public void onBtnAccountEditClicked(){
-        AccountController accountController = (AccountController) new WindowNavigation().navigateToWindow("Add New Account",
-                "../../resource/view/Account.fxml");
-        accountController.setAccountControllerListener(this);
-        accountController.setAccount((Account) tblAccount.getSelectionModel().getSelectedItem());
+        Account accountToEdit = (Account) tblAccount.getSelectionModel().getSelectedItem();
+        if (accountToEdit != null) {
+            AccountController accountController = (AccountController) new WindowNavigation().navigateToWindow("Add New Account",
+                    "../../resource/view/Account.fxml");
+            accountController.setAccountControllerListener(this);
+            accountController.setAccount(accountToEdit);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select record to edit!");
+        }
     }
 
     public void onBtnAccountDeleteClicked(){
@@ -153,7 +164,12 @@ public class AccountTapController implements Initializable, AccountController.Ac
         if (result != 0) {
             originalAccountList.remove(deletedAccount);
         }
-        onBtnAccountRefreshClicked();
+        //onBtnAccountRefreshClicked();
+        refreshAccountTableView();
+    }
+
+    public void refreshAccountTableView() {
+        tblAccount.setItems(originalAccountList);
     }
 
     public void searchAccount(String value) {
