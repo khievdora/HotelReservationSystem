@@ -2,6 +2,7 @@ package main.controller;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,10 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import main.Shared.WindowNavigation;
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
-import main.dbsub.RoomImpl;
-import main.dbsub.RoomTypeImpl;
 import main.model.Room;
 import main.model.RoomType;
 
@@ -52,19 +52,36 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
     private TableColumn<Room, StringProperty> status;
     @FXML
     private TableColumn<Room, FloatProperty> price;
+
+
     @FXML
     private TableView tblVWRoom;
-
-
-    private DBService dbService;
-
     private List<Room> lstRooms;
 
-    public RoomTabController(){
-        this.dbService = new DBFacade();
-    }
+    private DBService dbService;
+    private ObservableList<Room> originalRoomList = FXCollections.observableArrayList();
+    private ObservableList<Room> modifiedRoomList = FXCollections.observableArrayList();
+
+
+
+
+
+    public RoomTabController(){}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Initialize Database service
+        this.dbService = new DBFacade();
+
+        //get all room lists
+        originalRoomList = FXCollections.observableArrayList(dbService.getAllRoom());
+
+        //Initialize Room TableView
+        loadRoomListIntoView();
+
+
+    }
+
+    private void loadRoomListIntoView() {
         code = new TableColumn<>("Id");
         roomName = new TableColumn<>("Room Name");
         roomNumber = new TableColumn<>("Rooom No");
@@ -129,36 +146,59 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
 
     }
     public void onBtnRoomAddClicked(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/view/RoomRegistrationForm.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            RoomRegistrationController roomRegistrationController = fxmlLoader.getController();
-            roomRegistrationController.setRoomControllerListener(this);
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("Button save clicked!!");
+        RoomRegistrationController roomTypeController = (RoomRegistrationController) new WindowNavigation().navigateToWindow("Add Room",
+                "../../resource/view/RoomRegistrationForm.fxml");
+        roomTypeController.setRoomControllerListener(this);
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/view/RoomRegistrationForm.fxml"));
+//            Parent root1 = fxmlLoader.load();
+//            Stage stage = new Stage();
+//            RoomRegistrationController roomRegistrationController = fxmlLoader.getController();
+//            roomRegistrationController.setRoomControllerListener(this);
+//
+//            stage.setScene(new Scene(root1));
+//            stage.show();
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 
     public void onBtnRoomRefreshClicked(){
-        System.out.println("room button refresh");
+        tblVWRoom.setItems(originalRoomList);
 
     }
     public void onBtnRoomEditClicked(){
+        RoomRegistrationController roomRegisterController = (RoomRegistrationController) new WindowNavigation().navigateToWindow("Edit Room Type",
+                "../../resource/view/RoomRegistrationForm.fxml");
+        roomRegisterController.setEditedRoomType((Room) tblVWRoom.getSelectionModel().getSelectedItem());
+        roomRegisterController.setEditWindow(true);
+        roomRegisterController.setRoomControllerListener(this);
 
     }
     public void onBtnRoomDeleteClicked(){
-
+        Room selectedRoom = (Room) tblVWRoom.getSelectionModel().getSelectedItem();
+        int result = this.dbService.deleteRoom(selectedRoom);
+        // Display confirm message to delete item.
+        if (result != 0) {
+            // Delete success
+            originalRoomList.remove(selectedRoom);
+            onBtnRoomRefreshClicked();
+        } else {
+            // Delete false;
+        }
     }
-
 
     @Override
     public void onSaveRoomSuccess(Room room) {
-        System.out.println("Save button clicked!!");
+        originalRoomList.add(room);
+        onBtnRoomRefreshClicked();
+    }
+
+    @Override
+    public void onUpdateRoomSuccess(Room room) {
+        tblVWRoom.notifyAll();
     }
 
     @Override
