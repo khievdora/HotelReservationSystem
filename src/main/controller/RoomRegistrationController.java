@@ -28,7 +28,7 @@ public class RoomRegistrationController implements Initializable, IController {
     @FXML
     private Label lblRoomEditForm;
     @FXML
-    private TextField txtCode;
+    private TextField txtRoomCode;
     @FXML
     private TextField txtRoomName;
     @FXML
@@ -36,17 +36,15 @@ public class RoomRegistrationController implements Initializable, IController {
     @FXML
     private TextField txtRoomStatus;
     @FXML
-    private Spinner<Integer> txtRoomFloor;
+    private Spinner spnrRoomFloor;
     @FXML
     private TextField txtDescription;
     @FXML
-    private ComboBox cmbRoomType;
-    @FXML
-    private Spinner txtMaxCapacity;
+    private Spinner spnrRoomMaxCapacity;
     @FXML
     private TextField txtStatus;
     @FXML
-    private TextField txtPrice;
+    private TextField txtRoomPrice;
 
     @FXML
     private Button btnRoomCancel;
@@ -78,14 +76,15 @@ public class RoomRegistrationController implements Initializable, IController {
     public void setEditedRoomType(Room room) {
         this.editedRoom = room;
 
-        txtCode.setText(String.valueOf(this.editedRoom.getCode()));
+        txtRoomCode.setText(String.valueOf(this.editedRoom.getCode()));
         txtRoomName.setText(this.editedRoom.getRoomName());
         txtRoomNumber.setText(String.valueOf(this.editedRoom.getRoomNumber()));
         txtRoomStatus.setText(this.editedRoom.getRoomStatus());
-        txtRoomFloor.getValueFactory().setValue(this.editedRoom.getFloor());
+        spnrRoomFloor.getValueFactory().setValue(this.editedRoom.getFloor());
+        cbRoomRegistration.getSelectionModel();
         txtDescription.setText(this.editedRoom.getDescription());
-        txtMaxCapacity.getValueFactory().setValue(this.editedRoom.getMaxQuest());
-        txtPrice.setText(String.valueOf(this.editedRoom.getPrice()));
+        spnrRoomMaxCapacity.getValueFactory().setValue(this.editedRoom.getMaxQuest());
+        txtRoomPrice.setText(String.valueOf(this.editedRoom.getPrice()));
         txtStatus.setText(this.editedRoom.getStatus());
 
     }
@@ -104,21 +103,21 @@ public class RoomRegistrationController implements Initializable, IController {
 
         spinner.setValueFactory(valueFactory);
 
-        int code = 0;
+        int code = Integer.parseInt(txtRoomCode.getText());
         String rName = txtRoomName.getText();
         int rNumber = Integer.parseInt(txtRoomNumber.getText());
         String rStatus = txtRoomStatus.getText();
 
-        int rFloor = (int) txtRoomFloor.getValueFactory().getValue();
+        int rFloor = (int) spnrRoomFloor.getValueFactory().getValue();
         String desc = txtDescription.getText();
 
 //        String selected_txt = cmbRoomType.getItems(cmbRoomType.getSelectionModel());
-        int maxCapacity = (int) txtMaxCapacity.getValueFactory().getValue();
-        float rPrice = Float.parseFloat(txtPrice.getText());
+        int maxCapacity = (int) spnrRoomMaxCapacity.getValueFactory().getValue();
+        float rPrice = Float.parseFloat(txtRoomPrice.getText());
         String status = txtStatus.getText();
 
 
-        Room room = new Room(code, rName, rNumber, rStatus, rFloor, desc, null, maxCapacity, status, rPrice);
+        Room room = new Room(code, rName, rNumber, rStatus, rFloor, desc,null, maxCapacity, status, rPrice);
         int result = 0;
         if (!isEditWindow) {
             // Add new Room Type
@@ -139,23 +138,21 @@ public class RoomRegistrationController implements Initializable, IController {
             result = this.dbService.updateRoom(editedRoom);
             checkOperationResult(result, room);
         }
-
-        //if save success
-//        Room room = null;
-//        if(this.listener!=null){
-//            this.listener.onSaveRoomSuccess(room);
-//        }
-//        //else fail message
-//        this.listener.onSaveRoomFail("fail to save!!");
     }
 
     private void checkOperationResult(int result, Room room) {
-        // Save success
-        this.roomStage.close();
-        if (!isEditWindow) {
-            this.listener.onSaveRoomSuccess(room);
+        if (result != 0) {
+            // Save success
+            this.roomStage.close();
+            if (!isEditWindow) {
+                this.listener.onSaveRoomSuccess(room);
+            } else {
+                this.listener.onUpdateRoomSuccess(room);
+            }
         } else {
-            this.listener.onSaveRoomSuccess(room);
+            // Save fail
+            this.roomStage.close();
+            this.listener.onSaveRoomFail("Save room type fail!!!");
         }
     }
 
