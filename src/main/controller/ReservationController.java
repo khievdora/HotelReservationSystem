@@ -201,16 +201,16 @@ public class ReservationController implements Initializable {
         this.reserveStage.close();
     }
 
-    public void makeValidation(Reservation resObj) {
+    public boolean makeValidation(Reservation resObj) {
         if (!resObj.getCheckInDate().equals(Date.valueOf(LocalDate.now()))) {
             JOptionPane.showMessageDialog(null, "To check In, Check Date should be the same as today's date!");
-            return;
+            return false;
         }
         if (resObj.getRoom() == null) {
             JOptionPane.showMessageDialog(null, "To check in a guest you must select a room!");
-            return;
+            return false;
         }
-
+return true;
     }
 
     public void provideQuarantee() {
