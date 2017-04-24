@@ -176,13 +176,14 @@ public class RoomRegistrationController implements Initializable, IController {
     public void comboRoomTypelist() {
 
         List<Room> roomTypes = new RoomImpl().getAllRoom();
-        lstRooms = new ArrayList<Room>();
+        lstRooms = new ArrayList<>();
         lstRooms = roomTypes;
         List<String> rooms = roomTypes.stream().map(rm -> rm.getDescription()).collect(Collectors.toList());
         ObservableList<String> roomTypesData = FXCollections.observableArrayList();
 
         for (String id : rooms) {
             roomTypesData.add(id);
+            System.out.println("Id = "+id);
 
         }
         cbRoomRegistration.setItems(null);

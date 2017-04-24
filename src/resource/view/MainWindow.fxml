@@ -120,11 +120,6 @@
                                            <fx:include fx:id="guestTapPage" source="GuestTap.fxml" />
                                           </content>
                                     </Tab>
-                                    <Tab fx:id="reportTabPage" closable="false" text="Report">
-                                       <content>
-                                           <fx:include fx:id="reportTapPage" source="ReportTap.fxml" />
-                                          </content>
-                                    </Tab>
                                 </tabs>
                               </TabPane>
                            </children>

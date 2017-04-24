@@ -146,6 +146,7 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
 
     }
     public void onBtnRoomAddClicked(){
+        System.out.println("Button save clicked!!");
         RoomRegistrationController roomTypeController = (RoomRegistrationController) new WindowNavigation().navigateToWindow("Add Room",
                 "../../resource/view/RoomRegistrationForm.fxml");
         roomTypeController.setRoomControllerListener(this);
