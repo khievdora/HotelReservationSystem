@@ -42,14 +42,16 @@ public class RoomTypeController implements Initializable, IController {
 
     public void setEditedRoomType(RoomType roomType) {
         this.editedRoomType = roomType;
+        isEditWindow = true;
+        lblRoomTypeTitle.setText("RoomType Edit Form");
         txtDescription.setText(this.editedRoomType.getDescription());
         txtMaxGuest.setText(this.editedRoomType.getMaxCapacity() + "");
     }
 
-    public void setEditWindow(boolean value) {
-        isEditWindow = value;
-        lblRoomTypeTitle.setText("Room Type Edit Form");
-    }
+//    public void setEditWindow(boolean value) {
+//        isEditWindow = value;
+//        lblRoomTypeTitle.setText("Room Type Edit Form");
+//    }
 
     public void onButtonRoomTypeSaveClicked() throws NullPointerException {
         System.out.println("Button save clicked!!!");

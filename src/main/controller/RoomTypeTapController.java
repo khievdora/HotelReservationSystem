@@ -12,6 +12,7 @@ import main.dbsub.DBFacade;
 import main.dbsub.DBService;
 import main.model.RoomType;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -127,11 +128,16 @@ public class RoomTypeTapController implements Initializable, RoomTypeController.
     }
 
     public void onBtnRoomTypeEditClicked(){
-        RoomTypeController roomTypeController = (RoomTypeController) new WindowNavigation().navigateToWindow("Edit Room Type",
-                "../../resource/view/RoomType.fxml");
-        roomTypeController.setEditedRoomType((RoomType) tblRoomType.getSelectionModel().getSelectedItem());
-        roomTypeController.setEditWindow(true);
-        roomTypeController.setRoomTypeControllerListener(this);
+        RoomType roomTypeToEdit = (RoomType) tblRoomType.getSelectionModel().getSelectedItem();
+        if (roomTypeToEdit != null) {
+            RoomTypeController roomTypeController = (RoomTypeController) new WindowNavigation().navigateToWindow("Edit Room Type",
+                    "../../resource/view/RoomType.fxml");
+            roomTypeController.setEditedRoomType((RoomType) tblRoomType.getSelectionModel().getSelectedItem());
+            //roomTypeController.setEditWindow(true);
+            roomTypeController.setRoomTypeControllerListener(this);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select record to update!");
+        }
     }
     public void onBtnRoomTypeDeleteClicked(){
         RoomType selectedRoomType = (RoomType) tblRoomType.getSelectionModel().getSelectedItem();
