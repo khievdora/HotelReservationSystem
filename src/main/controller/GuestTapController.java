@@ -1,5 +1,6 @@
 package main.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -126,9 +127,13 @@ public class GuestTapController implements Initializable {
         pasport.setCellValueFactory(new PropertyValueFactory<>("passport"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
+        TableColumn<Guest, Number> indexColumn = new TableColumn<Guest, Number>("No.");
+        indexColumn.setSortable(false);
+        indexColumn.setCellValueFactory(column-> new ReadOnlyObjectWrapper<Number>(tblVWGuest.getItems().indexOf(column.getValue())));
+
         refreshHomeTableView();
         tblVWGuest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tblVWGuest.getColumns().addAll(code, firstName, middleName, lastName, idCard, pasport, phone);
+        tblVWGuest.getColumns().addAll(indexColumn,code, firstName, middleName, lastName, idCard, pasport, phone);
 
     }
 

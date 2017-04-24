@@ -1,5 +1,6 @@
 package main.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -139,13 +140,15 @@ public class ReservationTapController implements Initializable {
         checkOutDate.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         status.setCellValueFactory(new PropertyValueFactory<>("registrationStatus"));
 
-        refreshHomeTableView();
+        TableColumn<Guest, Number> indexColumn = new TableColumn<Guest, Number>("No.");
+        indexColumn.setSortable(false);
+        indexColumn.setCellValueFactory(column-> new ReadOnlyObjectWrapper<Number>(tblVWReservation.getItems().indexOf(column.getValue())));
 
-        // tblVWReservation.getItems().setAll(parseReservationList());
+        refreshHomeTableView();
         tblVWReservation.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
-        tblVWReservation.getColumns().addAll(code, room, guest, checkInDate, bookedDate, checkOutDate, status);
+        tblVWReservation.getColumns().addAll(indexColumn,code, room, guest, checkInDate, bookedDate, checkOutDate, status);
 
     }
 
