@@ -13,9 +13,9 @@ public interface AccountService {
     public Account getAccountByUserName(String userName);
     public Account getAccountByUserId(String userId);
     public List<Account> getAllAccount();
-    public boolean saveAccount(Account account);
-    public boolean updateAccount(Account account);
-    public boolean deleteAccount(Account account);
-    public boolean deleteAccountById(String accountId);
+    public int saveAccount(Account account);
+    public int updateAccount(Account account);
+    public int deleteAccount(Account account);
+    public int deleteAccountById(String accountId);
 
 }

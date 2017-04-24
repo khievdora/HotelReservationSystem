@@ -14,58 +14,80 @@ public class AccountImpl implements IAccount {
     private IDatabase iDatabase = Database.getInstance();
 
     @Override
-    public boolean saveAccount(Account account) {
+    public int saveAccount(Account account) {
+        int accountId = 0;
         try{
-            String query = "INSERT INTO account(idAccount, username, password, status, userRole, accountStatus) VALUES('"+ account.getCode()+"','"+account.getUserName()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getUserRole()+"','"+account.getAccountStatus()+"')";
-            iDatabase.executeUpdate(query);
-            return true;
+            String query = "INSERT INTO account(username, password, status, userRole, accountStatus) VALUES(" +
+                    "'"+account.getUserName()+"'," +
+                    "'"+account.getPassword()+"'," +
+                    "'"+account.getStatus()+"'," +
+                    "'"+account.getUserRole()+"'," +
+                    "'"+account.getAccountStatus()+"')";
+            accountId = iDatabase.executeUpdate(query);
+            if (accountId != 0) {
+                account.setCode(accountId);
+            }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
 
-        return false;
+        return accountId;
     }
 
     @Override
-    public boolean updateAccount(Account account) {
+    public int updateAccount(Account account) {
+        int result = 0;
         try{
-            String query ="UPDATE account SET idAccount='"+account.getCode()+"', username='"+account.getUserName()+"', password='"+account.getPassword()+"', status='"+account.getStatus()+"', userRole='"+account.getUserRole()+"', accountStatus= '"+account.getAccountStatus()+"' WHERE idAccount='"+account.getCode()+"'";
-            iDatabase.executeUpdate(query);
-            return true;
+            String query ="UPDATE account SET " +
+                    "username='"+account.getUserName()+"', " +
+                    "password='"+account.getPassword()+"', " +
+                    "status='"+account.getStatus()+"', " +
+                    "userRole='"+account.getUserRole()+"', " +
+                    "accountStatus= '"+account.getAccountStatus()+"' " +
+                    "WHERE idAccount="+account.getCode();
+            result = iDatabase.executeUpdate(query);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
 
     @Override
-    public boolean deleteAccount(Account account) {
+    public int deleteAccount(Account account) {
+        int result = 0;
         try{
-            String query = "DELETE FROM account WHERE idAccount = '" + account.getCode() + "'";
-            iDatabase.executeUpdate(query);
-            return true;
+            String sql = "DELETE FROM account WHERE idAccount = " + account.getCode();
+            result = iDatabase.executeUpdate(sql);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
 
 
     @Override
-    public boolean deleteAccountById(String accountId) {
+    public int deleteAccountById(String accountId) {
+        int result = 0;
         try{
-            String query = "DELETE FROM account WHERE idAccount='"+accountId+"'";
-            iDatabase.executeUpdate(query);
-            return true;
+            String query = "DELETE FROM account WHERE idAccount = "+accountId;
+            result = iDatabase.executeUpdate(query);
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
-        return false;
+        return result;
     }
 
     @Override
     public Account getAccountById(String accountId) {
-        String query = "SELECT * from account WHERE idAccount ='"+ accountId +"'";
+        String query = "SELECT * FROM account WHERE idAccount = "+ accountId;
         Account account = new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -79,6 +101,8 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         iDatabase.closeConnection();
         return account;
@@ -86,7 +110,7 @@ public class AccountImpl implements IAccount {
 
     @Override
     public Account getAccountByUserName(String userName) {
-        String query = "SELECT * from account WHERE username='"+ userName +"'";
+        String query = "SELECT * FROM account WHERE username = '"+ userName +"'";
         Account account = new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -100,6 +124,8 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         iDatabase.closeConnection();
         return account;
@@ -107,7 +133,7 @@ public class AccountImpl implements IAccount {
 
     @Override
     public Account getAccountByUserNameAndPassword(String userName, String password) {
-        String query = "SELECT * from account WHERE username='"+ userName +"' AND password = '" +password+"'";
+        String query = "SELECT * FROM account WHERE username = '"+ userName +"' AND password = '" +password+"'";
         Account account = new Account();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -121,6 +147,8 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         iDatabase.closeConnection();
         return account;
@@ -128,7 +156,7 @@ public class AccountImpl implements IAccount {
 
     @Override
     public List<Account> getAccountByFirstName(String firstName) {
-        String query = "SELECT *from account WHERE username='"+ firstName +"'";
+        String query = "SELECT * FROM account WHERE username = '"+ firstName +"'";
         List<Account> accounts = new ArrayList<Account>();
         Account account=new Account();
         try{
@@ -144,13 +172,15 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         return accounts;
     }
 
     @Override
     public List<Account> getAccountByLastName(String lastName) {
-        String query = "SELECT *from account WHERE username='"+ lastName +"'";
+        String query = "SELECT * FROM account WHERE username = '"+ lastName +"'";
         List<Account> accounts = new ArrayList<Account>();
         Account account=new Account();
         try{
@@ -166,13 +196,15 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         return accounts;
     }
 
     @Override
     public List<Account> getAllAccount() {
-        String query = "SELECT *from account";
+        String query = "SELECT * FROM account";
         List<Account> accounts = new ArrayList<Account>();
         try{
             ResultSet rs = iDatabase.executeQuery(query);
@@ -188,6 +220,8 @@ public class AccountImpl implements IAccount {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            this.iDatabase.closeConnection();
         }
         return accounts;
     }

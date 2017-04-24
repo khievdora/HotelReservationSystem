@@ -25,6 +25,15 @@ public class Account {
         this.accountStatus = new SimpleStringProperty();
     }
 
+    public Account(int code, String userName, String password, String status, String userRole, String accountStatus) {
+        this.code = new SimpleIntegerProperty(code);
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+        this.status = new SimpleStringProperty(status);
+        this.userRole = new SimpleStringProperty(userRole);
+        this.accountStatus = new SimpleStringProperty(accountStatus);
+    }
+
     public int getCode() {
         return code.get();
     }

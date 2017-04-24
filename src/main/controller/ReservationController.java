@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 import main.ReservationSub.command.ReservationSubSystemOperations;
 import main.dbsub.DBFacade;
 import main.dbsub.DBService;
@@ -42,10 +43,18 @@ public class ReservationController implements Initializable {
     @FXML
     private DatePicker dpBooked;
     private DBService dbService;
+    private main.model.Reservation editedReservation;
+    private boolean isEditWindow = false;
+    Stage reserveStage;
+
+    public void setStage(Stage stage) {
+        this.reserveStage = stage;
+    }
 
     public ReservationController() {
         this.dbService = new DBFacade();
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         comboRoomlist();
@@ -60,6 +69,22 @@ public class ReservationController implements Initializable {
     List<main.model.Guest> allGuests = null;
 
     //
+    public void setEditedReservation(main.model.Reservation res) {
+        this.editedReservation = res;
+        dpCheckIn.setValue(LocalDate.parse(res.getCheckInDate().toString()));
+        dpBooked.setValue(LocalDate.parse(res.getBookedDate().toString()));
+        dpCheckOut.setValue(LocalDate.parse(res.getCheckOut().toString()));
+        comboRoom.setValue(res.getRoom().getRoomNumber());
+        comboGuest.setValue(res.getGuest().getfName());
+        comboStatus.setValue(res.getRegistrationStatus());
+
+    }
+
+    public void setEditWindow(boolean value) {
+        isEditWindow = value;
+
+    }
+
     public void onBtnReservationAddClicked() {
         saveNew();
     }
@@ -112,16 +137,41 @@ public class ReservationController implements Initializable {
 
     public void saveNew() {
 
-
-        main.model.Guest guest = this.dbService.getAllGuest().stream().filter(g->g.getfName().equals(comboGuest.getValue())).findAny().get();
-        Room room = this.dbService.getAllRoom().stream().filter(r->r.getRoomNumber()==Integer.parseInt(comboRoom.getValue().toString())).findAny().get();
+        if (comboGuest.getValue() == null) {
+            JOptionPane.showMessageDialog(null, "Please select guest!");
+            return;
+        }
+        main.model.Guest guest = this.dbService.getAllGuest().stream().filter(g -> g.getfName().equals(comboGuest.getValue())).findAny().get();
+        Room room = this.dbService.getAllRoom().stream().filter(r -> r.getRoomNumber() == Integer.parseInt(comboRoom.getValue().toString())).findAny().get();
         Date checkIN = Date.valueOf(dpCheckIn.getValue());
         Date booked = Date.valueOf(dpCheckIn.getValue());
         Date checkOut = Date.valueOf(dpCheckIn.getValue());
         String status = (comboStatus.getValue().toString());
-        Reservation resObj = new Reservation(1,checkIN, checkOut, booked, guest, room, status);
-        save(resObj);
+        Reservation resObj = new Reservation(1, checkIN, checkOut, booked, guest, room, status);
 
+        if (!isEditWindow) {
+            save(resObj);
+        } else {
+            Edit(resObj);
+        }
+
+    }
+
+    private void Edit(Reservation resObj) {
+        try {
+            ReservationSubSystemOperations impl = new ReservationSubSystemOperations();
+            resObj.setCode(editedReservation.getCode());
+            boolean isEdited = impl.editReservation(resObj);
+            if (isEdited) {
+                JOptionPane.showMessageDialog(null, "Edited Successfully.!");
+            } else {
+                JOptionPane.showMessageDialog(null, "There was an error in editing!");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "There was an error in Editing!");
+            // e.printStackTrace();
+        }
+        this.reserveStage.close();
     }
 
     public void save(Reservation res) {
@@ -137,6 +187,7 @@ public class ReservationController implements Initializable {
             JOptionPane.showMessageDialog(null, "There was an error in saving!");
             // e.printStackTrace();
         }
+        this.reserveStage.close();
     }
 
     public void makeValidation() {

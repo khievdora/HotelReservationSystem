@@ -38,22 +38,22 @@ public class AccountFacade implements AccountService {
     }
 
     @Override
-    public boolean saveAccount(Account account) {
+    public int saveAccount(Account account) {
         return this.dbService.saveAccount(account);
     }
 
     @Override
-    public boolean updateAccount(Account account) {
+    public int updateAccount(Account account) {
         return this.dbService.updateAccount(account);
     }
 
     @Override
-    public boolean deleteAccount(Account account) {
+    public int deleteAccount(Account account) {
         return this.dbService.deleteAccount(account);
     }
 
     @Override
-    public boolean deleteAccountById(String accountId) {
+    public int deleteAccountById(String accountId) {
         return this.dbService.deleteAccountById(accountId);
     }
 }
