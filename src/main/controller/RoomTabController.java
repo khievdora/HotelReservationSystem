@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import main.Shared.WindowNavigation;
@@ -52,10 +53,14 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
     private TableColumn<Room, StringProperty> status;
     @FXML
     private TableColumn<Room, FloatProperty> price;
+    @FXML
+    private TextField txtRoomSearch;
 
 
     @FXML
     private TableView tblVWRoom;
+    @FXML
+    private TableView tblVWRoomAfterSearch;
     private List<Room> lstRooms;
 
     private DBService dbService;
@@ -143,8 +148,21 @@ public class RoomTabController implements Initializable, RoomRegistrationControl
 
     }
     public void onBtnRoomSearchClicked(){
+        System.out.println("Button search is clicked!!");
+        String txtSearch = txtRoomSearch.getText();
+        if(!txtSearch.isEmpty()){
+            searchRoom(txtSearch);
+        }
 
     }
+
+    private void searchRoom(String txtSearch) {
+        modifiedRoomList = originalRoomList.stream()
+                .filter(r -> r.getRoomName().toLowerCase().contains(txtSearch.toLowerCase()))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        tblVWRoomAfterSearch.setItems(modifiedRoomList);
+    }
+
     public void onBtnRoomAddClicked(){
         System.out.println("Button save clicked!!");
         RoomRegistrationController roomTypeController = (RoomRegistrationController) new WindowNavigation().navigateToWindow("Add Room",

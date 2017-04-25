@@ -13,7 +13,7 @@ import java.util.List;
 public class ReservationImpl implements IReservation {
     private IDatabase iDatabase = null;
 
-    public ReservationImpl() {
+    public ReservationImpl( ) {
         iDatabase = Database.getInstance();
     }
     @Override

@@ -100,11 +100,11 @@
                                        </content>
 
                                   </Tab>
-                                  <Tab closable="false" text="Rooms">
+                                    <Tab  closable="false" text="Rooms">
                                        <content>
-                                           <fx:include fx:id="roomTapPage" source="RoomTap.fxml" />
+                                           <fx:include fx:id="roomTabPage" source="RoomTap.fxml"/>
                                        </content>
-                                  </Tab>
+                                    </Tab>
                                     <Tab fx:id="roomTypeTabPage" closable="false" text="Room Type">
                                        <content>
                                            <fx:include fx:id="roomTypeTapPage" source="RoomTypeTap.fxml" />
