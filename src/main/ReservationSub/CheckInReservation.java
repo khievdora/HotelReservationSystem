@@ -14,7 +14,8 @@ public class CheckInReservation implements ReservationService {
 
     @Override
     public void reserve(Reservation resObj) {
-        reservationBusiness.validate();
-        reservationBusiness.save(resObj);
+        boolean isValid = reservationBusiness.validate(resObj);
+        if (isValid)
+            reservationBusiness.save(resObj);
     }
 }
